@@ -39,8 +39,6 @@
   
   
   
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
-  
 </head>
 
 
@@ -313,6 +311,44 @@
   <div class="article-body">
     <div class="row">
       
+        
+          <div class="col-sm-6 col-md-4">
+            <div class="panel panel-default hover-shadow hover-grow">
+              <figure class="media media-middle">
+                <div class="media-left pr-no">
+                  <a href="https://www.codesheep.cn/" target="_blank" class="img-burn thumb-md media-middle">
+                    <img src="https://www.codesheep.cn/css/images/codesheep_logo.png" class="w-full" alt>
+                  </a>
+                </div>
+                <div class="media-body p-0x">
+                  <h4 class="media-heading"><a href="https://www.codesheep.cn/" target="_blank"><span class="text-dark">CodeSheep</span></a></h4>
+                  <div class="text-muted">
+                    java博主+B站UP主
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+          
+        
+          <div class="col-sm-6 col-md-4">
+            <div class="panel panel-default hover-shadow hover-grow">
+              <figure class="media media-middle">
+                <div class="media-left pr-no">
+                  <a href="http://chuangzaoshi.com/" target="_blank" class="img-burn thumb-md media-middle">
+                    <img src="../images/favatar/chuangzaoshi-logo.png" class="w-full" alt>
+                  </a>
+                </div>
+                <div class="media-body p-0x">
+                  <h4 class="media-heading"><a href="http://chuangzaoshi.com/" target="_blank"><span class="text-dark">创造狮导航</span></a></h4>
+                  <div class="text-muted">
+                    为创意工作者设计
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+          
     </div>
   </div>
 </article>
@@ -320,7 +356,9 @@
   
   <section id="comments">
   	
-           
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
     
   </section>
 
@@ -385,23 +423,20 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
    
     
-  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
-  <script type="text/javascript">
-  var gitalk = new Gitalk({
-    clientID: 'eb8725e6d7b63fdcc4a0',
-    clientSecret: '6c5fe6a693b0ba881a7f38ce0d905987ca071dbb',
-    repo: 'ByKeep.github.io',
-    owner: 'ByKeep',
-    admin: ['ByKeep'],
-    id: md5(location.pathname),
-    distractionFreeMode: true
-  })
-  gitalk.render('comments')
-  </script>
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
 
-      
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
 
 
 
