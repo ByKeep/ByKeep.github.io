@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/repository/index.html</loc>
+    
+    <lastmod>2019-05-11T07:10:15.873Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/05/09/DoCode%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</loc>
     
     <lastmod>2019-05-09T18:30:09.839Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2019-05-09T08:52:52.531Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/repository/index.html</loc>
-    
-    <lastmod>2019-05-09T08:52:52.529Z</lastmod>
     
   </url>
   
