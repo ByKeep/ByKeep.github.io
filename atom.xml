@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-09T18:28:33.329Z</updated>
+  <updated>2019-05-22T13:05:20.493Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux基础篇-Linux的介绍</title>
+    <link href="http://yoursite.com/2019/05/22/Linux%E5%9F%BA%E7%A1%80%E7%AF%87-Linux%E7%9A%84%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://yoursite.com/2019/05/22/Linux基础篇-Linux的介绍/</id>
+    <published>2019-05-22T12:40:10.268Z</published>
+    <updated>2019-05-22T13:05:20.493Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Linux介绍"><a href="#Linux介绍" class="headerlink" title="Linux介绍"></a>Linux介绍</h1><p>   1）Linux的读法，常见有三种【里纽克斯、利尼克斯、里纳克斯】<br>   2）Linux特点：免费、开源、安全（由于系统是开源的所以现在基本全世界的程序员都在维护Linux,保证了Linux系统的安全性）、高效、稳定、对<strong>高并发的处理</strong>非常的强悍。<br>   3）Linux的创始人是来自芬兰的林纳斯，吉祥物是一只企鹅，据说林纳斯因为再一次逛动物园的时候被一只企鹅咬了，所以就以企鹅作为Linux的吉祥物。吉祥物的名字叫tux  </p><p><img src="https://img-blog.csdnimg.cn/20190522204613982.jpg" alt="林纳斯"></p><p>4）Linux和UNI<br>UNIX的创始人是肯•汤普森，在当年开发 UNIX 的初衷是运行他编写的一款计算机游戏 Space Travel，这款游戏模拟太阳系天体运动，由玩家驾驶飞船，观赏景色并尝试在各种行星和月亮上登陆。他先后在多个系统上试验，但运行效果不甚理想，于是决定自己开发操作系统，就这样，UNIX 诞生了。<br>而Linux的创始人林纳斯在赫尔辛基大学读书时出于个人爱好而编写的，当时他觉得教学用的迷你版 UNIX 操作系统 Minix 太难用了，于是决定自己开发一个操作系统。第 1 版本于 1991 年 9 月发布，当时仅有 10 000 行代码。<br>二者的关系，不是大哥和小弟，”UNIX 是 Linux 的父亲”这个说法更怡当。之所以要介绍它们的关系，是因为要告诉读者，在学习的时候，其实 Linux 与 UNIX 有很多的共通之处，简单地说，如果你已经熟练掌握了 Linux，那么再上手使用 UNIX 会非常容易。</p><p><strong>二者也有两个大的区别：</strong><br>UNIX 系统大多是与硬件配套的，也就是说，大多数 UNIX 系统如 AIX、HP-UX 等是无法安装在 x86 服务器和个人计算机上的，而 Linux 则可以运行在多种硬件平台上；<br>UNIX 是商业软件所以是收费的，而 Linux 是开源软件，是免费、公开源代码的。</p><p>Linux 受至旷大计算机爱好者的喜爱，主要原因也有两个：<br>它属于开源软件，用户不用支付可费用就可以获得它和它的源代码，并且可以根据自己的需要对它进行必要的修改，无偿使用，无约束地继续传播；<br>它具有 UNIX 的全部功能，任何使用 UNIX 操作系统或想要学习 UNIX 操作系统的人都可以从 Linux 中获益。</p><p>开源软件是不同于商业软件的一种模式，从字面上理解，就是开放源代码，大家不用担心里面会搞什么猫腻，这会带来软件的革新和安全。</p><p>另外，开源其实并不等同于免费，而是一种新的软件盈利模式。目前很多软件都是开源软件，对计算机行业与互联网影响深远。<br><img src="https://img-blog.csdnimg.cn/20190522210454761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>5）Linux的主要发行版有：Redhat、CentOSE、Ubuntu、Suse、红旗Linux。如下所示，其中Redhat和CentOSE都是来自于Redhat公司旗下的发行版<br><img src="https://img-blog.csdnimg.cn/20190522204655661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="Linux与Windows的区别对比"><a href="#Linux与Windows的区别对比" class="headerlink" title="Linux与Windows的区别对比"></a>Linux与Windows的区别对比</h1><p><img src="https://img-blog.csdnimg.cn/20190522204723356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Linux介绍&quot;&gt;&lt;a href=&quot;#Linux介绍&quot; class=&quot;headerlink&quot; title=&quot;Linux介绍&quot;&gt;&lt;/a&gt;Linux介绍&lt;/h1&gt;&lt;p&gt;   1）Linux的读法，常见有三种【里纽克斯、利尼克斯、里纳克斯】&lt;br&gt;   2）Linux特
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux基础" scheme="http://yoursite.com/tags/Linux%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo博客pure主题配置（转载）</title>
