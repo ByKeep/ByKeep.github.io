@@ -17,21 +17,28 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Linux基础篇-Linux的远程控制与用户管理 | DoCode</title>
-  <meta name="description" content="Linux的远程登录Linux的远程上传下载文件Linux用户管理">
+  <title>Linux基础篇-Linux的远程控制 | DoCode</title>
+  <meta name="description" content="Linux的远程登录原因在实际的使用的情况中，Linux的应用领域在服务器方面的运用比较多。由于服务器都是在远端的机房中，所以开发和维护人员无法通过直接操作服务器的方式展开工作。所以在实际的开发和维护中，开发和维护人员都通过使用远程登录的方式进行对服务器的操作。 远程登录工具目前市面上的远程工具较多，本文介绍Xshell软件进行远程登录，理由如下： 1）相比SecureCRT，它是一款对个人是免费">
 <meta name="keywords" content="Linux基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux基础篇-Linux的远程控制与用户管理">
-<meta property="og:url" content="http://yoursite.com/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/index.html">
+<meta property="og:title" content="Linux基础篇-Linux的远程控制">
+<meta property="og:url" content="http://yoursite.com/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="Linux的远程登录Linux的远程上传下载文件Linux用户管理">
+<meta property="og:description" content="Linux的远程登录原因在实际的使用的情况中，Linux的应用领域在服务器方面的运用比较多。由于服务器都是在远端的机房中，所以开发和维护人员无法通过直接操作服务器的方式展开工作。所以在实际的开发和维护中，开发和维护人员都通过使用远程登录的方式进行对服务器的操作。 远程登录工具目前市面上的远程工具较多，本文介绍Xshell软件进行远程登录，理由如下： 1）相比SecureCRT，它是一款对个人是免费">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-22T15:45:01.372Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524152402295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524152419611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524152434513.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524152449488.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524152505341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190524152517876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-05-24T07:33:30.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux基础篇-Linux的远程控制与用户管理">
-<meta name="twitter:description" content="Linux的远程登录Linux的远程上传下载文件Linux用户管理">
+<meta name="twitter:title" content="Linux基础篇-Linux的远程控制">
+<meta name="twitter:description" content="Linux的远程登录原因在实际的使用的情况中，Linux的应用领域在服务器方面的运用比较多。由于服务器都是在远端的机房中，所以开发和维护人员无法通过直接操作服务器的方式展开工作。所以在实际的开发和维护中，开发和维护人员都通过使用远程登录的方式进行对服务器的操作。 远程登录工具目前市面上的远程工具较多，本文介绍Xshell软件进行远程登录，理由如下： 1）相比SecureCRT，它是一款对个人是免费">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190524152402295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/index.html">
+  <link rel="canonical" href="http://yoursite.com/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/index.html">
   
     <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
   
@@ -252,6 +259,31 @@
           <li>
             
             <div class="item-thumb">
+              <a href="/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/" class="title">Linux基础篇-Linux的远程控制</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-23T14:30:07.769Z" itemprop="datePublished">2019-05-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
               <a href="/2019/05/22/Linux基础篇-Linux的目录结构/" class="thumb">
     
     
@@ -270,31 +302,6 @@
               </p>
               <p class="item-date">
                 <time datetime="2019-05-22T15:42:52.517Z" itemprop="datePublished">2019-05-22</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-thumb">
-              <a href="/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/" class="thumb">
-    
-    
-        <span class="thumb-image thumb-none"></span>
-    
-</a>
-
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/Linux/">Linux</a>
-              </p>
-              <p class="item-title">
-                <a href="/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/" class="title">Linux基础篇-Linux的远程控制与用户管理</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2019-05-22T13:16:32.791Z" itemprop="datePublished">2019-05-22</time>
               </p>
             </div>
           </li>
@@ -385,6 +392,15 @@
 
   
   
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux的远程登录"><span class="toc-number">1.</span> <span class="toc-text">Linux的远程登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">1.1.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程登录工具"><span class="toc-number">1.2.</span> <span class="toc-text">远程登录工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方法"><span class="toc-number">1.3.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux的远程上传下载文件"><span class="toc-number">2.</span> <span class="toc-text">Linux的远程上传下载文件</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
 <main class="main" role="main">
   <div class="content">
   <article id="post-Linux基础篇-Linux的远程控制与用户管理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
@@ -394,7 +410,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Linux基础篇-Linux的远程控制与用户管理
+      Linux基础篇-Linux的远程控制
     </h1>
   
 
@@ -402,8 +418,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/" class="article-date">
-	  <time datetime="2019-05-22T13:16:32.791Z" itemprop="datePublished">2019-05-22</time>
+	<a href="/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/" class="article-date">
+	  <time datetime="2019-05-23T14:30:07.769Z" itemprop="datePublished">2019-05-23</time>
 	</a>
 </span>
         
@@ -428,20 +444,38 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 19(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 599(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 2(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="Linux的远程登录"><a href="#Linux的远程登录" class="headerlink" title="Linux的远程登录"></a>Linux的远程登录</h1><h1 id="Linux的远程上传下载文件"><a href="#Linux的远程上传下载文件" class="headerlink" title="Linux的远程上传下载文件"></a>Linux的远程上传下载文件</h1><h1 id="Linux用户管理"><a href="#Linux用户管理" class="headerlink" title="Linux用户管理"></a>Linux用户管理</h1>
+        <h1 id="Linux的远程登录"><a href="#Linux的远程登录" class="headerlink" title="Linux的远程登录"></a>Linux的远程登录</h1><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>在实际的使用的情况中，Linux的应用领域在服务器方面的运用比较多。由于服务器都是在远端的机房中，所以开发和维护人员无法通过直接操作服务器的方式展开工作。所以在实际的开发和维护中，开发和维护人员都通过使用远程登录的方式进行对服务器的操作。</p>
+<h2 id="远程登录工具"><a href="#远程登录工具" class="headerlink" title="远程登录工具"></a>远程登录工具</h2><p>目前市面上的远程工具较多，本文介绍Xshell软件进行远程登录，理由如下：</p>
+<p>1）相比SecureCRT，它是一款对个人是免费的软件，如果使用SecureCRT需要付费或者使用破解版；</p>
+<p>2）配色与Linux一致，并且还改进了深蓝色字体不容易看见的问题</p>
+<p>免费和界面的理由让我选择了它</p>
+<p>注意：使用远程登录工具登录到服务器后是以命令行的方式显示显示在工具窗口中，程序员的工作环境也一般是命令行窗口</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>软件的安装过程较为简单，安装过程中选择家庭免费版进行安装即可。</p>
+<p>1）第一步点击新建连接</p>
+<p><img src="https://img-blog.csdnimg.cn/20190524152402295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>2）设置连接信息，名称自定义即可，填写需要进行连接的服务器IP地址。最后点击确认按钮，新建连接成功。<br><img src="https://img-blog.csdnimg.cn/20190524152419611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>4）点击查看连接会话，查看新建的连接，点击连接服务器。若是第一次连接会提示输入登录账号密码，按要求输入即可</p>
+<p><img src="https://img-blog.csdnimg.cn/20190524152434513.png" alt="在这里插入图片描述"></p>
+<h1 id="Linux的远程上传下载文件"><a href="#Linux的远程上传下载文件" class="headerlink" title="Linux的远程上传下载文件"></a>Linux的远程上传下载文件</h1><p>1）Xshell的同系列软件还有Xftp它是远程上传下载文件的工具，同样的它也是免费的，它的创建和连接服务器的操作步骤与Xshell类似。需要注意的是在创建连接会话的时候应该将协议改为SFTP,端口切换为22号端口后连接。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190524152449488.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>2）在连接成功后就会出现如下图所示的窗口，通过拖拽或者右键点击相应的文件再点击传输按钮即可实现文件的上传和下载功能。如下图所示</p>
+<p><img src="https://img-blog.csdnimg.cn/20190524152505341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>3）<strong>注意：如果出现中文乱码的问题，将编码方式设置成UTF-8即可，操作步骤如下：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20190524152517876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
       
     </div>
     <div class="article-footer">
@@ -450,7 +484,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/" title="Linux基础篇-Linux的远程控制与用户管理" target="_blank" rel="external">http://yoursite.com/2019/05/22/Linux基础篇-Linux的远程控制与用户管理/</a>
+      <a href="http://yoursite.com/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/" title="Linux基础篇-Linux的远程控制" target="_blank" rel="external">http://yoursite.com/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -498,15 +532,20 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/05/22/Linux基础篇-Linux的目录结构/" title="Linux基础篇-Linux的目录结构"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/05/22/Linux基础篇-Linux的介绍/" title="Linux基础篇-Linux的介绍"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/05/22/Linux基础篇-Linux的目录结构/" title="Linux基础篇-Linux的目录结构"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
     
   </ul>
   
