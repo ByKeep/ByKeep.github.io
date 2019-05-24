@@ -17,21 +17,27 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>DoCode的前世今生 | DoCode</title>
-  <meta name="description" content="在混迹于于各种程序员的圈子后自己也开始想，要是能也有一个属于自己的博客就好了，于是乎在2018年的末尾注册了一个CSDN的账号，有了自己的第一个博客。但是不争气的自己事实上并不是那么安稳的人。在CSDN还没开始写博客的时候，就开始想着会不会有一种属于自己搭建的博客呢？ 但是事情并没有那么的顺利，我第一次开始着手的时候，突然意识到一个问题，那就是：我没有前端的相关知识…..这就难倒我了。完了…….没">
-<meta name="keywords" content="关于DoCode">
+  <title>Linux基础篇-vi和vim编辑器 | DoCode</title>
+  <meta name="description" content="介绍1）所有的Linux系统都会内建有vi文本编辑器 2）vim 具有程序编辑的能力，可以看做是Vi的增强版本，可以主动的以字体颜色辨别 语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别 丰富，在程序员中被广泛使用。 vi和vim的常用三种模式正常模式:  以 vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用 『上下左右』按键来移动光标">
+<meta name="keywords" content="Linux基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DoCode的前世今生">
-<meta property="og:url" content="http://yoursite.com/2019/05/09/DoCode的前世今生/index.html">
+<meta property="og:title" content="Linux基础篇-vi和vim编辑器">
+<meta property="og:url" content="http://yoursite.com/2019/05/24/Linux基础篇-vi和vim编辑器/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="在混迹于于各种程序员的圈子后自己也开始想，要是能也有一个属于自己的博客就好了，于是乎在2018年的末尾注册了一个CSDN的账号，有了自己的第一个博客。但是不争气的自己事实上并不是那么安稳的人。在CSDN还没开始写博客的时候，就开始想着会不会有一种属于自己搭建的博客呢？ 但是事情并没有那么的顺利，我第一次开始着手的时候，突然意识到一个问题，那就是：我没有前端的相关知识…..这就难倒我了。完了…….没">
+<meta property="og:description" content="介绍1）所有的Linux系统都会内建有vi文本编辑器 2）vim 具有程序编辑的能力，可以看做是Vi的增强版本，可以主动的以字体颜色辨别 语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别 丰富，在程序员中被广泛使用。 vi和vim的常用三种模式正常模式:  以 vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用 『上下左右』按键来移动光标">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-09T18:30:09.839Z">
+<meta property="og:image" content="d:/桌面/Snipaste_2019-05-24_16-06-41.png">
+<meta property="og:image" content="d:/桌面/Snipaste_2019-05-24_16-15-54.png">
+<meta property="og:image" content="d:/桌面/Snipaste_2019-05-24_16-15-54.png">
+<meta property="og:image" content="d:/桌面/Snipaste_2019-05-24_16-22-52.png">
+<meta property="og:image" content="d:/桌面/Snipaste_2019-05-24_16-35-44.png">
+<meta property="og:updated_time" content="2019-05-24T09:09:20.247Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DoCode的前世今生">
-<meta name="twitter:description" content="在混迹于于各种程序员的圈子后自己也开始想，要是能也有一个属于自己的博客就好了，于是乎在2018年的末尾注册了一个CSDN的账号，有了自己的第一个博客。但是不争气的自己事实上并不是那么安稳的人。在CSDN还没开始写博客的时候，就开始想着会不会有一种属于自己搭建的博客呢？ 但是事情并没有那么的顺利，我第一次开始着手的时候，突然意识到一个问题，那就是：我没有前端的相关知识…..这就难倒我了。完了…….没">
+<meta name="twitter:title" content="Linux基础篇-vi和vim编辑器">
+<meta name="twitter:description" content="介绍1）所有的Linux系统都会内建有vi文本编辑器 2）vim 具有程序编辑的能力，可以看做是Vi的增强版本，可以主动的以字体颜色辨别 语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别 丰富，在程序员中被广泛使用。 vi和vim的常用三种模式正常模式:  以 vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用 『上下左右』按键来移动光标">
+<meta name="twitter:image" content="d:/桌面/Snipaste_2019-05-24_16-06-41.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2019/05/09/DoCode的前世今生/index.html">
+  <link rel="canonical" href="http://yoursite.com/2019/05/24/Linux基础篇-vi和vim编辑器/index.html">
   
     <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
   
@@ -385,16 +391,25 @@
 
   
   
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vi和vim的常用三种模式"><span class="toc-number">2.</span> <span class="toc-text">vi和vim的常用三种模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vi和vim的三种模式转换"><span class="toc-number">3.</span> <span class="toc-text">vi和vim的三种模式转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用案例"><span class="toc-number">4.</span> <span class="toc-text">使用案例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用vi和vim编辑器快捷键"><span class="toc-number">5.</span> <span class="toc-text">常用vi和vim编辑器快捷键</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
 <main class="main" role="main">
   <div class="content">
-  <article id="post-DoCode的前世今生" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Linux基础篇-vi和vim编辑器" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      DoCode的前世今生
+      Linux基础篇-vi和vim编辑器
     </h1>
   
 
@@ -402,20 +417,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/05/09/DoCode的前世今生/" class="article-date">
-	  <time datetime="2019-05-09T12:47:47.403Z" itemprop="datePublished">2019-05-09</time>
+	<a href="/2019/05/24/Linux基础篇-vi和vim编辑器/" class="article-date">
+	  <time datetime="2019-05-24T08:39:22.229Z" itemprop="datePublished">2019-05-24</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/关于DoCode/">关于DoCode</a>
+	<a class="article-tag-link" href="/tags/Linux基础/">Linux基础</a>
   </span>
 
 
@@ -428,10 +443,10 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/09/DoCode的前世今生/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/24/Linux基础篇-vi和vim编辑器/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 653(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 702(字)</span>
 	
 	
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 2(分)</span>
@@ -441,12 +456,32 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>在混迹于于各种程序员的圈子后自己也开始想，要是能也有一个属于自己的博客就好了，于是乎在2018年的末尾注册了一个CSDN的账号，有了自己的第一个博客。但是不争气的自己事实上并不是那么安稳的人。在CSDN还没开始写博客的时候，就开始想着会不会有一种属于自己搭建的博客呢？</p>
-<p>但是事情并没有那么的顺利，我第一次开始着手的时候，突然意识到一个问题，那就是：我没有前端的相关知识…..这就难倒我了。完了…….没有技术还想入非非，第一次放弃。</p>
-<p>随着时间的推移，我也慢慢忘记了这么一回事，我也以为这个事情就这样过去了。在2019年也就是我大四下学期开学的时候，一个偶然的机会在B站看到了一个视频，内容是个人博客的搭建教学视频。这个视频一下子激发了我的兴趣，我在想，那不是我这样就可以实现我之前个人博客的想法了观看完这个视频后。因为这个视频的让我感觉到不是注册账号登录那么简答，所以我并没有冲动地打开电脑开始搭建自己的第一个个人博客。我仔细思考了一番，虽然我是一名即将迈入社会的程序员。但是同时我拥有的另外一个身份是我是一名非计算机专业出身的程序员。自己的能力水平，至少还是在需要自己安安心心踏踏实实学习的阶段。人是要有梦想，但同时还需要拥有的是自己的踏实。仰望星空的同时要一步一个脚印。</p>
-<p>在冷静想了一番后，我决定把这件事情往后挪一挪。时间就这么过去了一周，一周过后因为一些原因没办法再安心地学习下去了。于是自己想着找一件事情来做，也是为了自己不去想那么多也没那么难受。于是就开始搭建第一个属于自己的个人博客。</p>
-<p>站名在思考很久之后最后决定取名DoCode，主要原因是因为自己是一名非科班出身的程序员，希望自己能在这条路一直走下去，坚持自己最初的想法，不忘初心。</p>
-<p>​                                                                                                                                     2019年3月4日</p>
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>1）所有的Linux系统都会内建有vi文本编辑器</p>
+<p>2）vim 具有程序编辑的能力，可以看做是Vi的增强版本，可以主动的以字体颜色辨别 语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别 丰富，在程序员中被广泛使用。</p>
+<h1 id="vi和vim的常用三种模式"><a href="#vi和vim的常用三种模式" class="headerlink" title="vi和vim的常用三种模式"></a>vi和vim的常用三种模式</h1><p><strong>正常模式</strong>: </p>
+<p>以 vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用 『上下左右』按键来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容， 也可以使用『复制、贴上』来处理你的文件数据。 </p>
+<p><strong>插入模式</strong>: </p>
+<p>按下i, I, o, O, a, A, r, R等任何一个字母之后才会进入编辑模式, 一般来说按i即可.</p>
+<p><strong>命令行模式</strong> ：</p>
+<p>在这个模式当中， 可以提供你相关指令，完成读取、存盘、替换、离开 vim 、显示行号等的 动作则是在此模式中达成的！</p>
+<h1 id="vi和vim的三种模式转换"><a href="#vi和vim的三种模式转换" class="headerlink" title="vi和vim的三种模式转换"></a>vi和vim的三种模式转换</h1><p><img src="D:\桌面\Snipaste_2019-05-24_16-06-41.png" alt="Snipaste_2019-05-24_16-06-41"></p>
+<h1 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h1><p>需求：使用vim编辑器，开发一个Hello.java程序，并保存</p>
+<p>步骤：</p>
+<p>1）使用远程登录工具，登录服务器，这里使用Xshell进行连接</p>
+<p>2）命令行键入vim Hello.java 新建Hello.java文件</p>
+<p><img src="D:\桌面\Snipaste_2019-05-24_16-15-54.png" alt="Snipaste_2019-05-24_16-15-54"></p>
+<p>3）当前属于正常模式，键盘输入i进入插入模式（命令行窗口底部提示进入插入模式）</p>
+<p><img src="D:\桌面\Snipaste_2019-05-24_16-15-54.png" alt="Snipaste_2019-05-24_16-15-54"></p>
+<p>4）直接使用键盘进行输入编辑文件内容，如图所示</p>
+<p><img src="D:\桌面\Snipaste_2019-05-24_16-22-52.png" alt="Snipaste_2019-05-24_16-22-52"></p>
+<p>5）保存并退出。首先由插入模式转换为正常模式，转换方式为按下键盘Esc键，转换到正常模式，正常模式输入：wq 保存并退出，这时候输入ll指令，就可以看到在目录里面已经存在Hello.java这个文件了</p>
+<p><img src="D:\桌面\Snipaste_2019-05-24_16-35-44.png" alt="Snipaste_2019-05-24_16-35-44"></p>
+<h1 id="常用vi和vim编辑器快捷键"><a href="#常用vi和vim编辑器快捷键" class="headerlink" title="常用vi和vim编辑器快捷键"></a>常用vi和vim编辑器快捷键</h1><p>1）删除当前行： dd,删除当前行向下的n行：ndd(n是删除行数)；模式：     正常模式</p>
+<p>2）拷贝当前行：yy,拷贝当前行向下的n行：nyy(n是拷贝的行数)；粘贴指令：p;模式：正常模式</p>
+<p>3) 在文件中查找某个单词 [命令行模式下 /关键字 ， 回车查找 ,  输入 n 就是查找下一个 ]<br>4) 设置文件的行号，取消文件的行号.[命令行下 : set nu 和 :set nonu] </p>
+<p>5) 编辑 /etc/profile 文件，使用快捷键到底文档的最末行[G]和最首行[gg] </p>
+<p>6) 在一个文件中输入 “hello” ,然后又撤销这个动作 u；模式：正常模式 </p>
+<p>7) 将光标移动到 指定行，使用方式：行号+shift+g，模式：正常模式</p>
 
       
     </div>
@@ -456,7 +491,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2019/05/09/DoCode的前世今生/" title="DoCode的前世今生" target="_blank" rel="external">http://yoursite.com/2019/05/09/DoCode的前世今生/</a>
+      <a href="http://yoursite.com/2019/05/24/Linux基础篇-vi和vim编辑器/" title="Linux基础篇-vi和vim编辑器" target="_blank" rel="external">http://yoursite.com/2019/05/24/Linux基础篇-vi和vim编辑器/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -504,11 +539,20 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/05/09/在校大学生如何申请软件著作权（超级详细）/" title="在校大学生如何申请软件著作权（超级详细）"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    
+    <li class="next">
+      <a href="/2019/05/23/Linux基础篇-Linux的远程登录与上传下载文件/" title="Linux基础篇-Linux的远程登录与上传下载文件"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
     
   </ul>
   

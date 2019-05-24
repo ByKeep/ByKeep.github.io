@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-24T07:33:30.961Z</updated>
+  <updated>2019-05-24T09:09:20.247Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Linux基础篇-Linux的远程控制</title>
-    <link href="http://yoursite.com/2019/05/23/Linux%E5%9F%BA%E7%A1%80%E7%AF%87-Linux%E7%9A%84%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
-    <id>http://yoursite.com/2019/05/23/Linux基础篇-Linux的远程控制与用户管理/</id>
+    <title>Linux基础篇-vi和vim编辑器</title>
+    <link href="http://yoursite.com/2019/05/24/Linux%E5%9F%BA%E7%A1%80%E7%AF%87-vi%E5%92%8Cvim%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    <id>http://yoursite.com/2019/05/24/Linux基础篇-vi和vim编辑器/</id>
+    <published>2019-05-24T08:39:22.229Z</published>
+    <updated>2019-05-24T09:09:20.247Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>1）所有的Linux系统都会内建有vi文本编辑器</p><p>2）vim 具有程序编辑的能力，可以看做是Vi的增强版本，可以主动的以字体颜色辨别 语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别 丰富，在程序员中被广泛使用。</p><h1 id="vi和vim的常用三种模式"><a href="#vi和vim的常用三种模式" class="headerlink" title="vi和vim的常用三种模式"></a>vi和vim的常用三种模式</h1><p><strong>正常模式</strong>: </p><p>以 vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用 『上下左右』按键来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容， 也可以使用『复制、贴上』来处理你的文件数据。 </p><p><strong>插入模式</strong>: </p><p>按下i, I, o, O, a, A, r, R等任何一个字母之后才会进入编辑模式, 一般来说按i即可.</p><p><strong>命令行模式</strong> ：</p><p>在这个模式当中， 可以提供你相关指令，完成读取、存盘、替换、离开 vim 、显示行号等的 动作则是在此模式中达成的！</p><h1 id="vi和vim的三种模式转换"><a href="#vi和vim的三种模式转换" class="headerlink" title="vi和vim的三种模式转换"></a>vi和vim的三种模式转换</h1><p><img src="D:\桌面\Snipaste_2019-05-24_16-06-41.png" alt="Snipaste_2019-05-24_16-06-41"></p><h1 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h1><p>需求：使用vim编辑器，开发一个Hello.java程序，并保存</p><p>步骤：</p><p>1）使用远程登录工具，登录服务器，这里使用Xshell进行连接</p><p>2）命令行键入vim Hello.java 新建Hello.java文件</p><p><img src="D:\桌面\Snipaste_2019-05-24_16-15-54.png" alt="Snipaste_2019-05-24_16-15-54"></p><p>3）当前属于正常模式，键盘输入i进入插入模式（命令行窗口底部提示进入插入模式）</p><p><img src="D:\桌面\Snipaste_2019-05-24_16-15-54.png" alt="Snipaste_2019-05-24_16-15-54"></p><p>4）直接使用键盘进行输入编辑文件内容，如图所示</p><p><img src="D:\桌面\Snipaste_2019-05-24_16-22-52.png" alt="Snipaste_2019-05-24_16-22-52"></p><p>5）保存并退出。首先由插入模式转换为正常模式，转换方式为按下键盘Esc键，转换到正常模式，正常模式输入：wq 保存并退出，这时候输入ll指令，就可以看到在目录里面已经存在Hello.java这个文件了</p><p><img src="D:\桌面\Snipaste_2019-05-24_16-35-44.png" alt="Snipaste_2019-05-24_16-35-44"></p><h1 id="常用vi和vim编辑器快捷键"><a href="#常用vi和vim编辑器快捷键" class="headerlink" title="常用vi和vim编辑器快捷键"></a>常用vi和vim编辑器快捷键</h1><p>1）删除当前行： dd,删除当前行向下的n行：ndd(n是删除行数)；模式：     正常模式</p><p>2）拷贝当前行：yy,拷贝当前行向下的n行：nyy(n是拷贝的行数)；粘贴指令：p;模式：正常模式</p><p>3) 在文件中查找某个单词 [命令行模式下 /关键字 ， 回车查找 ,  输入 n 就是查找下一个 ]<br>4) 设置文件的行号，取消文件的行号.[命令行下 : set nu 和 :set nonu] </p><p>5) 编辑 /etc/profile 文件，使用快捷键到底文档的最末行[G]和最首行[gg] </p><p>6) 在一个文件中输入 “hello” ,然后又撤销这个动作 u；模式：正常模式 </p><p>7) 将光标移动到 指定行，使用方式：行号+shift+g，模式：正常模式</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h1&gt;&lt;p&gt;1）所有的Linux系统都会内建有vi文本编辑器&lt;/p&gt;
+&lt;p&gt;2）vim 具有程序编辑的能力，可以看做是Vi的增强版本，可以主动的以字体颜
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux基础" scheme="http://yoursite.com/tags/Linux%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基础篇-Linux的远程登录与上传下载文件</title>
+    <link href="http://yoursite.com/2019/05/23/Linux%E5%9F%BA%E7%A1%80%E7%AF%87-Linux%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E4%B8%8E%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/"/>
+    <id>http://yoursite.com/2019/05/23/Linux基础篇-Linux的远程登录与上传下载文件/</id>
     <published>2019-05-23T14:30:07.769Z</published>
-    <updated>2019-05-24T07:33:30.961Z</updated>
+    <updated>2019-05-24T07:44:12.305Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Linux的远程登录"><a href="#Linux的远程登录" class="headerlink" title="Linux的远程登录"></a>Linux的远程登录</h1><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>在实际的使用的情况中，Linux的应用领域在服务器方面的运用比较多。由于服务器都是在远端的机房中，所以开发和维护人员无法通过直接操作服务器的方式展开工作。所以在实际的开发和维护中，开发和维护人员都通过使用远程登录的方式进行对服务器的操作。</p><h2 id="远程登录工具"><a href="#远程登录工具" class="headerlink" title="远程登录工具"></a>远程登录工具</h2><p>目前市面上的远程工具较多，本文介绍Xshell软件进行远程登录，理由如下：</p><p>1）相比SecureCRT，它是一款对个人是免费的软件，如果使用SecureCRT需要付费或者使用破解版；</p><p>2）配色与Linux一致，并且还改进了深蓝色字体不容易看见的问题</p><p>免费和界面的理由让我选择了它</p><p>注意：使用远程登录工具登录到服务器后是以命令行的方式显示显示在工具窗口中，程序员的工作环境也一般是命令行窗口</p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>软件的安装过程较为简单，安装过程中选择家庭免费版进行安装即可。</p><p>1）第一步点击新建连接</p><p><img src="https://img-blog.csdnimg.cn/20190524152402295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>2）设置连接信息，名称自定义即可，填写需要进行连接的服务器IP地址。最后点击确认按钮，新建连接成功。<br><img src="https://img-blog.csdnimg.cn/20190524152419611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>4）点击查看连接会话，查看新建的连接，点击连接服务器。若是第一次连接会提示输入登录账号密码，按要求输入即可</p><p><img src="https://img-blog.csdnimg.cn/20190524152434513.png" alt="在这里插入图片描述"></p><h1 id="Linux的远程上传下载文件"><a href="#Linux的远程上传下载文件" class="headerlink" title="Linux的远程上传下载文件"></a>Linux的远程上传下载文件</h1><p>1）Xshell的同系列软件还有Xftp它是远程上传下载文件的工具，同样的它也是免费的，它的创建和连接服务器的操作步骤与Xshell类似。需要注意的是在创建连接会话的时候应该将协议改为SFTP,端口切换为22号端口后连接。</p><p><img src="https://img-blog.csdnimg.cn/20190524152449488.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>2）在连接成功后就会出现如下图所示的窗口，通过拖拽或者右键点击相应的文件再点击传输按钮即可实现文件的上传和下载功能。如下图所示</p><p><img src="https://img-blog.csdnimg.cn/20190524152505341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>3）<strong>注意：如果出现中文乱码的问题，将编码方式设置成UTF-8即可，操作步骤如下：</strong></p><p><img src="https://img-blog.csdnimg.cn/20190524152517876.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>]]></content>
     
