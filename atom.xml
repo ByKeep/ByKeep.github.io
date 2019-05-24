@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-24T09:17:48.105Z</updated>
+  <updated>2019-05-24T12:21:57.455Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Linux基础篇-常见命令与用户管理</title>
+    <link href="http://yoursite.com/2019/05/24/Linux%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E4%B8%8E%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2019/05/24/Linux基础篇-常见命令与用户管理/</id>
+    <published>2019-05-24T10:46:55.166Z</published>
+    <updated>2019-05-24T12:21:57.455Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><h2 id="关机-amp-重启相关命令"><a href="#关机-amp-重启相关命令" class="headerlink" title="关机&amp;重启相关命令"></a>关机&amp;重启相关命令</h2><table><thead><tr><th>命令</th><th>功能</th></tr></thead><tbody><tr><td>shutdown  -h    1</td><td>一分钟后管家</td></tr><tr><td>shutdown   -h   now</td><td>立即进行关机</td></tr><tr><td>shutdown   -r    now</td><td>立即重启计算机</td></tr><tr><td>halt</td><td>关机</td></tr><tr><td>reboot</td><td>现在重启计算机</td></tr><tr><td>sync</td><td>把内存的数据同步到磁盘</td></tr></tbody></table><p><strong>注意：</strong></p><p>不管是重启计算机还是关闭计算机，都需要运行sync命令，把内存中的数据写到磁盘中去，防止数据丢失。</p><h2 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h2><p>1) 登录时尽量少用root帐号登录，因为它是系统管理员，最大的权限，避免操作失误。可以使用普通用户登录，涉及到需要更高权限的操作时，在登录后再用”su - 用户名’命令来切换成系统管理员身份</p><p> 2) 在提示符下输入 logout 即可注销用户</p><p><strong>细节：</strong> logout 注销指令在图形运行级别无效，在 运行级别 3下有效</p><h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Linux系统是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向 系统管理员申请一个账号，然后以这个账号的身份进入系统。</p><h2 id="用户管理常见指令"><a href="#用户管理常见指令" class="headerlink" title="用户管理常见指令"></a>用户管理常见指令</h2><p><strong>添加用户</strong></p><p>基本语法：命令行输入useradd  用户名</p><p>说明：</p><p>1) 当创建用户成功后，会自动的创建和用户同名的家目录 </p><p>2) 也可以通过 useradd -d  指定目录 新的用户名，给新创建的用户指定家目录</p><p><strong>指定/修改密码</strong></p><p>基本语法： passwd    用户名 </p><p><strong>删除用户</strong></p><p>基本语法 </p><p>1）删除用户，但是保留家目录：userdel   用户名</p><p>2）删除用户以及用户家目录： userdel -r  用户名</p><p>注意：在实际开发中如果出现开发人员离职的情况，需要删除用户，但是不会删除家目录因为在家目录中还有很多的工程源码。</p><p><strong>查询用户信息</strong></p><p>基本语法： id   用户名</p><p><img src="https://img-blog.csdnimg.cn/20190524201801183.png" alt="在这里插入图片描述"></p><p><strong>切换用户</strong></p><p>在操作Linux中，如果当前用户的权限不够，可以通过 su - 指令，切换到高权限用户，比如root 基本语法 su   切换用户名 </p><p> 细节说明</p><p> 1) 从权限高的用户切换到权限低的用户，不需要输入密码，反之需要。</p><p> 2) 当需要返回到原来用户时，使用exit指令</p><p>实例：创建一个用户zwj，然后切换到zwj</p><p><img src="https://img-blog.csdnimg.cn/20190524201815392.png" alt="在这里插入图片描述"></p><p><strong>查看当前登录用户</strong></p><p>基本语法：whoami/who am i</p><p>两种命令执行效果如下图所示</p><p><img src="https://img-blog.csdnimg.cn/20190524201829766.png" alt="在这里插入图片描述"></p><h2 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h2><p><strong>介绍</strong></p><p>类似于角色，系统可以对有共性的多个用户进行统一的管理，比如武侠小说中的门派，每一个用户都有一个属于自己的门派有自己独特的武功</p><p><strong>增加用户组</strong></p><p>基本语法：groupadd 组名</p><p>操作示意图</p><p><img src="https://img-blog.csdnimg.cn/20190524201839402.png" alt="在这里插入图片描述"></p><p><strong>删除用户组</strong></p><p>基本语法： groupdel 组名</p><p>操作示意图</p><p><img src="https://img-blog.csdnimg.cn/20190524201850716.png" alt="在这里插入图片描述"></p><p><strong>添加用户时候为用户指定对应的组</strong></p><p><img src="https://img-blog.csdnimg.cn/20190524201903669.png" alt="在这里插入图片描述"></p><p>细节说明：</p><p>1）前面的zwj账号已经被删除的基础上新建的zwj账号</p><p><strong>修改用户的组</strong></p><p>基本语法：user -g 用户组  用户名</p><p>细节说明：</p><p>1)用户组为用户修改到的新的用户组</p><h2 id="用户和组的相关文件"><a href="#用户和组的相关文件" class="headerlink" title="用户和组的相关文件"></a>用户和组的相关文件</h2><p><strong>/etc/passwd 文件</strong> </p><p>用户（user）的配置文件，记录用户的各种信息 </p><p>每行的含义：用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录</p><p><img src="https://img-blog.csdnimg.cn/20190524201913110.png" alt="在这里插入图片描述"></p><p><strong>Shell /etc/shadow 文件 </strong></p><p>口令的配置文件<br>每行的含义：登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警 告时间:不活动时间:失效时间:标志</p><p> <strong>/etc/group 文件</strong></p><p> 组(group)的配置文件，记录Linux包含的组的信息 </p><p>每行含义：组名:口令:组标识号:组内用户列表</p><p><img src="https://img-blog.csdnimg.cn/20190524201919499.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;常见命令&quot;&gt;&lt;a href=&quot;#常见命令&quot; class=&quot;headerlink&quot; title=&quot;常见命令&quot;&gt;&lt;/a&gt;常见命令&lt;/h1&gt;&lt;h2 id=&quot;关机-amp-重启相关命令&quot;&gt;&lt;a href=&quot;#关机-amp-重启相关命令&quot; class=&quot;headerlink
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux基础" scheme="http://yoursite.com/tags/Linux%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux基础篇-vi和vim编辑器</title>
     <link href="http://yoursite.com/2019/05/24/Linux%E5%9F%BA%E7%A1%80%E7%AF%87-vi%E5%92%8Cvim%E7%BC%96%E8%BE%91%E5%99%A8/"/>
     <id>http://yoursite.com/2019/05/24/Linux基础篇-vi和vim编辑器/</id>
     <published>2019-05-24T08:39:22.229Z</published>
-    <updated>2019-05-24T09:17:48.105Z</updated>
+    <updated>2019-05-24T09:21:07.926Z</updated>
     
     <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>1）所有的Linux系统都会内建有vi文本编辑器</p><p>2）vim 具有程序编辑的能力，可以看做是Vi的增强版本，可以主动的以字体颜色辨别 语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别 丰富，在程序员中被广泛使用。</p><h1 id="vi和vim的常用三种模式"><a href="#vi和vim的常用三种模式" class="headerlink" title="vi和vim的常用三种模式"></a>vi和vim的常用三种模式</h1><p><strong>正常模式</strong>: </p><p>以 vim 打开一个档案就直接进入一般模式了(这是默认的模式)。在这个模式中， 你可以使用 『上下左右』按键来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容， 也可以使用『复制、贴上』来处理你的文件数据。 </p><p><strong>插入模式</strong>: </p><p>按下i, I, o, O, a, A, r, R等任何一个字母之后才会进入编辑模式, 一般来说按i即可.</p><p><strong>命令行模式</strong> ：</p><p>在这个模式当中， 可以提供你相关指令，完成读取、存盘、替换、离开 vim 、显示行号等的 动作则是在此模式中达成的！</p><h1 id="vi和vim的三种模式转换"><a href="#vi和vim的三种模式转换" class="headerlink" title="vi和vim的三种模式转换"></a>vi和vim的三种模式转换</h1><p><img src="https://img-blog.csdnimg.cn/20190524171350488.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h1><p>需求：使用vim编辑器，开发一个Hello.java程序，并保存</p><p>步骤：</p><p>1）使用远程登录工具，登录服务器，这里使用Xshell进行连接</p><p>2）命令行键入vim Hello.java 新建Hello.java文件</p><p><img src="https://img-blog.csdnimg.cn/2019052417141042.png" alt="在这里插入图片描述"></p><p>3）当前属于正常模式，键盘输入i进入插入模式（命令行窗口底部提示进入插入模式）</p><p><img src="https://img-blog.csdnimg.cn/20190524171418602.png" alt="在这里插入图片描述"></p><p>4）直接使用键盘进行输入编辑文件内容，如图所示</p><p><img src="https://img-blog.csdnimg.cn/20190524171425487.png" alt="在这里插入图片描述"></p><p>5）保存并退出。首先由插入模式转换为正常模式，转换方式为按下键盘Esc键，转换到正常模式，正常模式输入：wq 保存并退出，这时候输入ll指令，就可以看到在目录里面已经存在Hello.java这个文件了</p><p><img src="https://img-blog.csdnimg.cn/20190524171439380.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="常用vi和vim编辑器快捷键"><a href="#常用vi和vim编辑器快捷键" class="headerlink" title="常用vi和vim编辑器快捷键"></a>常用vi和vim编辑器快捷键</h1><p>1）删除当前行： dd,删除当前行向下的n行：ndd(n是删除行数)；模式：     正常模式</p><p>2）拷贝当前行：yy,拷贝当前行向下的n行：nyy(n是拷贝的行数)；粘贴指令：p;模式：正常模式</p><p>3) 在文件中查找某个单词 [命令行模式下 /关键字 ， 回车查找 ,  输入 n 就是查找下一个 ]<br>4) 设置文件的行号，取消文件的行号.[命令行下 : set nu 和 :set nonu] </p><p>5) 编辑 /etc/profile 文件，使用快捷键到底文档的最末行[G]和最首行[gg] </p><p>6) 在一个文件中输入 “hello” ,然后又撤销这个动作 u；模式：正常模式 </p><p>7) 将光标移动到 指定行，使用方式：行号+shift+g，模式：正常模式</p>]]></content>
     
