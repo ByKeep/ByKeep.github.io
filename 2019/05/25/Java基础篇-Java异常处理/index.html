@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Java基础篇-Java异常处理 | DoCode</title>
+  <meta name="description" content="概念介绍 异常：就是程序在运行时出现不正常的情况 异常由来：问题也是现实生活中一个具体的事物，也可以通过java的类的形式进行描述。并封装成对象。其实就是java对不征程情况进行描述后的对象体现 问题的划分 1）严重的问题  2）非严重的问题 问题的描述 1）对于严重的问题，java通过使用Error类进行描述 ​        对于Error一般不编写针对性的代码进行处理 2）对于非严重的问题，">
+<meta name="keywords" content="Java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础篇-Java异常处理">
+<meta property="og:url" content="http://yoursite.com/2019/05/25/Java基础篇-Java异常处理/index.html">
+<meta property="og:site_name" content="DoCode">
+<meta property="og:description" content="概念介绍 异常：就是程序在运行时出现不正常的情况 异常由来：问题也是现实生活中一个具体的事物，也可以通过java的类的形式进行描述。并封装成对象。其实就是java对不征程情况进行描述后的对象体现 问题的划分 1）严重的问题  2）非严重的问题 问题的描述 1）对于严重的问题，java通过使用Error类进行描述 ​        对于Error一般不编写针对性的代码进行处理 2）对于非严重的问题，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135104306.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135112945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135120763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135137565.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135205944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135217661.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135224521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135235948.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135241669.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135316758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/201905281356033.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135530957.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135258949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528135306703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-05-28T06:01:41.664Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java基础篇-Java异常处理">
+<meta name="twitter:description" content="概念介绍 异常：就是程序在运行时出现不正常的情况 异常由来：问题也是现实生活中一个具体的事物，也可以通过java的类的形式进行描述。并封装成对象。其实就是java对不征程情况进行描述后的对象体现 问题的划分 1）严重的问题  2）非严重的问题 问题的描述 1）对于严重的问题，java通过使用Error类进行描述 ​        对于Error一般不编写针对性的代码进行处理 2）对于非严重的问题，">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190528135104306.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/05/25/Java基础篇-Java异常处理/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="../images/avatar.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ByKeep" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">DoCode</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">java开发程序员</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> NanNing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 博主本科毕业于广西大学，电气专业，于大三转行学java开发，目前准备步入职场。 本博客主要内容是学习笔记、生活随笔以及工具软件推荐等， 下面是我的微信二维码，欢迎添加好友交流分享经验！</p>
+            </div>
+            <div>
+              <img src="/images/weixin.jpg" width="200" higth="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/办证、申请/">办证、申请</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux基础/">Linux基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux实操/">Linux实操</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于DoCode/">关于DoCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件著作权/">软件著作权</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java基础/" style="font-size: 13px;">Java基础</a> <a href="/tags/Linux基础/" style="font-size: 14px;">Linux基础</a> <a href="/tags/Linux实操/" style="font-size: 13px;">Linux实操</a> <a href="/tags/关于DoCode/" style="font-size: 13px;">关于DoCode</a> <a href="/tags/软件著作权/" style="font-size: 13px;">软件著作权</a> <a href="/tags/随笔/" style="font-size: 13px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/05/25/Java基础篇-Java异常处理/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/25/Java基础篇-Java异常处理/" class="title">Java基础篇-Java异常处理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-25T09:49:40.996Z" itemprop="datePublished">2019-05-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/05/25/Linux实操篇-Linux实用指令/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/25/Linux实操篇-Linux实用指令/" class="title">Linux实操篇-Linux实用指令</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-25T05:04:48.707Z" itemprop="datePublished">2019-05-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/05/24/Linux实操篇-常见命令与用户管理/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/24/Linux实操篇-常见命令与用户管理/" class="title">Linux实操篇-常见命令与用户管理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-24T10:46:55.166Z" itemprop="datePublished">2019-05-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/05/24/Linux基础篇-vi和vim编辑器/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/24/Linux基础篇-vi和vim编辑器/" class="title">Linux基础篇-vi和vim编辑器</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-24T08:39:22.229Z" itemprop="datePublished">2019-05-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/05/23/Linux基础篇-Linux的远程登录与上传下载文件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/23/Linux基础篇-Linux的远程登录与上传下载文件/" class="title">Linux基础篇-Linux的远程登录与上传下载文件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-23T14:30:07.769Z" itemprop="datePublished">2019-05-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常处理"><span class="toc-number">2.</span> <span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java提供了以下特有的语句进行异常处理"><span class="toc-number">2.1.</span> <span class="toc-text">java提供了以下特有的语句进行异常处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对捕获异常对象进行的常见方法操作"><span class="toc-number">3.</span> <span class="toc-text">对捕获异常对象进行的常见方法操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常声明throws"><span class="toc-number">4.</span> <span class="toc-text">异常声明throws</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">4.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理实例"><span class="toc-number">4.2.</span> <span class="toc-text">处理实例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多异常处理"><span class="toc-number">5.</span> <span class="toc-text">多异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">5.1.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-number">5.2.</span> <span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自定义异常"><span class="toc-number">6.</span> <span class="toc-text">自定义异常</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍-1"><span class="toc-number">6.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义异常类"><span class="toc-number">6.2.</span> <span class="toc-text">自定义异常类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义异常方法"><span class="toc-number">6.3.</span> <span class="toc-text">自定义异常方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例-1"><span class="toc-number">6.4.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#throw和throws的区别"><span class="toc-number">6.5.</span> <span class="toc-text">throw和throws的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RuntimeException"><span class="toc-number">7.</span> <span class="toc-text">RuntimeException</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍-2"><span class="toc-number">7.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例-2"><span class="toc-number">7.2.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义异常新类型"><span class="toc-number">7.3.</span> <span class="toc-text">自定义异常新类型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常-finally"><span class="toc-number">8.</span> <span class="toc-text">异常-finally</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#异常-覆盖时的异常特点"><span class="toc-number">9.</span> <span class="toc-text">异常-覆盖时的异常特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Java基础篇-Java异常处理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java基础篇-Java异常处理
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/05/25/Java基础篇-Java异常处理/" class="article-date">
+	  <time datetime="2019-05-25T09:49:40.996Z" itemprop="datePublished">2019-05-25</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Java基础/">Java基础</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/25/Java基础篇-Java异常处理/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 2.1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 7(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p><strong>介绍</strong></p>
+<p>异常：就是程序在运行时出现不正常的情况</p>
+<p>异常由来：问题也是现实生活中一个具体的事物，也可以通过java的类的形式进行描述。并封装成对象。其实就是java对不征程情况进行描述后的对象体现</p>
+<p><strong>问题的划分</strong></p>
+<p>1）严重的问题  2）非严重的问题</p>
+<p><strong>问题的描述</strong></p>
+<p>1）对于严重的问题，java通过使用Error类进行描述</p>
+<p>​        对于Error一般不编写针对性的代码进行处理</p>
+<p>2）对于非严重的问题，java通过Exception类进行描述</p>
+<p>​        对于Exception可以使用针对性的处理方式进行处理</p>
+<p><strong>说明</strong></p>
+<p>无论是Error还是Exception都具有一些的共性内容</p>
+<p>比如不正常的情况信息引发原因等,于是向上抽取形成Throwable体系</p>
+<p>Throwable</p>
+<p>​         |–Error</p>
+<p>​         |–Exception</p>
+<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><h2 id="java提供了以下特有的语句进行异常处理"><a href="#java提供了以下特有的语句进行异常处理" class="headerlink" title="java提供了以下特有的语句进行异常处理"></a><strong>java提供了以下特有的语句进行异常处理</strong></h2><p><img src="https://img-blog.csdnimg.cn/20190528135104306.png" alt="在这里插入图片描述"></p>
+<p><strong>注意</strong>：如果在try中定义有变量，则这个变量只能在try语句范围内有效</p>
+<p><strong>实例：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135112945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="对捕获异常对象进行的常见方法操作"><a href="#对捕获异常对象进行的常见方法操作" class="headerlink" title="对捕获异常对象进行的常见方法操作"></a>对捕获异常对象进行的常见方法操作</h1><p> 1） String   getMessage();//获取异常信息字符串      </p>
+<p>​          说明：获取的只有异常信息，较为简单</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135120763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>2）String   toString()//获取异常名称 ：异常信息     </p>
+<p>​     说明：获取的信息较为齐全</p>
+<p>3）void prinStackTrace();//异常名称，异常信息，异常出现的位置</p>
+<p>注意：jvm默认的异常处理机制就是在调用prinStackTrace方法。打印异常的堆栈跟踪信息</p>
+<p>说明：信息最为齐全</p>
+<h1 id="异常声明throws"><a href="#异常声明throws" class="headerlink" title="异常声明throws"></a>异常声明throws</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h2><p>在程序的开发过程中，应该对可能出现异常并未处理的功能模块使用throws进行标识声明将，在调用者使用该功能模块时知道该模块可能出现问题，并进行异常处理，如果不处理将会出现编译失败的情况。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135137565.png" alt="在这里插入图片描述"></p>
+<h2 id="处理实例"><a href="#处理实例" class="headerlink" title="处理实例"></a>处理实例</h2><p>对功能模块中声明的异常，主函数在使用的时候针对抛出的异常进行捕抓并做相对应的处理</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135205944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="多异常处理"><a href="#多异常处理" class="headerlink" title="多异常处理"></a>多异常处理</h1><p>1）在声明异常时，建议声明更加具体的异常。这样的处理更加的具体。</p>
+<p>2）对声明的异常进行处理时一般使用更加具体的异常进行异常处理，提高正对性</p>
+<p>3）提高异常处理的针对性可以在发生声明的具体异常意外出现的异常进行及时有效的处理</p>
+<p>总结：当功能模块可能出现多个异常时一般使用多异常的处理机制进行处理</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>1）多异常声明方法：throws 异常1，异常2</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135217661.png" alt="在这里插入图片描述"></p>
+<p>2）异常处理方法，书写对应的catch语句对捕获异常进行处理,如图所示</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135224521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>​     1）对方声明几个异常就有几个catch块进行异常处理，不要定义多余的catch块</p>
+<p>​     2）如果多个catch块中的异常出现继承关系，父类异常catch块放在最下面</p>
+<p>​     3）建立catch处理时，catch中一定要定义具体处理方式，不要简单的定义一句                         e.printStackTrace(),也不要简单的书写一条输出语句。</p>
+<p>​      4）正确的处理异常方式是将异常结果输出记录到异常记录文件，提供维护人员进行维护</p>
+<h1 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><p>Java针对了普遍有可能出现的问题进行了总结和封装成类的形式，但是在项目开发的过程中同样会出现异常，这些异常部分可能是项目的特有异常Java中是没有定义的，所以就需要开发人员自定义异常。</p>
+<h2 id="自定义异常类"><a href="#自定义异常类" class="headerlink" title="自定义异常类"></a>自定义异常类</h2><p>1）将异常封装成一个类并继承Exception,注意必须是自定义类继承Exception</p>
+<p>原因：异常体系有一个特点：因为异常类和异常对象都被抛出他们都具备可抛性，这个可抛性是Throwable这个体系中独有特点，只有这个体系的类和对象才可以被throws和throw操作</p>
+<p>2）添加异常信息，直接定义构造函数接收异常信息并调用父类方法即可添加</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135235948.png" alt="在这里插入图片描述"></p>
+<p>原因：在父类的Throwable中已经定义了错误信息接收机制，子类直接使用父类构造方法即可</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135241669.png" alt="在这里插入图片描述"></p>
+<h2 id="自定义异常方法"><a href="#自定义异常方法" class="headerlink" title="自定义异常方法"></a>自定义异常方法</h2><p>1）定义一个自定义的异常类</p>
+<p>2)在功能模块中，达到了异常条件时将自定义异常手动抛出</p>
+<p>3）对抛出异常对象进行处理，处理方式</p>
+<p>（1）在函数内部使用try catch处理，如下图所示</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135316758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）在函数上声明让调用者进行处理</p>
+<p>注意：</p>
+<p>（1）由于自定义异常非Java本身定义所以在编写功能模块时需要使用关键字throw将异常手动抛出</p>
+<p>（1）编写功能模块时，功能模块内部引起的异常则在内部进行处理，如果是外部调用者导致的功能异常则将异常抛出由调用者解决（即谁直接导致或操作导致异常的发生谁就对该异常进行处理，不能层层抛出去）</p>
+<h2 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h2><p>需求：在进行除法运算时，对于除数是负数的情况，也视为是错误的无法进行运算的</p>
+<p>（1）自定义异常类</p>
+<p><img src="https://img-blog.csdnimg.cn/201905281356033.png" alt="在这里插入图片描述"></p>
+<p>（2）功能模块</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135530957.png" alt="在这里插入图片描述"></p>
+<p>（3）调用者函数</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528135258949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="throw和throws的区别"><a href="#throw和throws的区别" class="headerlink" title="throw和throws的区别"></a>throw和throws的区别</h2><p>1）throws使用在函数上</p>
+<p>2）throw使用在函数内</p>
+<p>3）throws后面跟的异常类，可以跟多个。用逗号隔开</p>
+<p>4）throw后跟的是异常对象(不仅限于自定义异常)</p>
+<h1 id="RuntimeException"><a href="#RuntimeException" class="headerlink" title="RuntimeException"></a>RuntimeException</h1><h2 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h2><p>对于异常分为两种：</p>
+<p>1）编译时被检测异常</p>
+<p>2）编译时不被检测异常（运行时异常。RuntimeException以及其子类）</p>
+<p>RuntimeException是Exception中的特殊异常类</p>
+<p> 该异常类特点：</p>
+<p>（1）在函数内部throw异常对象时，不需要在函数上声明,编译一样通过</p>
+<p>（2）在函数上进行声明，调用者<strong>可以</strong>不进行处理，编译一样通过</p>
+<p>原因：之所以不用在函数上进行声明是因为不需要调用者进行处理，当该异常发生时希望程序停止。因为在运行时，出现了无法继续运算的情况，希望停止程序后对代码进行修正</p>
+<h2 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h2><p><img src="https://img-blog.csdnimg.cn/20190528135306703.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="自定义异常新类型"><a href="#自定义异常新类型" class="headerlink" title="自定义异常新类型"></a>自定义异常新类型</h2><p>自定义异常时：如果该异常的发生，无法继续进行运算，就让自定义异常继承RuntimeException</p>
+<h1 id="异常-finally"><a href="#异常-finally" class="headerlink" title="异常-finally"></a>异常-finally</h1><p>介绍：finally代码块存放着程序中一定会执行的代码</p>
+<p>常用环境：常用于关闭资源</p>
+<p>注意：finally只有一种情况不执行，当执行到System.exit(0),finally不会执行</p>
+<h1 id="异常-覆盖时的异常特点"><a href="#异常-覆盖时的异常特点" class="headerlink" title="异常-覆盖时的异常特点"></a>异常-覆盖时的异常特点</h1><p>1）子类在覆盖父类方法时，如果覆盖的父类方法抛出异常，那么子类的覆盖方法只能抛出父类的异常或该异常的子类或者不抛出异常</p>
+<p>2）如果在覆盖方法的时候出现了新的异常，这种情况不可以将异常抛出，而是将异常处理在函数内部</p>
+<p>3）如果父类方法抛出多异常，那么子类在覆盖该方法时，只能抛出父类异常的子集</p>
+<p>4）如果父类或者接口方法中没有异常抛出，那么子类在覆盖方法时，也不可以抛出异常，如果子类发生了异常就只能进行try处理，绝对不能抛出</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>异常的好处</p>
+<p>1)将问题进行封装</p>
+<p>2）将正常流程代码和问题处理代码相分离，方便阅读</p>
+<p>异常处理原则</p>
+<p>1）处理方式有两种:try或者throws</p>
+<p>2）调用到抛出异常的功能时，抛出几个就处理几个（一个try，对应多个catch）</p>
+<p>3）多个catch，父类的catch放到最下面</p>
+<p>4）catch内，需要定义针对性的处理方式。不要简单定义printStackTrace输出语句,也不要不写，当捕获的异常本功能处理不了时，可以在catch中抛出</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/05/25/Java基础篇-Java异常处理/" title="Java基础篇-Java异常处理" target="_blank" rel="external">http://yoursite.com/2019/05/25/Java基础篇-Java异常处理/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ByKeep" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ByKeep" target="_blank"><span class="text-dark">DoCode</span><small class="ml-1x">java开发程序员</small></a></h3>
+        <div>To strive, to seek, to find, and not to yield.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/05/25/Linux实操篇-Linux实用指令/" title="Linux实操篇-Linux实用指令"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone,wechat"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2019 DoCode
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
