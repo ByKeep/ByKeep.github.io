@@ -17,26 +17,24 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Linux基础篇-Linux的介绍 | DoCode</title>
-  <meta name="description" content="Linux介绍   1）Linux的读法，常见有三种【里纽克斯、利尼克斯、里纳克斯】   2）Linux特点：免费、开源、安全（由于系统是开源的所以现在基本全世界的程序员都在维护Linux,保证了Linux系统的安全性）、高效、稳定、对高并发的处理非常的强悍。   3）Linux的创始人是来自芬兰的林纳斯，吉祥物是一只企鹅，据说林纳斯因为再一次逛动物园的时候被一只企鹅咬了，所以就以企鹅作为Linu">
-<meta name="keywords" content="Linux基础">
+  <title>Linux实操篇-定时调度任务与实例 | DoCode</title>
+  <meta name="description" content="crond任务调度crontab 进行定时任务的设置 任务调度：是指系统在某个时间执行的特定的命令或程序。 原理示意图:    任务调度分类： ​     1）系统工作：有些重要的工作必须周而复始地执行。如病毒扫描等 ​      2）个别用户工作：个别用户可能希望执行某些程序，比如对mysql数据库的备份。  基本语法 ：crontab [选项]  常用选项    选项 选项说明     -e">
+<meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux基础篇-Linux的介绍">
-<meta property="og:url" content="http://yoursite.com/2019/05/22/Linux基础篇-Linux的介绍/index.html">
+<meta property="og:title" content="Linux实操篇-定时调度任务与实例">
+<meta property="og:url" content="http://yoursite.com/2019/05/30/Linux实操篇-定时调度任务/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="Linux介绍   1）Linux的读法，常见有三种【里纽克斯、利尼克斯、里纳克斯】   2）Linux特点：免费、开源、安全（由于系统是开源的所以现在基本全世界的程序员都在维护Linux,保证了Linux系统的安全性）、高效、稳定、对高并发的处理非常的强悍。   3）Linux的创始人是来自芬兰的林纳斯，吉祥物是一只企鹅，据说林纳斯因为再一次逛动物园的时候被一只企鹅咬了，所以就以企鹅作为Linu">
+<meta property="og:description" content="crond任务调度crontab 进行定时任务的设置 任务调度：是指系统在某个时间执行的特定的命令或程序。 原理示意图:    任务调度分类： ​     1）系统工作：有些重要的工作必须周而复始地执行。如病毒扫描等 ​      2）个别用户工作：个别用户可能希望执行某些程序，比如对mysql数据库的备份。  基本语法 ：crontab [选项]  常用选项    选项 选项说明     -e">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190522204613982.jpg">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190522204655661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190522210454761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190522204723356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-05-23T14:31:31.043Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190530171313863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190530171308189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-05-30T09:14:18.312Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux基础篇-Linux的介绍">
-<meta name="twitter:description" content="Linux介绍   1）Linux的读法，常见有三种【里纽克斯、利尼克斯、里纳克斯】   2）Linux特点：免费、开源、安全（由于系统是开源的所以现在基本全世界的程序员都在维护Linux,保证了Linux系统的安全性）、高效、稳定、对高并发的处理非常的强悍。   3）Linux的创始人是来自芬兰的林纳斯，吉祥物是一只企鹅，据说林纳斯因为再一次逛动物园的时候被一只企鹅咬了，所以就以企鹅作为Linu">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190522204613982.jpg">
+<meta name="twitter:title" content="Linux实操篇-定时调度任务与实例">
+<meta name="twitter:description" content="crond任务调度crontab 进行定时任务的设置 任务调度：是指系统在某个时间执行的特定的命令或程序。 原理示意图:    任务调度分类： ​     1）系统工作：有些重要的工作必须周而复始地执行。如病毒扫描等 ​      2）个别用户工作：个别用户可能希望执行某些程序，比如对mysql数据库的备份。  基本语法 ：crontab [选项]  常用选项    选项 选项说明     -e">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190530171313863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2019/05/22/Linux基础篇-Linux的介绍/index.html">
+  <link rel="canonical" href="http://yoursite.com/2019/05/30/Linux实操篇-定时调度任务/index.html">
   
     <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
   
@@ -394,21 +392,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux介绍"><span class="toc-number">1.</span> <span class="toc-text">Linux介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux和UNIX"><span class="toc-number">2.</span> <span class="toc-text">Linux和UNIX</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux与Windows的区别对比"><span class="toc-number">3.</span> <span class="toc-text">Linux与Windows的区别对比</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#crond任务调度"><span class="toc-number">1.</span> <span class="toc-text">crond任务调度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#crontab-进行定时任务的设置"><span class="toc-number">1.1.</span> <span class="toc-text">crontab 进行定时任务的设置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#快速入门"><span class="toc-number">2.</span> <span class="toc-text">快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#任务要求"><span class="toc-number">2.1.</span> <span class="toc-text">任务要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤如下"><span class="toc-number">2.2.</span> <span class="toc-text">步骤如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数细节说明"><span class="toc-number">2.3.</span> <span class="toc-text">参数细节说明</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Linux基础篇-Linux的介绍" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Linux实操篇-定时调度任务" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Linux基础篇-Linux的介绍
+      Linux实操篇-定时调度任务与实例
     </h1>
   
 
@@ -416,8 +414,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/05/22/Linux基础篇-Linux的介绍/" class="article-date">
-	  <time datetime="2019-05-22T12:40:10.268Z" itemprop="datePublished">2019-05-22</time>
+	<a href="/2019/05/30/Linux实操篇-定时调度任务/" class="article-date">
+	  <time datetime="2019-05-30T05:58:36.568Z" itemprop="datePublished">2019-05-30</time>
 	</a>
 </span>
         
@@ -429,7 +427,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Linux基础/">Linux基础</a>
+	<a class="article-tag-link" href="/tags/Linux实操/">Linux实操</a>
   </span>
 
 
@@ -442,30 +440,156 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/22/Linux基础篇-Linux的介绍/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/30/Linux实操篇-定时调度任务/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.2k(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 675(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 4(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 2(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="Linux介绍"><a href="#Linux介绍" class="headerlink" title="Linux介绍"></a>Linux介绍</h1><p>   1）Linux的读法，常见有三种【里纽克斯、利尼克斯、里纳克斯】<br>   2）Linux特点：免费、开源、安全（由于系统是开源的所以现在基本全世界的程序员都在维护Linux,保证了Linux系统的安全性）、高效、稳定、对<strong>高并发的处理</strong>非常的强悍。<br>   3）Linux的创始人是来自芬兰的林纳斯，吉祥物是一只企鹅，据说林纳斯因为再一次逛动物园的时候被一只企鹅咬了，所以就以企鹅作为Linux的吉祥物。吉祥物的名字叫tux  </p>
-<p><img src="https://img-blog.csdnimg.cn/20190522204613982.jpg" alt="林纳斯"></p>
-<p>4）Linux的主要发行版有：Redhat、CentOSE、Ubuntu、Suse、红旗Linux。如下所示，其中Redhat和CentOSE都是来自于Redhat公司旗下的发行版<br><img src="https://img-blog.csdnimg.cn/20190522204655661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="Linux和UNIX"><a href="#Linux和UNIX" class="headerlink" title="Linux和UNIX"></a>Linux和UNIX</h1><p>Linux和UNIX的最大的区别是，前者是开发源代码的自由软件，而后者是对源代码实行知识产权保护的传统商业软件。这应该是他们最大的不同，这种不同体现在用户对前者有很高的自主权，而对后者却只能去被动的适应；这种不同还表现在前者的开发是处在一个完全开放的环境之中,而后者的开发完全是处在一个黑箱之中,只有相关的开发人员才能够接触的产品的原型。</p>
-<p>　　Linux 的源头要追溯到最古老的UNIX。1969年，Bell实验室的Ken Thompson开始利用一台闲置的 PDP-7计算机开发了一种多用户，多任务操作系统。很快，Dennis Richie加入了这个项目，在他们共同努力下诞生了最早的UNIX。Richie受一个更早的项目——MULTICS的启发，将此操作系统命名为 Unix。早期UNIX是用汇编语言编写的，但其第三个版本用一种崭新的编程语言C重新设计了。C是Richie设计出来并用于编写操作系统的程序语言。通过这次重新编写，Unix得以移植到更为强大的 DEC PDP-11/45与11/70计算机上运行。后来发生的一切，正如他们所说，已经成为历史。Unix从实验室走出来并成为了操作系统的主流，现在几乎每个主要的计算机厂商都有其自有版本的Unix.</p>
-<p>　　Linux起源于一个学生的简单需求。Linus Torvalds,Linux的作者与主要维护者，在其上大学时所买得起的唯一软件是Minix. Minix是一个类似Unix，被广泛用来辅助教学的简单操作系统。Linus 对Minix不是很满意，于是决定自己编写软件。他以学生时代熟悉的Unix作为原型， 在一台Intel 386 PC上开始了他的工作。他的进展很快，受工作成绩的鼓舞，他将这项成果通过互连网与其他同学共享，主要用于学术领域。有人看到了这个软件并开始分发。每当出现新问题时，有人会立刻找到解决办法并加入其中，很快的， Linux成为了一个操作系统。值得注意的是Linux并没有包括Unix源码。它是按照公开的POSIX标准重新编写的。Linux大量使用了由麻省剑桥免费软件基金的GNU软件，同时Linux自身也是用它们构造而成。</p>
-<p><strong>二者也有两个大的区别：</strong><br>UNIX 系统大多是与硬件配套的，也就是说，大多数 UNIX 系统如 AIX、HP-UX 等是无法安装在 x86 服务器和个人计算机上的，而 Linux 则可以运行在多种硬件平台上；<br>UNIX 是商业软件所以是收费的，而 Linux 是开源软件，是免费、公开源代码的。</p>
-<p>Linux 受至旷大计算机爱好者的喜爱，主要原因也有两个：<br>它属于开源软件，用户不用支付可费用就可以获得它和它的源代码，并且可以根据自己的需要对它进行必要的修改，无偿使用，无约束地继续传播；<br>它具有 UNIX 的全部功能，任何使用 UNIX 操作系统或想要学习 UNIX 操作系统的人都可以从 Linux 中获益。</p>
-<p>开源软件是不同于商业软件的一种模式，从字面上理解，就是开放源代码，大家不用担心里面会搞什么猫腻，这会带来软件的革新和安全。</p>
-<p>另外，开源其实并不等同于免费，而是一种新的软件盈利模式。目前很多软件都是开源软件，对计算机行业与互联网影响深远。<br><img src="https://img-blog.csdnimg.cn/20190522210454761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="Linux与Windows的区别对比"><a href="#Linux与Windows的区别对比" class="headerlink" title="Linux与Windows的区别对比"></a>Linux与Windows的区别对比</h1><p><img src="https://img-blog.csdnimg.cn/20190522204723356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+        <h1 id="crond任务调度"><a href="#crond任务调度" class="headerlink" title="crond任务调度"></a>crond任务调度</h1><h2 id="crontab-进行定时任务的设置"><a href="#crontab-进行定时任务的设置" class="headerlink" title="crontab 进行定时任务的设置"></a>crontab 进行定时任务的设置</h2><p> 任务调度：是指系统在某个时间执行的特定的命令或程序。</p>
+<p>原理示意图:</p>
+<p><img src="https://img-blog.csdnimg.cn/20190530171313863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190530171308189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p> 任务调度分类：</p>
+<p>​     1）系统工作：有些重要的工作必须周而复始地执行。如病毒扫描等</p>
+<p>​      2）个别用户工作：个别用户可能希望执行某些程序，比如对mysql数据库的备份。 </p>
+<p>基本语法 ：crontab [选项] </p>
+<p>常用选项</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:center">选项说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-e</td>
+<td style="text-align:center">编辑crontab定时任务</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:center">查询crontab任务</td>
+</tr>
+<tr>
+<td style="text-align:left">-r</td>
+<td style="text-align:center">删除当前用户所有的crontab任务</td>
+</tr>
+</tbody>
+</table>
+<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="任务要求"><a href="#任务要求" class="headerlink" title="任务要求"></a>任务要求</h2><p>1)设置任务调度文件：/etc/crontab </p>
+<p>2)设置个人任务调度。执行crontab –e命令。</p>
+<p>3) 接着输入任务到调度文件 如：<em>/1 </em>  <em>  </em>  *  ls –l  /etc/ &gt; /tmp/to.txt  </p>
+<p>4)意思说每小时的每分钟执行ls –l /etc/ &gt; /tmp/to.txt命令 </p>
+<h2 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h2><p>1）cron -e</p>
+<p>2)输入：<em>/1 </em> <em> </em> * ls -l /etc &gt;&gt;/tmp/to.txt</p>
+<p>3）保存退出后就完成</p>
+<p>4)在每一分钟都会自动的调用 ls-l/etc &gt;&gt;/tmp/to.txt</p>
+<h2 id="参数细节说明"><a href="#参数细节说明" class="headerlink" title="参数细节说明"></a>参数细节说明</h2><p>5个占位符的说明</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>含义</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一个“*”</td>
+<td>一小时当中的第几分钟</td>
+<td>0-59</td>
+</tr>
+<tr>
+<td>第二个“*”</td>
+<td>一天当中的第几小时</td>
+<td>0-23</td>
+</tr>
+<tr>
+<td>第三个“*”</td>
+<td>一个月当中的第几天</td>
+<td>1-31</td>
+</tr>
+<tr>
+<td>第五个“*”</td>
+<td>一周当中的星期几</td>
+<td>0-7（0和7都代表星期日）</td>
+</tr>
+<tr>
+<td>特殊符号的说明</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特殊符号</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">代表任何时间。比如第一个“*”就代表一小时中每分钟都执行一 次的意思。</td>
+</tr>
+<tr>
+<td style="text-align:left">，</td>
+<td style="text-align:left">代表不连续的时间。比如“0 8,12,16 <em> </em> * 命令”，就代表在每天 的8点0分，12点0分，16点0分都执行一次命令</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">代表连续的时间范围。比如“0 5 <em> </em> 1-6命令”，代表在周一到周 六的凌晨5点0分执行命令</td>
+</tr>
+<tr>
+<td style="text-align:left">*/n</td>
+<td style="text-align:left">代表每隔多久执行一次。比如“<em>/10 </em> <em> </em> * 命令”，代表每隔 10分钟就执行一遍命令</td>
+</tr>
+</tbody>
+</table>
+<p>特定时间执行任务案例</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">时间</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">45 22 <em>  </em>  * 命令</td>
+<td style="text-align:center">在22点45分执行命令</td>
+</tr>
+<tr>
+<td style="text-align:left">0 17 <em> </em> 1 命令</td>
+<td style="text-align:center">每周1 的17点0分执行命令</td>
+</tr>
+<tr>
+<td style="text-align:left">0 5 1,15 <em> </em> 命令</td>
+<td style="text-align:center">每月1号和15号的凌晨5点0分执行命令</td>
+</tr>
+<tr>
+<td style="text-align:left">40 4 <em> </em> 1-5 命令</td>
+<td style="text-align:center">每周一到周五的凌晨4点40分执行命令</td>
+</tr>
+<tr>
+<td style="text-align:left"><em>/10 4 </em> <em> </em> 命令</td>
+<td style="text-align:center">每天的凌晨4点，每隔10分钟执行一次命令</td>
+</tr>
+<tr>
+<td style="text-align:left">0 0 1,15 * 1 命令</td>
+<td style="text-align:center">每月1号和15号，每周1的0点0分都会执行命令。</td>
+</tr>
+</tbody>
+</table>
+<p>注意：星期几和 几号最好不要同时出现，因为他们定义的都是天。非常容易让管理员混乱。</p>
 
       
     </div>
@@ -475,7 +599,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2019/05/22/Linux基础篇-Linux的介绍/" title="Linux基础篇-Linux的介绍" target="_blank" rel="external">http://yoursite.com/2019/05/22/Linux基础篇-Linux的介绍/</a>
+      <a href="http://yoursite.com/2019/05/30/Linux实操篇-定时调度任务/" title="Linux实操篇-定时调度任务与实例" target="_blank" rel="external">http://yoursite.com/2019/05/30/Linux实操篇-定时调度任务/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -523,13 +647,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/05/22/Linux基础篇-Linux的目录结构/" title="Linux基础篇-Linux的目录结构"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/05/10/hexo博客pure主题配置（转载）/" title="hexo博客pure主题配置（转载）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/05/29/Linux实操篇-组管理/" title="Linux实操篇-组管理和权限管理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

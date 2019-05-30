@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-29T09:54:05.111Z</updated>
+  <updated>2019-05-30T09:14:18.312Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux实操篇-定时调度任务与实例</title>
+    <link href="http://yoursite.com/2019/05/30/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-%E5%AE%9A%E6%97%B6%E8%B0%83%E5%BA%A6%E4%BB%BB%E5%8A%A1/"/>
+    <id>http://yoursite.com/2019/05/30/Linux实操篇-定时调度任务/</id>
+    <published>2019-05-30T05:58:36.568Z</published>
+    <updated>2019-05-30T09:14:18.312Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="crond任务调度"><a href="#crond任务调度" class="headerlink" title="crond任务调度"></a>crond任务调度</h1><h2 id="crontab-进行定时任务的设置"><a href="#crontab-进行定时任务的设置" class="headerlink" title="crontab 进行定时任务的设置"></a>crontab 进行定时任务的设置</h2><p> 任务调度：是指系统在某个时间执行的特定的命令或程序。</p><p>原理示意图:</p><p><img src="https://img-blog.csdnimg.cn/20190530171313863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20190530171308189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p> 任务调度分类：</p><p>​     1）系统工作：有些重要的工作必须周而复始地执行。如病毒扫描等</p><p>​      2）个别用户工作：个别用户可能希望执行某些程序，比如对mysql数据库的备份。 </p><p>基本语法 ：crontab [选项] </p><p>常用选项</p><table><thead><tr><th style="text-align:left">选项</th><th style="text-align:center">选项说明</th></tr></thead><tbody><tr><td style="text-align:left">-e</td><td style="text-align:center">编辑crontab定时任务</td></tr><tr><td style="text-align:left">-l</td><td style="text-align:center">查询crontab任务</td></tr><tr><td style="text-align:left">-r</td><td style="text-align:center">删除当前用户所有的crontab任务</td></tr></tbody></table><h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="任务要求"><a href="#任务要求" class="headerlink" title="任务要求"></a>任务要求</h2><p>1)设置任务调度文件：/etc/crontab </p><p>2)设置个人任务调度。执行crontab –e命令。</p><p>3) 接着输入任务到调度文件 如：<em>/1 </em>  <em>  </em>  *  ls –l  /etc/ &gt; /tmp/to.txt  </p><p>4)意思说每小时的每分钟执行ls –l /etc/ &gt; /tmp/to.txt命令 </p><h2 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h2><p>1）cron -e</p><p>2)输入：<em>/1 </em> <em> </em> * ls -l /etc &gt;&gt;/tmp/to.txt</p><p>3）保存退出后就完成</p><p>4)在每一分钟都会自动的调用 ls-l/etc &gt;&gt;/tmp/to.txt</p><h2 id="参数细节说明"><a href="#参数细节说明" class="headerlink" title="参数细节说明"></a>参数细节说明</h2><p>5个占位符的说明</p><table><thead><tr><th>项目</th><th>含义</th><th>范围</th></tr></thead><tbody><tr><td>第一个“*”</td><td>一小时当中的第几分钟</td><td>0-59</td></tr><tr><td>第二个“*”</td><td>一天当中的第几小时</td><td>0-23</td></tr><tr><td>第三个“*”</td><td>一个月当中的第几天</td><td>1-31</td></tr><tr><td>第五个“*”</td><td>一周当中的星期几</td><td>0-7（0和7都代表星期日）</td></tr><tr><td>特殊符号的说明</td><td></td></tr></tbody></table><table><thead><tr><th style="text-align:left">特殊符号</th><th style="text-align:left">含义</th></tr></thead><tbody><tr><td style="text-align:left">*</td><td style="text-align:left">代表任何时间。比如第一个“*”就代表一小时中每分钟都执行一 次的意思。</td></tr><tr><td style="text-align:left">，</td><td style="text-align:left">代表不连续的时间。比如“0 8,12,16 <em> </em> * 命令”，就代表在每天 的8点0分，12点0分，16点0分都执行一次命令</td></tr><tr><td style="text-align:left">-</td><td style="text-align:left">代表连续的时间范围。比如“0 5 <em> </em> 1-6命令”，代表在周一到周 六的凌晨5点0分执行命令</td></tr><tr><td style="text-align:left">*/n</td><td style="text-align:left">代表每隔多久执行一次。比如“<em>/10 </em> <em> </em> * 命令”，代表每隔 10分钟就执行一遍命令</td></tr></tbody></table><p>特定时间执行任务案例</p><table><thead><tr><th style="text-align:left">时间</th><th style="text-align:center">含义</th></tr></thead><tbody><tr><td style="text-align:left">45 22 <em>  </em>  * 命令</td><td style="text-align:center">在22点45分执行命令</td></tr><tr><td style="text-align:left">0 17 <em> </em> 1 命令</td><td style="text-align:center">每周1 的17点0分执行命令</td></tr><tr><td style="text-align:left">0 5 1,15 <em> </em> 命令</td><td style="text-align:center">每月1号和15号的凌晨5点0分执行命令</td></tr><tr><td style="text-align:left">40 4 <em> </em> 1-5 命令</td><td style="text-align:center">每周一到周五的凌晨4点40分执行命令</td></tr><tr><td style="text-align:left"><em>/10 4 </em> <em> </em> 命令</td><td style="text-align:center">每天的凌晨4点，每隔10分钟执行一次命令</td></tr><tr><td style="text-align:left">0 0 1,15 * 1 命令</td><td style="text-align:center">每月1号和15号，每周1的0点0分都会执行命令。</td></tr></tbody></table><p>注意：星期几和 几号最好不要同时出现，因为他们定义的都是天。非常容易让管理员混乱。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;crond任务调度&quot;&gt;&lt;a href=&quot;#crond任务调度&quot; class=&quot;headerlink&quot; title=&quot;crond任务调度&quot;&gt;&lt;/a&gt;crond任务调度&lt;/h1&gt;&lt;h2 id=&quot;crontab-进行定时任务的设置&quot;&gt;&lt;a href=&quot;#crontab-
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux实操" scheme="http://yoursite.com/tags/Linux%E5%AE%9E%E6%93%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux实操篇-组管理和权限管理</title>
