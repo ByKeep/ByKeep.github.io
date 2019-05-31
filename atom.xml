@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-31T05:25:24.454Z</updated>
+  <updated>2019-05-31T06:56:09.508Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux实操篇-网络配置</title>
+    <link href="http://yoursite.com/2019/05/31/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2019/05/31/Linux实操篇-网络配置/</id>
+    <published>2019-05-31T06:40:26.545Z</published>
+    <updated>2019-05-31T06:56:09.508Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="虚拟机网络模式"><a href="#虚拟机网络模式" class="headerlink" title="虚拟机网络模式"></a>虚拟机网络模式</h1><p>1）虚拟机连接网络的三种模式</p><p><img src="https://img-blog.csdnimg.cn/2019053114331367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>2）虚拟机使用NAT模式的网络原理图<img src="https://img-blog.csdnimg.cn/20190531143255441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="查看网络IP和网关"><a href="#查看网络IP和网关" class="headerlink" title="查看网络IP和网关"></a>查看网络IP和网关</h1><h2 id="查看虚拟网络编辑器"><a href="#查看虚拟网络编辑器" class="headerlink" title="查看虚拟网络编辑器"></a>查看虚拟网络编辑器</h2><p><img src="https://img-blog.csdnimg.cn/20190531143321832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="修改IP（虚拟网络的IP）"><a href="#修改IP（虚拟网络的IP）" class="headerlink" title="修改IP（虚拟网络的IP）"></a>修改IP（虚拟网络的IP）</h2><p><img src="https://img-blog.csdnimg.cn/20190531143328972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="这里插入图片描述"></p><h2 id="查看网关"><a href="#查看网关" class="headerlink" title="查看网关"></a>查看网关</h2><p><img src="https://img-blog.csdnimg.cn/2019053114350952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="查看windows环境中的VMnet8网络配置"><a href="#查看windows环境中的VMnet8网络配置" class="headerlink" title="查看windows环境中的VMnet8网络配置"></a>查看windows环境中的VMnet8网络配置</h2><p>方式1：命令行输入：ipconfig</p><p>方式2：右键点击菜单栏网络图标——&gt;打开网络和共享中心——&gt;更改适配器——&gt;选择VMnet8——&gt;右键查看属性——&gt;选择IPv4</p><h1 id="ping-测试主机之间网络连通性"><a href="#ping-测试主机之间网络连通性" class="headerlink" title="ping 测试主机之间网络连通性"></a>ping 测试主机之间网络连通性</h1><p>基本语法：ping 目的主机 （功能描述：测试当前服务器是否可以连接目的主机）<br><strong>实例</strong><br>测试当前服务器是否可以连接百度 [root@hadoop100 桌面]# ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p><p><img src="https://img-blog.csdnimg.cn/20190531143520945.png" alt="这里插入图片描述"></p><h1 id="Linux网络环境配置"><a href="#Linux网络环境配置" class="headerlink" title="Linux网络环境配置"></a>Linux网络环境配置</h1><h2 id="第一种方法-自动获取"><a href="#第一种方法-自动获取" class="headerlink" title="第一种方法(自动获取)"></a>第一种方法(自动获取)</h2><p>说明：登陆后，通过界面的来设置自动获取ip</p><p><img src="https://img-blog.csdnimg.cn/20190531143529736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><strong>特点：linux启动后会自动获取IP,缺点是每次自动获取的ip地址可能不一样。，不适用于做服务器，因为我们的服务器的IP需要是固定的</strong></p><h2 id="第二种方法-指定固定的ip"><a href="#第二种方法-指定固定的ip" class="headerlink" title="第二种方法(指定固定的ip)"></a>第二种方法(指定固定的ip)</h2><p>说明 直接修改配置文件来指定IP,并可以连接到外网(程序员推荐)，</p><p>编辑 vim  /etc/sysconfig/network-scripts/ifcfg-eth0 （etho的配置文件，如果多块需要配置多块的配置文件）</p><p><strong>实例</strong></p><p>要求：将ip地址配置的静态的，ip地址为192.168.168.130</p><p><strong>注意：设置的IP地址如果和虚拟机的VMnet网卡的IP网段需要是一样的，如果不一样就无法建立通信</strong></p><p>1)步骤1，修改网卡配置文件</p><p><img src="https://img-blog.csdnimg.cn/20190531143537436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="这里插入图片描述"></p><p>2）步骤2 ，重新启动网络服务</p><p><img src="https://img-blog.csdnimg.cn/20190531143544501.png" alt="在这里插入图片描述"></p><h2 id="ifcfg-eth0文件说明"><a href="#ifcfg-eth0文件说明" class="headerlink" title="ifcfg-eth0文件说明"></a>ifcfg-eth0文件说明</h2><p><img src="https://img-blog.csdnimg.cn/20190531143551261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>、</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;虚拟机网络模式&quot;&gt;&lt;a href=&quot;#虚拟机网络模式&quot; class=&quot;headerlink&quot; title=&quot;虚拟机网络模式&quot;&gt;&lt;/a&gt;虚拟机网络模式&lt;/h1&gt;&lt;p&gt;1）虚拟机连接网络的三种模式&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img-blog.c
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux实操" scheme="http://yoursite.com/tags/Linux%E5%AE%9E%E6%93%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux实操篇-磁盘分区和挂载</title>

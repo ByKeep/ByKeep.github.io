@@ -17,35 +17,32 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Linux实操篇-组管理和权限管理 | DoCode</title>
-  <meta name="description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，将">
+  <title>Linux实操篇-网络配置 | DoCode</title>
+  <meta name="description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IPv">
 <meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux实操篇-组管理和权限管理">
-<meta property="og:url" content="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
+<meta property="og:title" content="Linux实操篇-网络配置">
+<meta property="og:url" content="http://yoursite.com/2019/05/31/Linux实操篇-网络配置/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，将">
+<meta property="og:description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IPv">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173212243.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173222543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173237218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052917330094.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173320299.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173328558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173345959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173358872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173502574.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173516275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173532152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173549105.png">
-<meta property="og:updated_time" content="2019-05-29T09:54:05.111Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019053114331367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143255441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143321832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143328972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019053114350952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143520945.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143529736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143537436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143544501.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143551261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-05-31T06:56:09.508Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux实操篇-组管理和权限管理">
-<meta name="twitter:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，将">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="Linux实操篇-网络配置">
+<meta name="twitter:description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IPv">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019053114331367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
+  <link rel="canonical" href="http://yoursite.com/2019/05/31/Linux实操篇-网络配置/index.html">
   
     <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
   
@@ -403,21 +400,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux组基本介绍"><span class="toc-number">1.</span> <span class="toc-text">Linux组基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件-目录-所有者"><span class="toc-number">2.</span> <span class="toc-text">文件/目录 所有者</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件的所有者"><span class="toc-number">2.1.</span> <span class="toc-text">查看文件的所有者</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件-目录所在组"><span class="toc-number">3.</span> <span class="toc-text">文件/目录所在组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件所有者"><span class="toc-number">3.1.</span> <span class="toc-text">修改文件所有者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组的创建"><span class="toc-number">3.2.</span> <span class="toc-text">组的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件所在的组"><span class="toc-number">3.3.</span> <span class="toc-text">修改文件所在的组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它组"><span class="toc-number">3.4.</span> <span class="toc-text">其它组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改变用户所在组"><span class="toc-number">3.5.</span> <span class="toc-text">改变用户所在组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限的基本介绍"><span class="toc-number">4.</span> <span class="toc-text">权限的基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rwx权限详解"><span class="toc-number">5.</span> <span class="toc-text">rwx权限详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rwx作用到文件"><span class="toc-number">5.1.</span> <span class="toc-text">rwx作用到文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rwx作用到目录"><span class="toc-number">5.2.</span> <span class="toc-text">rwx作用到目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件及目录权限实际案例"><span class="toc-number">6.</span> <span class="toc-text">文件及目录权限实际案例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改权限-chmod"><span class="toc-number">7.</span> <span class="toc-text">修改权限-chmod</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一种方式"><span class="toc-number">7.1.</span> <span class="toc-text">第一种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二种方式"><span class="toc-number">7.2.</span> <span class="toc-text">第二种方式</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#虚拟机网络模式"><span class="toc-number">1.</span> <span class="toc-text">虚拟机网络模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看网络IP和网关"><span class="toc-number">2.</span> <span class="toc-text">查看网络IP和网关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看虚拟网络编辑器"><span class="toc-number">2.1.</span> <span class="toc-text">查看虚拟网络编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改IP（虚拟网络的IP）"><span class="toc-number">2.2.</span> <span class="toc-text">修改IP（虚拟网络的IP）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看网关"><span class="toc-number">2.3.</span> <span class="toc-text">查看网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看windows环境中的VMnet8网络配置"><span class="toc-number">2.4.</span> <span class="toc-text">查看windows环境中的VMnet8网络配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ping-测试主机之间网络连通性"><span class="toc-number">3.</span> <span class="toc-text">ping 测试主机之间网络连通性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux网络环境配置"><span class="toc-number">4.</span> <span class="toc-text">Linux网络环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一种方法-自动获取"><span class="toc-number">4.1.</span> <span class="toc-text">第一种方法(自动获取)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二种方法-指定固定的ip"><span class="toc-number">4.2.</span> <span class="toc-text">第二种方法(指定固定的ip)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifcfg-eth0文件说明"><span class="toc-number">4.3.</span> <span class="toc-text">ifcfg-eth0文件说明</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Linux实操篇-组管理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Linux实操篇-网络配置" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Linux实操篇-组管理和权限管理
+      Linux实操篇-网络配置
     </h1>
   
 
@@ -425,8 +422,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/05/29/Linux实操篇-组管理/" class="article-date">
-	  <time datetime="2019-05-29T02:06:34.892Z" itemprop="datePublished">2019-05-29</time>
+	<a href="/2019/05/31/Linux实操篇-网络配置/" class="article-date">
+	  <time datetime="2019-05-31T06:40:26.545Z" itemprop="datePublished">2019-05-31</time>
 	</a>
 </span>
         
@@ -451,143 +448,43 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/29/Linux实操篇-组管理/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/31/Linux实操篇-网络配置/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.5k(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 440(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="Linux组基本介绍"><a href="#Linux组基本介绍" class="headerlink" title="Linux组基本介绍"></a>Linux组基本介绍</h1><p>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。<br>1) 所有者 </p>
-<p>2) 所在组 </p>
-<p>3) 其它组</p>
-<p> 4) 改变用户所在的组</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="文件-目录-所有者"><a href="#文件-目录-所有者" class="headerlink" title="文件/目录 所有者"></a>文件/目录 所有者</h1><p>概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。</p>
-<h2 id="查看文件的所有者"><a href="#查看文件的所有者" class="headerlink" title="查看文件的所有者"></a>查看文件的所有者</h2><p>1) 指令：ls –ahl</p>
-<p> <strong>实例</strong></p>
-<p>（1）创建一个组police，再创建一个用户tom，将tom放在police组中，然后使用tom来创建一个文件ok.txt，并查看文件所有者</p>
-<p>步骤1：创建police组以及tom用户并将tom放在police组中</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173212243.png" alt="在这里插入图片描述"></p>
-<p>步骤2：使用tom用户创建ok.txt文件</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173222543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>特别说明：文件的所在组一般是所有者的所在组，但是也是可以更改的</p>
-<h1 id="文件-目录所在组"><a href="#文件-目录所在组" class="headerlink" title="文件/目录所在组"></a>文件/目录所在组</h1><h2 id="修改文件所有者"><a href="#修改文件所有者" class="headerlink" title="修改文件所有者"></a>修改文件所有者</h2><p>指令：</p>
-<p>1）chown  newowner  file  改变文件的所有者<br>2）chown newowner:newgroup  file  改变用户的所有者和所有组 </p>
-<p>3）-R   如果是目录 则使其下所有子文件或目录递归生效</p>
+        <h1 id="虚拟机网络模式"><a href="#虚拟机网络模式" class="headerlink" title="虚拟机网络模式"></a>虚拟机网络模式</h1><p>1）虚拟机连接网络的三种模式</p>
+<p><img src="https://img-blog.csdnimg.cn/2019053114331367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>2）虚拟机使用NAT模式的网络原理图<img src="https://img-blog.csdnimg.cn/20190531143255441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="查看网络IP和网关"><a href="#查看网络IP和网关" class="headerlink" title="查看网络IP和网关"></a>查看网络IP和网关</h1><h2 id="查看虚拟网络编辑器"><a href="#查看虚拟网络编辑器" class="headerlink" title="查看虚拟网络编辑器"></a>查看虚拟网络编辑器</h2><p><img src="https://img-blog.csdnimg.cn/20190531143321832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="修改IP（虚拟网络的IP）"><a href="#修改IP（虚拟网络的IP）" class="headerlink" title="修改IP（虚拟网络的IP）"></a>修改IP（虚拟网络的IP）</h2><p><img src="https://img-blog.csdnimg.cn/20190531143328972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="这里插入图片描述"></p>
+<h2 id="查看网关"><a href="#查看网关" class="headerlink" title="查看网关"></a>查看网关</h2><p><img src="https://img-blog.csdnimg.cn/2019053114350952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="查看windows环境中的VMnet8网络配置"><a href="#查看windows环境中的VMnet8网络配置" class="headerlink" title="查看windows环境中的VMnet8网络配置"></a>查看windows环境中的VMnet8网络配置</h2><p>方式1：命令行输入：ipconfig</p>
+<p>方式2：右键点击菜单栏网络图标——&gt;打开网络和共享中心——&gt;更改适配器——&gt;选择VMnet8——&gt;右键查看属性——&gt;选择IPv4</p>
+<h1 id="ping-测试主机之间网络连通性"><a href="#ping-测试主机之间网络连通性" class="headerlink" title="ping 测试主机之间网络连通性"></a>ping 测试主机之间网络连通性</h1><p>基本语法：ping 目的主机 （功能描述：测试当前服务器是否可以连接目的主机）<br><strong>实例</strong><br>测试当前服务器是否可以连接百度 [root@hadoop100 桌面]# ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20190531143520945.png" alt="这里插入图片描述"></p>
+<h1 id="Linux网络环境配置"><a href="#Linux网络环境配置" class="headerlink" title="Linux网络环境配置"></a>Linux网络环境配置</h1><h2 id="第一种方法-自动获取"><a href="#第一种方法-自动获取" class="headerlink" title="第一种方法(自动获取)"></a>第一种方法(自动获取)</h2><p>说明：登陆后，通过界面的来设置自动获取ip</p>
+<p><img src="https://img-blog.csdnimg.cn/20190531143529736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>特点：linux启动后会自动获取IP,缺点是每次自动获取的ip地址可能不一样。，不适用于做服务器，因为我们的服务器的IP需要是固定的</strong></p>
+<h2 id="第二种方法-指定固定的ip"><a href="#第二种方法-指定固定的ip" class="headerlink" title="第二种方法(指定固定的ip)"></a>第二种方法(指定固定的ip)</h2><p>说明 直接修改配置文件来指定IP,并可以连接到外网(程序员推荐)，</p>
+<p>编辑 vim  /etc/sysconfig/network-scripts/ifcfg-eth0 （etho的配置文件，如果多块需要配置多块的配置文件）</p>
 <p><strong>实例</strong></p>
-<p>（1）使用root创建一个文件apple.txt，然后将其修改为tom </p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173237218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>（2) 请将 /home/kkk 目录下所有的文件和目录的所有者都修改成tom </p>
-<p>   首先我们应该选择root用户操作</p>
-<p><img src="https://img-blog.csdnimg.cn/2019052917330094.png" alt="在这里插入图片描述"></p>
-<h2 id="组的创建"><a href="#组的创建" class="headerlink" title="组的创建"></a>组的创建</h2><p>基本指令: groupadd 组名<br>实例</p>
-<p>(1) 创建一个组, ,monster 创建一个用户 fox ，并放入到 monster组中</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173320299.png" alt="在这里插入图片描述"></p>
-<h2 id="修改文件所在的组"><a href="#修改文件所在的组" class="headerlink" title="修改文件所在的组"></a>修改文件所在的组</h2><p>  基本指令 ：</p>
-<p>1）chgrp 组名 文件名 </p>
-<p>2）-R   如果是目录 则使其下所有子文件或目录递归生效</p>
-<p><strong>实例</strong> </p>
-<p>（1）使用root用户创建文件 orange.txt ,看看当前这个文件属于哪个组，然后将这个文 件所在组，修改到 police组。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173328558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>（2） 请将 /home/kkk 目录下所有的文件和目录的所在组都修改成 police</p>
-<p>  chgrp -R police  /home/kkk/</p>
-<h2 id="其它组"><a href="#其它组" class="headerlink" title="其它组"></a>其它组</h2><p>介绍：除文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组。</p>
-<h2 id="改变用户所在组"><a href="#改变用户所在组" class="headerlink" title="改变用户所在组"></a>改变用户所在组</h2><p>在添加用户时，可以指定将该用户添加到哪个组中，同样的用root的管理权限可以改变某 个用户所在的组。 改变用户所在组</p>
-<p> 1) usermod   –g   组名 用户名</p>
-<p> 2) usermod   –d   目录名 用户名 改变该用户登陆的初始目录。</p>
-<p><strong>实例</strong></p>
-<p>（1）创建一个土匪组（bandit）将tom这个用户从原来所在的police组，修改为</p>
-<p>土匪组（bandit）</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173345959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="权限的基本介绍"><a href="#权限的基本介绍" class="headerlink" title="权限的基本介绍"></a>权限的基本介绍</h1><p>ls  -l 中显示的内容如下： -rwxrw-r– 1 root root 1213 Feb 2 09:39 abc<br><strong>0-9位说明</strong> </p>
-<p>1) 第0位确定文件类型(d, - , l , c , b)</p>
-<p> 2) 第1-3位确定所有者（该文件的所有者）拥有该文件的权限。—User </p>
-<p>3) 第4-6位确定所属组（同用户组的）拥有该文件的权限，—Group</p>
-<p> 4) 第7-9位确定其他用户拥有该文件的权限 —Other</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173358872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="rwx权限详解"><a href="#rwx权限详解" class="headerlink" title="rwx权限详解"></a>rwx权限详解</h1><h2 id="rwx作用到文件"><a href="#rwx作用到文件" class="headerlink" title="rwx作用到文件"></a>rwx作用到文件</h2><p> 1) [ r ]代表可读(read): 可以读取,查看 </p>
-<p>2) [ w ]代表可写(write): 可以修改,但是不代表可以删除该文件,删除一个文件的前提条件是 对该文件所在的目录有写权限，才能删除该文件.</p>
-<p>3) [ x ]代表可执行(execute):可以被执行</p>
-<h2 id="rwx作用到目录"><a href="#rwx作用到目录" class="headerlink" title="rwx作用到目录"></a>rwx作用到目录</h2><p>1) [ r ]代表可读(read): 可以读取，ls查看目录内容 </p>
-<p>2) [ w ]代表可写(write): 可以修改,目录内创建+删除+重命名目录</p>
-<p> 3) [ x ]代表可执行(execute):可以进入该目录</p>
-<h1 id="文件及目录权限实际案例"><a href="#文件及目录权限实际案例" class="headerlink" title="文件及目录权限实际案例"></a>文件及目录权限实际案例</h1><p><strong>ls  -l 中显示的内容如下：</strong></p>
-<p> -rwxrw-r– 1 root root 1213 Feb 2 09:39 abc </p>
-<p>10个字符确定不同用户能对文件干什么</p>
-<p> 第一个字符代表文件类型：文件 (-),目录(d),链接(l) </p>
-<p>其余字符每3个一组(rwx) 读(r) 写(w) 执行(x)</p>
-<p> 第一组rwx : 文件拥有者的权限是读、写和执行 </p>
-<p>第二组rw-: 与文件拥有者同一组的用户的权限是读、写但不能执行</p>
-<p> 第三组r– : 不与文件拥有者同组的其他用户的权限是读不能写和执行 </p>
-<p><strong>可用数字表示为:</strong> r=4,w=2,x=1 因此rwx=4+2+1=7      </p>
-<table>
-<thead>
-<tr>
-<th>权限</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td style="text-align:center">文件：硬连接数或 目录：子目录数</td>
-</tr>
-<tr>
-<td>root</td>
-<td style="text-align:center">用户</td>
-</tr>
-<tr>
-<td>root</td>
-<td style="text-align:center">组</td>
-</tr>
-<tr>
-<td>1213</td>
-<td style="text-align:center">文件大小（字节），如果是文件夹，显示4096字节</td>
-</tr>
-<tr>
-<td>Feb 2 09:39</td>
-<td style="text-align:center">最后修改日期</td>
-</tr>
-<tr>
-<td>abc</td>
-<td style="text-align:center">文件名</td>
-</tr>
-</tbody>
-</table>
-<h1 id="修改权限-chmod"><a href="#修改权限-chmod" class="headerlink" title="修改权限-chmod"></a>修改权限-chmod</h1><p>基本说明： 通过chmod指令，可以修改文件或者目录的权限。</p>
-<h2 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h2><p>第一种方式：+ 、-、= 变更权限 u:所有者 g:所在组 o:其他人 a:所有人(u、g、o的总和)</p>
-<p>1) chmod   u=rwx,g=rx,o=x   文件目录名 </p>
-<p>功能描述：u=rwx给所有者rwx权限，g=rx给所在组的其他用户提供rx权限，o=x其他组用户提供x权限</p>
-<p>2) chmod   o+w    文件目录名 </p>
-<p>功能描述：给其他组用户添加提供w(写)权限</p>
-<p>3) chmod   a-x    文件目录名</p>
-<p>功能描述：给所用用户减去x(执行)权限</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173502574.png" alt="在这里插入图片描述"></p>
-<p> <strong>实例</strong></p>
-<p>1) 给abc文件 的所有者读写执行的权限，给所在组读执行权限，给其它组读执行权限。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173516275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>特别说明：文件获取可执行权限之后，文件名字变成绿色</p>
-<p>2) 给abc文件的所有者除去执行的权限，增加组写的权限 </p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173532152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>3) 给abc文件的所有用户添加读的权限</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173549105.png" alt="在这里插入图片描述"></p>
-<h2 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h2><p>第二种方式：通过数字变更权限 </p>
-<p>r=4 w=2 x=1        rwx=4+2+1=7</p>
-<p> chmod u=rwx,g=rx,o=x    文件目录名 </p>
-<p>相当于 chmod   751  文件目录名</p>
-<p> <strong>实例</strong></p>
-<p> （1）将 /home/abc.txt 文件的权限修改成 rwxr-xr-x, 使用给数字的方式实现：</p>
-<p>rwx=4+2+1=7</p>
-<p>r-x=4+1=5</p>
-<p>r-x=5+1=5</p>
-<p>指令：chmod 755 /home/abc.txt</p>
+<p>要求：将ip地址配置的静态的，ip地址为192.168.168.130</p>
+<p><strong>注意：设置的IP地址如果和虚拟机的VMnet网卡的IP网段需要是一样的，如果不一样就无法建立通信</strong></p>
+<p>1)步骤1，修改网卡配置文件</p>
+<p><img src="https://img-blog.csdnimg.cn/20190531143537436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="这里插入图片描述"></p>
+<p>2）步骤2 ，重新启动网络服务</p>
+<p><img src="https://img-blog.csdnimg.cn/20190531143544501.png" alt="在这里插入图片描述"></p>
+<h2 id="ifcfg-eth0文件说明"><a href="#ifcfg-eth0文件说明" class="headerlink" title="ifcfg-eth0文件说明"></a>ifcfg-eth0文件说明</h2><p><img src="https://img-blog.csdnimg.cn/20190531143551261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>、</p>
 
       
     </div>
@@ -597,7 +494,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2019/05/29/Linux实操篇-组管理/" title="Linux实操篇-组管理和权限管理" target="_blank" rel="external">http://yoursite.com/2019/05/29/Linux实操篇-组管理/</a>
+      <a href="http://yoursite.com/2019/05/31/Linux实操篇-网络配置/" title="Linux实操篇-网络配置" target="_blank" rel="external">http://yoursite.com/2019/05/31/Linux实操篇-网络配置/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -645,13 +542,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/05/30/Linux实操篇-定时调度任务/" title="Linux实操篇-定时调度任务与实例"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/05/25/Java基础篇-Java异常处理/" title="Java基础篇-Java异常处理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/05/31/Linux实操篇-磁盘分区和挂载/" title="Linux实操篇-磁盘分区和挂载"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
