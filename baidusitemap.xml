@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2019/05/25/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-Linux%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
+    <lastmod>2019-06-10</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2019/06/01/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-PRM%E4%B8%8EYUM/</loc>
+    <lastmod>2019-06-01</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2019/05/31/Java%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2019-06-01</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2019/06/01/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2019-06-01</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2019/05/31/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2019-05-31</lastmod>
   </url>  <url>
@@ -15,9 +27,6 @@
   </url>  <url>
     <loc>http://yoursite.com/2019/05/29/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-%E7%BB%84%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2019/05/25/Linux%E5%AE%9E%E6%93%8D%E7%AF%87-Linux%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4/</loc>
-    <lastmod>2019-05-28</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2019/05/25/Java%E5%9F%BA%E7%A1%80%E7%AF%87-Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</loc>
     <lastmod>2019-05-28</lastmod>
