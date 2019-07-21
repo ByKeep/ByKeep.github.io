@@ -18,13 +18,13 @@
   
   
   <title>Linux实操篇-进程管理 | DoCode</title>
-  <meta name="description" content="基本介绍1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。  2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例 如www服务器。 3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目 前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法 看到的进程，通常使用后台方式执行。  4) 一般系统的服务都是以">
+  <meta name="description" content="基本介绍1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。  2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例 如www服务器。 3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目 前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法 看到的进程，通常使用后台方式执行。  4) 一般系统的服务都是">
 <meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实操篇-进程管理">
 <meta property="og:url" content="http://yoursite.com/2019/06/01/Linux实操篇-进程管理/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="基本介绍1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。  2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例 如www服务器。 3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目 前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法 看到的进程，通常使用后台方式执行。  4) 一般系统的服务都是以">
+<meta property="og:description" content="基本介绍1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。  2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例 如www服务器。 3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目 前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法 看到的进程，通常使用后台方式执行。  4) 一般系统的服务都是">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113234578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019060111330952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113626410.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113647513.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113654372.png">
-<meta property="og:image" content="d:/桌面/Snipaste_2019-06-01_10-47-48.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/Snipaste_2019-06-01_10-47-48.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113732576.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113743968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113759664.png">
@@ -50,10 +50,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113848444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113856500.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601113903208.png">
-<meta property="og:updated_time" content="2019-06-10T10:09:22.318Z">
+<meta property="og:updated_time" content="2019-07-21T10:56:15.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实操篇-进程管理">
-<meta name="twitter:description" content="基本介绍1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。  2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例 如www服务器。 3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目 前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法 看到的进程，通常使用后台方式执行。  4) 一般系统的服务都是以">
+<meta name="twitter:description" content="基本介绍1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。  2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例 如www服务器。 3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目 前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法 看到的进程，通常使用后台方式执行。  4) 一般系统的服务都是">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190601113234578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
   <link rel="canonical" href="http://yoursite.com/2019/06/01/Linux实操篇-进程管理/index.html">
@@ -476,7 +476,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。</p>
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>1) 在LINUX中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一 个ID号。</p>
 <p> 2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例 如www服务器。</p>
 <p>3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目 前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法 看到的进程，通常使用后台方式执行。 </p>
 <p>4) 一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中。直到 关机才才结束。</p>
@@ -615,7 +616,7 @@
 <p><img src="https://img-blog.csdnimg.cn/20190601113647513.png" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20190601113654372.png" alt="这里插入图片描述"></p>
 <p>2) chkconfig   服务名 –list </p>
-<p><img src="D:\桌面\Snipaste_2019-06-01_10-47-48.png" alt="Snipaste_2019-06-01_10-47-48"></p>
+<p><img src="/.com//桌面\Snipaste_2019-06-01_10-47-48.png" alt="Snipaste_2019-06-01_10-47-48"></p>
 <p>3)  chkconfig   –level  5   服务名 on/off </p>
 <p>需求：请将sshd在运行级别为5的情况下，不要自启动</p>
 <p><img src="https://img-blog.csdnimg.cn/20190601113732576.png" alt="在这里插入图片描述"></p>

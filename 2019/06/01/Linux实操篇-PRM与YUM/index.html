@@ -18,13 +18,13 @@
   
   
   <title>Linux实操篇-PRM与YUM | DoCode</title>
-  <meta name="description" content="RPM包的管理介绍一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。Linux的分发版本都有采用（suse,redhat, centos 等等），可以">
+  <meta name="description" content="RPM包的管理介绍一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。Linux的分发版本都有采用（suse,redhat, centos 等等），可">
 <meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实操篇-PRM与YUM">
 <meta property="og:url" content="http://yoursite.com/2019/06/01/Linux实操篇-PRM与YUM/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="RPM包的管理介绍一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。Linux的分发版本都有采用（suse,redhat, centos 等等），可以">
+<meta property="og:description" content="RPM包的管理介绍一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。Linux的分发版本都有采用（suse,redhat, centos 等等），可">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601140550746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="http://img-blog.csdnimg.cn/20190601140911227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
@@ -37,10 +37,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601140815567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601140822651.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190601140830579.png">
-<meta property="og:updated_time" content="2019-06-01T11:26:27.735Z">
+<meta property="og:updated_time" content="2019-07-21T10:55:44.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实操篇-PRM与YUM">
-<meta name="twitter:description" content="RPM包的管理介绍一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。Linux的分发版本都有采用（suse,redhat, centos 等等），可以">
+<meta name="twitter:description" content="RPM包的管理介绍一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。Linux的分发版本都有采用（suse,redhat, centos 等等），可">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190601140550746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
   <link rel="canonical" href="http://yoursite.com/2019/06/01/Linux实操篇-PRM与YUM/index.html">
@@ -463,7 +463,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="RPM包的管理"><a href="#RPM包的管理" class="headerlink" title="RPM包的管理"></a>RPM包的管理</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。<br>Linux的分发版本都有采用（suse,redhat, centos 等等），可以算是公认的行业标 准了。</p>
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="RPM包的管理"><a href="#RPM包的管理" class="headerlink" title="RPM包的管理"></a>RPM包的管理</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成 具有.RPM扩展名的文件。RPM是RedHat Package Manager（RedHat软件包管理工 具）的缩写，类似windows的setup.exe，这一文件格式名称虽然打上了RedHat的 标志，但理念是通用的。<br>Linux的分发版本都有采用（suse,redhat, centos 等等），可以算是公认的行业标 准了。</p>
 <h2 id="rpm包的简单查询指令"><a href="#rpm包的简单查询指令" class="headerlink" title="rpm包的简单查询指令"></a>rpm包的简单查询指令</h2><p>查询已安装的rpm列表 rpm  –qa|grep xx</p>
 <p><strong>实例</strong></p>
 <p>（1）查看当前的系统有没有安装有火狐浏览器</p>

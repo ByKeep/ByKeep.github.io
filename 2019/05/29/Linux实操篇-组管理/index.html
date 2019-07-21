@@ -18,13 +18,13 @@
   
   
   <title>Linux实操篇-组管理和权限管理 | DoCode</title>
-  <meta name="description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，将">
+  <meta name="description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
 <meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实操篇-组管理和权限管理">
 <meta property="og:url" content="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，将">
+<meta property="og:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173212243.png">
@@ -39,10 +39,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173516275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173532152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173549105.png">
-<meta property="og:updated_time" content="2019-05-29T09:54:05.111Z">
+<meta property="og:updated_time" content="2019-07-21T10:56:33.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实操篇-组管理和权限管理">
-<meta name="twitter:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，将">
+<meta name="twitter:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
   <link rel="canonical" href="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
@@ -465,7 +465,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="Linux组基本介绍"><a href="#Linux组基本介绍" class="headerlink" title="Linux组基本介绍"></a>Linux组基本介绍</h1><p>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。<br>1) 所有者 </p>
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="Linux组基本介绍"><a href="#Linux组基本介绍" class="headerlink" title="Linux组基本介绍"></a>Linux组基本介绍</h1><p>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。<br>1) 所有者 </p>
 <p>2) 所在组 </p>
 <p>3) 其它组</p>
 <p> 4) 改变用户所在的组</p>

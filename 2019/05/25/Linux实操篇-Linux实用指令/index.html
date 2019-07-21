@@ -18,13 +18,13 @@
   
   
   <title>Linux实操篇-Linux实用指令 | DoCode</title>
-  <meta name="description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修改">
+  <meta name="description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修">
 <meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实操篇-Linux实用指令">
 <meta property="og:url" content="http://yoursite.com/2019/05/25/Linux实操篇-Linux实用指令/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修改">
+<meta property="og:description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190528131532841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019052813175089.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
@@ -68,10 +68,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/201905281331544.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133200378.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133207573.png">
-<meta property="og:updated_time" content="2019-06-10T10:02:20.883Z">
+<meta property="og:updated_time" content="2019-07-21T10:55:34.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实操篇-Linux实用指令">
-<meta name="twitter:description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修改">
+<meta name="twitter:description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190528131532841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
   <link rel="canonical" href="http://yoursite.com/2019/05/25/Linux实操篇-Linux实用指令/index.html">
@@ -494,7 +494,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="运行级别指令"><a href="#运行级别指令" class="headerlink" title="运行级别指令"></a>运行级别指令</h1><h2 id="运行级别说明"><a href="#运行级别说明" class="headerlink" title="运行级别说明"></a>运行级别说明</h2><p>Linux有七个运行级别，如下所示</p>
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="运行级别指令"><a href="#运行级别指令" class="headerlink" title="运行级别指令"></a>运行级别指令</h1><h2 id="运行级别说明"><a href="#运行级别说明" class="headerlink" title="运行级别说明"></a>运行级别说明</h2><p>Linux有七个运行级别，如下所示</p>
 <table>
 <thead>
 <tr>

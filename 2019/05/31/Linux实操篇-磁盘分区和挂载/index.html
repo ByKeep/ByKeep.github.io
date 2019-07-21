@@ -18,13 +18,13 @@
   
   
   <title>Linux实操篇-磁盘分区和挂载 | DoCode</title>
-  <meta name="description" content="分区基本知识分区的方式：1) mbr分区:  1.最多支持四个主分区  2.系统只能安装在主分区  3.扩展分区要占一个主分区  4.MBR最大只支持2TB，但拥有最好的兼容性2) gtp分区:  1.支持无限多个主分区（但操作系统可能限制，比如 windows下最多128个分区）  2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）  3.windows7 64位以">
+  <meta name="description" content="分区基本知识分区的方式：1) mbr分区:  1.最多支持四个主分区  2.系统只能安装在主分区  3.扩展分区要占一个主分区  4.MBR最大只支持2TB，但拥有最好的兼容性2) gtp分区:  1.支持无限多个主分区（但操作系统可能限制，比如 windows下最多128个分区）  2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）  3.windows7 64位">
 <meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实操篇-磁盘分区和挂载">
 <meta property="og:url" content="http://yoursite.com/2019/05/31/Linux实操篇-磁盘分区和挂载/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="分区基本知识分区的方式：1) mbr分区:  1.最多支持四个主分区  2.系统只能安装在主分区  3.扩展分区要占一个主分区  4.MBR最大只支持2TB，但拥有最好的兼容性2) gtp分区:  1.支持无限多个主分区（但操作系统可能限制，比如 windows下最多128个分区）  2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）  3.windows7 64位以">
+<meta property="og:description" content="分区基本知识分区的方式：1) mbr分区:  1.最多支持四个主分区  2.系统只能安装在主分区  3.扩展分区要占一个主分区  4.MBR最大只支持2TB，但拥有最好的兼容性2) gtp分区:  1.支持无限多个主分区（但操作系统可能限制，比如 windows下最多128个分区）  2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）  3.windows7 64位">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531131558967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019053113161697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
@@ -40,10 +40,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531131904948.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531131914503.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531131926211.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-05-31T05:25:24.454Z">
+<meta property="og:updated_time" content="2019-07-21T10:53:19.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实操篇-磁盘分区和挂载">
-<meta name="twitter:description" content="分区基本知识分区的方式：1) mbr分区:  1.最多支持四个主分区  2.系统只能安装在主分区  3.扩展分区要占一个主分区  4.MBR最大只支持2TB，但拥有最好的兼容性2) gtp分区:  1.支持无限多个主分区（但操作系统可能限制，比如 windows下最多128个分区）  2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）  3.windows7 64位以">
+<meta name="twitter:description" content="分区基本知识分区的方式：1) mbr分区:  1.最多支持四个主分区  2.系统只能安装在主分区  3.扩展分区要占一个主分区  4.MBR最大只支持2TB，但拥有最好的兼容性2) gtp分区:  1.支持无限多个主分区（但操作系统可能限制，比如 windows下最多128个分区）  2.最大支持18EB的大容量（1EB=1024 PB，1PB=1024 TB ）  3.windows7 64位">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190531131558967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
   <link rel="canonical" href="http://yoursite.com/2019/05/31/Linux实操篇-磁盘分区和挂载/index.html">
@@ -466,7 +466,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="分区基本知识"><a href="#分区基本知识" class="headerlink" title="分区基本知识"></a>分区基本知识</h1><h2 id="分区的方式："><a href="#分区的方式：" class="headerlink" title="分区的方式："></a>分区的方式：</h2><p><strong>1) mbr分区:</strong> </p>
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="分区基本知识"><a href="#分区基本知识" class="headerlink" title="分区基本知识"></a>分区基本知识</h1><h2 id="分区的方式："><a href="#分区的方式：" class="headerlink" title="分区的方式："></a>分区的方式：</h2><p><strong>1) mbr分区:</strong> </p>
 <p>1.最多支持四个主分区 </p>
 <p>2.系统只能安装在主分区 </p>
 <p>3.扩展分区要占一个主分区 </p>

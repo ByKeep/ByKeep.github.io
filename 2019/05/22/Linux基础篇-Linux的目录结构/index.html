@@ -18,20 +18,20 @@
   
   
   <title>Linux基础篇-Linux的目录结构 | DoCode</title>
-  <meta name="description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装在">
+  <meta name="description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装">
 <meta name="keywords" content="Linux基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基础篇-Linux的目录结构">
 <meta property="og:url" content="http://yoursite.com/2019/05/22/Linux基础篇-Linux的目录结构/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装在">
+<meta property="og:description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190523213856640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190523213910339.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-05-23T14:31:18.877Z">
+<meta property="og:updated_time" content="2019-07-21T10:55:01.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础篇-Linux的目录结构">
-<meta name="twitter:description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装在">
+<meta name="twitter:description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190523213856640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
   <link rel="canonical" href="http://yoursite.com/2019/05/22/Linux基础篇-Linux的目录结构/index.html">
@@ -454,7 +454,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。</p>
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。</p>
 <p>一句经典的话：<strong>在Linux的世界里，一切皆文件</strong>（不管是软件还是硬件，都可以以文件的方式进行操作）</p>
 <p>以下是文件系统树状图：</p>
 <p><img src="https://img-blog.csdnimg.cn/20190523213856640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="img"></p>

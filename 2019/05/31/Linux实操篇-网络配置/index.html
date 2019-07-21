@@ -18,13 +18,13 @@
   
   
   <title>Linux实操篇-网络配置 | DoCode</title>
-  <meta name="description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IPv">
+  <meta name="description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IP">
 <meta name="keywords" content="Linux实操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux实操篇-网络配置">
 <meta property="og:url" content="http://yoursite.com/2019/05/31/Linux实操篇-网络配置/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IPv">
+<meta property="og:description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IP">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019053114331367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143255441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
@@ -36,10 +36,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143537436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143544501.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190531143551261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-05-31T07:01:59.149Z">
+<meta property="og:updated_time" content="2019-07-21T10:56:24.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux实操篇-网络配置">
-<meta name="twitter:description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IPv">
+<meta name="twitter:description" content="虚拟机网络模式1）虚拟机连接网络的三种模式  2）虚拟机使用NAT模式的网络原理图 查看网络IP和网关查看虚拟网络编辑器 修改IP（虚拟网络的IP） 查看网关 查看windows环境中的VMnet8网络配置方式1：命令行输入：ipconfig 方式2：右键点击菜单栏网络图标——&amp;gt;打开网络和共享中心——&amp;gt;更改适配器——&amp;gt;选择VMnet8——&amp;gt;右键查看属性——&amp;gt;选择IP">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019053114331367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
   <link rel="canonical" href="http://yoursite.com/2019/05/31/Linux实操篇-网络配置/index.html">
@@ -462,7 +462,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="虚拟机网络模式"><a href="#虚拟机网络模式" class="headerlink" title="虚拟机网络模式"></a>虚拟机网络模式</h1><p>1）虚拟机连接网络的三种模式</p>
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="虚拟机网络模式"><a href="#虚拟机网络模式" class="headerlink" title="虚拟机网络模式"></a>虚拟机网络模式</h1><p>1）虚拟机连接网络的三种模式</p>
 <p><img src="https://img-blog.csdnimg.cn/2019053114331367.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>2）虚拟机使用NAT模式的网络原理图<img src="https://img-blog.csdnimg.cn/20190531143255441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h1 id="查看网络IP和网关"><a href="#查看网络IP和网关" class="headerlink" title="查看网络IP和网关"></a>查看网络IP和网关</h1><h2 id="查看虚拟网络编辑器"><a href="#查看虚拟网络编辑器" class="headerlink" title="查看虚拟网络编辑器"></a>查看虚拟网络编辑器</h2><p><img src="https://img-blog.csdnimg.cn/20190531143321832.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
