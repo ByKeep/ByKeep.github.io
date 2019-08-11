@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Spring框架-Spring的配置 | DoCode</title>
+  <meta name="description" content="XML提示配置为eclipse添加Schema的提示配置 配置步骤如下 （1）复制配Schema地址 （如果没有配置文件，可以自己敲或者到Spring的解压目录下的spring-framework-5.1.9.RELEASE/docs/spring-framework-reference/core.html#spring-core查找）  （2）添加xml用户指定条目  (3)添加Schema">
+<meta name="keywords" content="Spring笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring框架-Spring的配置">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/Spring框架-Spring的配置/index.html">
+<meta property="og:site_name" content="DoCode">
+<meta property="og:description" content="XML提示配置为eclipse添加Schema的提示配置 配置步骤如下 （1）复制配Schema地址 （如果没有配置文件，可以自己敲或者到Spring的解压目录下的spring-framework-5.1.9.RELEASE/docs/spring-framework-reference/core.html#spring-core查找）  （2）添加xml用户指定条目  (3)添加Schema">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019081116231227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019081116232256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162332761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162345941.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162353749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162406746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019081116241755.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162429277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162439522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162446935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162453447.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162501595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162508447.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162526895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162535890.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162546581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162555715.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162603809.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162614475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162629125.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162638700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162649385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162657167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162706458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162714346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162723171.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162733620.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811162740876.png">
+<meta property="og:updated_time" content="2019-08-11T08:37:29.496Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring框架-Spring的配置">
+<meta name="twitter:description" content="XML提示配置为eclipse添加Schema的提示配置 配置步骤如下 （1）复制配Schema地址 （如果没有配置文件，可以自己敲或者到Spring的解压目录下的spring-framework-5.1.9.RELEASE/docs/spring-framework-reference/core.html#spring-core查找）  （2）添加xml用户指定条目  (3)添加Schema">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019081116231227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/Spring框架-Spring的配置/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="../images/avatar.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ByKeep" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">DoCode</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">java开发程序员</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> NanNing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 博主本科毕业于广西大学，电气专业，于大三转行学java开发，目前准备步入职场。 本博客主要内容是学习笔记、生活随笔以及工具软件推荐等， 下面是我的微信二维码，欢迎添加好友交流分享经验！</p>
+            </div>
+            <div>
+              <img src="/images/weixin.jpg" width="200" higth="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/办证、申请/">办证、申请</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux基础/">Linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux实操/">Linux实操</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring笔记/">Spring笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于DoCode/">关于DoCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件著作权/">软件著作权</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java基础/" style="font-size: 13.25px;">Java基础</a> <a href="/tags/Linux基础/" style="font-size: 13.75px;">Linux基础</a> <a href="/tags/Linux实操/" style="font-size: 14px;">Linux实操</a> <a href="/tags/Spring笔记/" style="font-size: 13.5px;">Spring笔记</a> <a href="/tags/关于DoCode/" style="font-size: 13px;">关于DoCode</a> <a href="/tags/软件著作权/" style="font-size: 13px;">软件著作权</a> <a href="/tags/随笔/" style="font-size: 13px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/11/Spring框架-Spring的配置/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/11/Spring框架-Spring的配置/" class="title">Spring框架-Spring的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-11T06:56:49.034Z" itemprop="datePublished">2019-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/11/Spring框架-IOC和DI的区别/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/11/Spring框架-IOC和DI的区别/" class="title">Spring框架-IOC、DI和工厂类的概述</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-10T18:07:50.286Z" itemprop="datePublished">2019-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/10/Spring框架-概述与IOC入门/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/10/Spring框架-概述与IOC入门/" class="title">Spring框架-概述与IOC入门</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-09T16:39:18.286Z" itemprop="datePublished">2019-08-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/06/01/Linux实操篇-PRM与YUM/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/01/Linux实操篇-PRM与YUM/" class="title">Linux实操篇-PRM与YUM</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-01T06:20:16.540Z" itemprop="datePublished">2019-06-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/06/01/Linux实操篇-进程管理/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Linux/">Linux</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/01/Linux实操篇-进程管理/" class="title">Linux实操篇-进程管理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-01T03:48:10.260Z" itemprop="datePublished">2019-06-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XML提示配置"><span class="toc-number">1.</span> <span class="toc-text">XML提示配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bean的相关配置"><span class="toc-number">2.</span> <span class="toc-text">bean的相关配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标签的id和name-的配置"><span class="toc-number">2.1.</span> <span class="toc-text">标签的id和name 的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的生命周期的配置（了解）"><span class="toc-number">2.2.</span> <span class="toc-text">bean的生命周期的配置（了解）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的作用范围的配置（重点）"><span class="toc-number">2.3.</span> <span class="toc-text">bean的作用范围的配置（重点）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring的属性注入"><span class="toc-number">3.</span> <span class="toc-text">Spring的属性注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#属性注入的方式"><span class="toc-number">3.1.</span> <span class="toc-text">属性注入的方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造方法方式的属性注入"><span class="toc-number">3.2.</span> <span class="toc-text">构造方法方式的属性注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set方法的方式的属性注入"><span class="toc-number">3.3.</span> <span class="toc-text">set方法的方式的属性注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set方法注入对象类型的属性"><span class="toc-number">3.4.</span> <span class="toc-text">set方法注入对象类型的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P名称空间的属性注入方式（Spring2-5以后）"><span class="toc-number">3.5.</span> <span class="toc-text">P名称空间的属性注入方式（Spring2.5以后）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpEL的属性注入（Spring3-0以后的版本）"><span class="toc-number">3.6.</span> <span class="toc-text">SpEL的属性注入（Spring3.0以后的版本）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组、集合属性的注入"><span class="toc-number">3.7.</span> <span class="toc-text">数组、集合属性的注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring的分模块开发"><span class="toc-number">3.8.</span> <span class="toc-text">Spring的分模块开发</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Spring框架-Spring的配置" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring框架-Spring的配置
+    </h1>
+  
+
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/08/11/Spring框架-Spring的配置/" class="article-date">
+	  <time datetime="2019-08-11T06:56:49.034Z" itemprop="datePublished">2019-08-11</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Spring笔记/">Spring笔记</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/08/11/Spring框架-Spring的配置/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.6k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="XML提示配置"><a href="#XML提示配置" class="headerlink" title="XML提示配置"></a>XML提示配置</h1><p><strong>为eclipse添加Schema的提示配置</strong></p>
+<p>配置步骤如下</p>
+<p>（1）复制配Schema地址</p>
+<p>（如果没有配置文件，可以自己敲或者到Spring的解压目录下的spring-framework-5.1.9.RELEASE/docs/spring-framework-reference/core.html#spring-core查找）</p>
+<p><img src="https://img-blog.csdnimg.cn/2019081116231227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）添加xml用户指定条目</p>
+<p><img src="https://img-blog.csdnimg.cn/2019081116232256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>(3)添加Schema路径、本地文件路径</p>
+<p>注意：橙色框框内的Schame location在完成添加路径和地址时eclipse才会有该选项供给用户选择</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162332761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="bean的相关配置"><a href="#bean的相关配置" class="headerlink" title="bean的相关配置"></a>bean的相关配置</h1><h2 id="标签的id和name-的配置"><a href="#标签的id和name-的配置" class="headerlink" title="标签的id和name 的配置"></a><bean>标签的id和name 的配置</bean></h2><p>（1）id：使用了月生杜仲的唯一约束，里面不能出现特殊字符</p>
+<p>（2）name：没有使用约束中的唯一约束（理论上可以出现重复，但是在实际的开发过程中不允许出现重复）</p>
+<p><strong>两者的联系和区别</strong></p>
+<p>在一般的使用情况下可以认为两者是一样的实现的是一样的功能，但是在如果配置文件的id必须是含有特殊字符的情况下进行定义这就需要切换至name来使用了</p>
+<h2 id="bean的生命周期的配置（了解）"><a href="#bean的生命周期的配置（了解）" class="headerlink" title="bean的生命周期的配置（了解）"></a>bean的生命周期的配置（了解）</h2><p>步骤：</p>
+<p>（1）首先在需要进行实例化的类中定义初始化方法以及销毁调用的方法</p>
+<p>（不需要是接口中的方法，只需要是接口实现类的特有属性即可）</p>
+<p>（2）在配置文件中配置初始化调用方法</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162345941.png" alt="在这里插入图片描述"></p>
+<p>（3）初始化调用方法会在对象被创建的时候进行调用，销毁方法在对象在销毁的时候被调用，如将类工厂关闭</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162353749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="bean的作用范围的配置（重点）"><a href="#bean的作用范围的配置（重点）" class="headerlink" title="bean的作用范围的配置（重点）"></a>bean的作用范围的配置（重点）</h2><p>scope属性进行配置Bean的作用范围</p>
+<p>scope有以下的几个数值</p>
+<p>（1）singleton :默认的，Spring会采用单例模式创建这个对象</p>
+<p>（2）prototype：多例模式（Struts2和Spring整合一定会用到）</p>
+<p>（3）request: 应用在web项目中，Spring创建这个类以后就会将它存入到request范围中</p>
+<p>（4）session：应用在web项目中，Spring创建这个类以后就会将它存入到session范围中</p>
+<p>（5）globalsession：应用在web项目，必须在prolet环境下使用，如果没有这种环境，但是又将其配置为了这个属性，时候相当于session。</p>
+<p><strong>注意</strong>：</p>
+<p>（1）prolet环境指的是在一个网站有多个页面的情况下，一次配置，全局页面共享。如在淘宝页面登录了账号,在浏览商品的各个页面上都显示已登录信息</p>
+<p>（2）在实际的开发中主要使用的是第一第二个属性进行配置</p>
+<p><strong>实例</strong></p>
+<p>（1）在默认的情况下，即不进行配置的情况下。创建的对象是单例的。这时候不管获取对象多少次都是同一个对象，如下图所示，两次获取的对象的地址是相同的，对象只被初始化一次</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162406746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）将对象配置为多例模式的</p>
+<p>1）将配置文件中对scope的属性修改为prototype</p>
+<p><img src="https://img-blog.csdnimg.cn/2019081116241755.png" alt="在这里插入图片描述"></p>
+<p>2）在对上面的获取两次对象代码进行运行，初始化了两次，同时地址也是不一样的。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162429277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>注意</strong>：这时候工厂虽然关闭了，但是对象并没有销毁，原因是工厂不知道对哪一个对象进行销毁</p>
+<h1 id="Spring的属性注入"><a href="#Spring的属性注入" class="headerlink" title="Spring的属性注入"></a>Spring的属性注入</h1><h2 id="属性注入的方式"><a href="#属性注入的方式" class="headerlink" title="属性注入的方式"></a>属性注入的方式</h2><p>在java的开发中，有下图的几种方式实现对象的属性注入，其中Spring支持构造方法和set方法两种方式进行属性注入。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162439522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="构造方法方式的属性注入"><a href="#构造方法方式的属性注入" class="headerlink" title="构造方法方式的属性注入"></a>构造方法方式的属性注入</h2><p>（1）定义一个类，并使用构造方法的方式对属性进行设置，如下图</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162446935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）在对应的<bean>标签中添加<constructor-arg> 进行对属性的注入</constructor-arg></bean></p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162453447.png" alt="在这里插入图片描述"></p>
+<h2 id="set方法的方式的属性注入"><a href="#set方法的方式的属性注入" class="headerlink" title="set方法的方式的属性注入"></a>set方法的方式的属性注入</h2><p>（1）定义一个类，并使用set方法的方式对属性进行注入</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162501595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）在配置文件中对应的<bean>标签中添加<property>标签对属性进行注入</property></bean></p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162508447.png" alt="在这里插入图片描述"></p>
+<h2 id="set方法注入对象类型的属性"><a href="#set方法注入对象类型的属性" class="headerlink" title="set方法注入对象类型的属性"></a>set方法注入对象类型的属性</h2><p>（1）定义一个类，这个类的中存在一个对象属性，同时该对象由set方法的方式获得</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162526895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）在配置文件中找到对应的<bean>标签，并添加<propertyt>进行对属性注入。但是因为注入的是对象属性，所以只能是使用ref的方式指向配置的对象id，如下图所示</propertyt></bean></p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162535890.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>注意</strong>：使用构造方法设置对象属性也是类似的方法，把value改成ref即可</p>
+<h2 id="P名称空间的属性注入方式（Spring2-5以后）"><a href="#P名称空间的属性注入方式（Spring2-5以后）" class="headerlink" title="P名称空间的属性注入方式（Spring2.5以后）"></a>P名称空间的属性注入方式（Spring2.5以后）</h2><p>介绍：通过引入p名称空间完成属性的注入</p>
+<p>语法：</p>
+<p>​    （1）普通属性   p:属性名=”值”</p>
+<p>​     （2）对象属性   p:属性名-ref=”值”</p>
+<p><strong>实例</strong></p>
+<p>（1）打开配置文件并添加P名称空间</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162546581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）修改配置文件将注入属性的方法写为p名称空间的方式</p>
+<p>1）普通属性注入</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162555715.png" alt="在这里插入图片描述"></p>
+<p>2）对象属性注入</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162603809.png" alt="在这里插入图片描述"></p>
+<h2 id="SpEL的属性注入（Spring3-0以后的版本）"><a href="#SpEL的属性注入（Spring3-0以后的版本）" class="headerlink" title="SpEL的属性注入（Spring3.0以后的版本）"></a>SpEL的属性注入（Spring3.0以后的版本）</h2><p>介绍:Spring Expression Language,Spring 的表达式语言</p>
+<p>语法：</p>
+<p>​       （1）#{SpEL}</p>
+<p><strong>实例</strong></p>
+<p>（1）在配置文件中将普通属性进行注入操作</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162614475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）对象属性注入</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162629125.png" alt="在这里插入图片描述"></p>
+<p>（3）对象属性和对象方法的调用</p>
+<p>被调用的对象必须在配置文件中已经进行了注册</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162638700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>注意</strong>：以上方法是最基本的使用方法，SpEL属性的注入中可以引入复杂的算式进行计算注入。</p>
+<h2 id="数组、集合属性的注入"><a href="#数组、集合属性的注入" class="headerlink" title="数组、集合属性的注入"></a>数组、集合属性的注入</h2><p><strong>数组属性注入</strong></p>
+<p>（1）定义一个类中的数组属性，并通过set方法将属性注入</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162649385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）配置文件向数组注入多条数据</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162657167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>集合属性注入</strong></p>
+<p>一、向list集合注入属性</p>
+<p>（1）类中添加集合定义，并通过使用set方法实现属性注入</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162706458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）配置文件向list集合添加多条数据</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162714346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>二、向Map集合注入</p>
+<p>注意配置文件中注入属性的方式</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162723171.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="Spring的分模块开发"><a href="#Spring的分模块开发" class="headerlink" title="Spring的分模块开发"></a>Spring的分模块开发</h2><p>Spring的分模块开发，这时候会出现多个配置文件，当出现多个配置文件时如何关联多个配置文件？</p>
+<p>方法一</p>
+<p>类工厂的创建时，加载多个配置文件</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162733620.png" alt="在这里插入图片描述"></p>
+<p>方法二</p>
+<p>在配置文件中关联引入其他的配置文件</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811162740876.png" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/08/11/Spring框架-Spring的配置/" title="Spring框架-Spring的配置" target="_blank" rel="external">http://yoursite.com/2019/08/11/Spring框架-Spring的配置/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ByKeep" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ByKeep" target="_blank"><span class="text-dark">DoCode</span><small class="ml-1x">java开发程序员</small></a></h3>
+        <div>To strive, to seek, to find, and not to yield.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/08/11/Spring框架-IOC和DI的区别/" title="Spring框架-IOC、DI和工厂类的概述"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone,wechat"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2019 DoCode
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

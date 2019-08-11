@@ -17,35 +17,25 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Linux实操篇-组管理和权限管理 | DoCode</title>
-  <meta name="description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
-<meta name="keywords" content="Linux实操">
+  <title>Spring框架-IOC、DI和工厂类的概述 | DoCode</title>
+  <meta name="description" content="IOC和DI介绍IOC 控制反转，将对象的创建权反转交给了Spring DI: 依赖注入，前提必须有IOC的环境，Spring管理的这个类的时候将这个类的依赖的属性注入（设置）进来 存在问题 IOC 在Spring中的实现方式是通过定义配置文件的方式将需要创建的对象交由Spring来进行管理。但是依然纯在有局限性：父类接口的引用只能实现对父类定义了接口的方法进行调用，对于实现了父类接口的同时又">
+<meta name="keywords" content="Spring笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux实操篇-组管理和权限管理">
-<meta property="og:url" content="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
+<meta property="og:title" content="Spring框架-IOC、DI和工厂类的概述">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/Spring框架-IOC和DI的区别/index.html">
 <meta property="og:site_name" content="DoCode">
-<meta property="og:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
+<meta property="og:description" content="IOC和DI介绍IOC 控制反转，将对象的创建权反转交给了Spring DI: 依赖注入，前提必须有IOC的环境，Spring管理的这个类的时候将这个类的依赖的属性注入（设置）进来 存在问题 IOC 在Spring中的实现方式是通过定义配置文件的方式将需要创建的对象交由Spring来进行管理。但是依然纯在有局限性：父类接口的引用只能实现对父类定义了接口的方法进行调用，对于实现了父类接口的同时又">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173212243.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173222543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173237218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052917330094.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173320299.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173328558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173345959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173358872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173502574.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173516275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173532152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173549105.png">
-<meta property="og:updated_time" content="2019-07-21T10:56:33.784Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811132639989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811132700678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190811132709675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-08-11T05:30:34.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux实操篇-组管理和权限管理">
-<meta name="twitter:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="Spring框架-IOC、DI和工厂类的概述">
+<meta name="twitter:description" content="IOC和DI介绍IOC 控制反转，将对象的创建权反转交给了Spring DI: 依赖注入，前提必须有IOC的环境，Spring管理的这个类的时候将这个类的依赖的属性注入（设置）进来 存在问题 IOC 在Spring中的实现方式是通过定义配置文件的方式将需要创建的对象交由Spring来进行管理。但是依然纯在有局限性：父类接口的引用只能实现对父类定义了接口的方法进行调用，对于实现了父类接口的同时又">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190811132639989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/Spring框架-IOC和DI的区别/index.html">
   
     <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
   
@@ -403,21 +393,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux组基本介绍"><span class="toc-number">1.</span> <span class="toc-text">Linux组基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件-目录-所有者"><span class="toc-number">2.</span> <span class="toc-text">文件/目录 所有者</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件的所有者"><span class="toc-number">2.1.</span> <span class="toc-text">查看文件的所有者</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件-目录所在组"><span class="toc-number">3.</span> <span class="toc-text">文件/目录所在组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件所有者"><span class="toc-number">3.1.</span> <span class="toc-text">修改文件所有者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组的创建"><span class="toc-number">3.2.</span> <span class="toc-text">组的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件所在的组"><span class="toc-number">3.3.</span> <span class="toc-text">修改文件所在的组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它组"><span class="toc-number">3.4.</span> <span class="toc-text">其它组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改变用户所在组"><span class="toc-number">3.5.</span> <span class="toc-text">改变用户所在组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限的基本介绍"><span class="toc-number">4.</span> <span class="toc-text">权限的基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rwx权限详解"><span class="toc-number">5.</span> <span class="toc-text">rwx权限详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rwx作用到文件"><span class="toc-number">5.1.</span> <span class="toc-text">rwx作用到文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rwx作用到目录"><span class="toc-number">5.2.</span> <span class="toc-text">rwx作用到目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件及目录权限实际案例"><span class="toc-number">6.</span> <span class="toc-text">文件及目录权限实际案例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改权限-chmod"><span class="toc-number">7.</span> <span class="toc-text">修改权限-chmod</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一种方式"><span class="toc-number">7.1.</span> <span class="toc-text">第一种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二种方式"><span class="toc-number">7.2.</span> <span class="toc-text">第二种方式</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IOC和DI介绍"><span class="toc-number">1.</span> <span class="toc-text">IOC和DI介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring工厂类"><span class="toc-number">2.</span> <span class="toc-text">Spring工厂类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring工厂类结构图"><span class="toc-number">2.1.</span> <span class="toc-text">Spring工厂类结构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.2.</span> <span class="toc-text">分析</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Linux实操篇-组管理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Spring框架-IOC和DI的区别" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Linux实操篇-组管理和权限管理
+      Spring框架-IOC、DI和工厂类的概述
     </h1>
   
 
@@ -426,20 +416,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/05/29/Linux实操篇-组管理/" class="article-date">
-	  <time datetime="2019-05-29T02:06:34.892Z" itemprop="datePublished">2019-05-29</time>
+	<a href="/2019/08/11/Spring框架-IOC和DI的区别/" class="article-date">
+	  <time datetime="2019-08-10T18:07:50.286Z" itemprop="datePublished">2019-08-11</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Linux实操/">Linux实操</a>
+	<a class="article-tag-link" href="/tags/Spring笔记/">Spring笔记</a>
   </span>
 
 
@@ -452,144 +442,42 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/29/Linux实操篇-组管理/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/08/11/Spring框架-IOC和DI的区别/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.5k(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 405(字)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5(分)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p><meta name="referrer" content="no-referrer"></p>
-<h1 id="Linux组基本介绍"><a href="#Linux组基本介绍" class="headerlink" title="Linux组基本介绍"></a>Linux组基本介绍</h1><p>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。<br>1) 所有者 </p>
-<p>2) 所在组 </p>
-<p>3) 其它组</p>
-<p> 4) 改变用户所在的组</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="文件-目录-所有者"><a href="#文件-目录-所有者" class="headerlink" title="文件/目录 所有者"></a>文件/目录 所有者</h1><p>概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。</p>
-<h2 id="查看文件的所有者"><a href="#查看文件的所有者" class="headerlink" title="查看文件的所有者"></a>查看文件的所有者</h2><p>1) 指令：ls –ahl</p>
-<p> <strong>实例</strong></p>
-<p>（1）创建一个组police，再创建一个用户tom，将tom放在police组中，然后使用tom来创建一个文件ok.txt，并查看文件所有者</p>
-<p>步骤1：创建police组以及tom用户并将tom放在police组中</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173212243.png" alt="在这里插入图片描述"></p>
-<p>步骤2：使用tom用户创建ok.txt文件</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173222543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>特别说明：文件的所在组一般是所有者的所在组，但是也是可以更改的</p>
-<h1 id="文件-目录所在组"><a href="#文件-目录所在组" class="headerlink" title="文件/目录所在组"></a>文件/目录所在组</h1><h2 id="修改文件所有者"><a href="#修改文件所有者" class="headerlink" title="修改文件所有者"></a>修改文件所有者</h2><p>指令：</p>
-<p>1）chown  newowner  file  改变文件的所有者<br>2）chown newowner:newgroup  file  改变用户的所有者和所有组 </p>
-<p>3）-R   如果是目录 则使其下所有子文件或目录递归生效</p>
-<p><strong>实例</strong></p>
-<p>（1）使用root创建一个文件apple.txt，然后将其修改为tom </p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173237218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>（2) 请将 /home/kkk 目录下所有的文件和目录的所有者都修改成tom </p>
-<p>   首先我们应该选择root用户操作</p>
-<p><img src="https://img-blog.csdnimg.cn/2019052917330094.png" alt="在这里插入图片描述"></p>
-<h2 id="组的创建"><a href="#组的创建" class="headerlink" title="组的创建"></a>组的创建</h2><p>基本指令: groupadd 组名<br>实例</p>
-<p>(1) 创建一个组, ,monster 创建一个用户 fox ，并放入到 monster组中</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173320299.png" alt="在这里插入图片描述"></p>
-<h2 id="修改文件所在的组"><a href="#修改文件所在的组" class="headerlink" title="修改文件所在的组"></a>修改文件所在的组</h2><p>  基本指令 ：</p>
-<p>1）chgrp 组名 文件名 </p>
-<p>2）-R   如果是目录 则使其下所有子文件或目录递归生效</p>
-<p><strong>实例</strong> </p>
-<p>（1）使用root用户创建文件 orange.txt ,看看当前这个文件属于哪个组，然后将这个文 件所在组，修改到 police组。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173328558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>（2） 请将 /home/kkk 目录下所有的文件和目录的所在组都修改成 police</p>
-<p>  chgrp -R police  /home/kkk/</p>
-<h2 id="其它组"><a href="#其它组" class="headerlink" title="其它组"></a>其它组</h2><p>介绍：除文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组。</p>
-<h2 id="改变用户所在组"><a href="#改变用户所在组" class="headerlink" title="改变用户所在组"></a>改变用户所在组</h2><p>在添加用户时，可以指定将该用户添加到哪个组中，同样的用root的管理权限可以改变某 个用户所在的组。 改变用户所在组</p>
-<p> 1) usermod   –g   组名 用户名</p>
-<p> 2) usermod   –d   目录名 用户名 改变该用户登陆的初始目录。</p>
-<p><strong>实例</strong></p>
-<p>（1）创建一个土匪组（bandit）将tom这个用户从原来所在的police组，修改为</p>
-<p>土匪组（bandit）</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173345959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="权限的基本介绍"><a href="#权限的基本介绍" class="headerlink" title="权限的基本介绍"></a>权限的基本介绍</h1><p>ls  -l 中显示的内容如下： -rwxrw-r– 1 root root 1213 Feb 2 09:39 abc<br><strong>0-9位说明</strong> </p>
-<p>1) 第0位确定文件类型(d, - , l , c , b)</p>
-<p> 2) 第1-3位确定所有者（该文件的所有者）拥有该文件的权限。—User </p>
-<p>3) 第4-6位确定所属组（同用户组的）拥有该文件的权限，—Group</p>
-<p> 4) 第7-9位确定其他用户拥有该文件的权限 —Other</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173358872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="rwx权限详解"><a href="#rwx权限详解" class="headerlink" title="rwx权限详解"></a>rwx权限详解</h1><h2 id="rwx作用到文件"><a href="#rwx作用到文件" class="headerlink" title="rwx作用到文件"></a>rwx作用到文件</h2><p> 1) [ r ]代表可读(read): 可以读取,查看 </p>
-<p>2) [ w ]代表可写(write): 可以修改,但是不代表可以删除该文件,删除一个文件的前提条件是 对该文件所在的目录有写权限，才能删除该文件.</p>
-<p>3) [ x ]代表可执行(execute):可以被执行</p>
-<h2 id="rwx作用到目录"><a href="#rwx作用到目录" class="headerlink" title="rwx作用到目录"></a>rwx作用到目录</h2><p>1) [ r ]代表可读(read): 可以读取，ls查看目录内容 </p>
-<p>2) [ w ]代表可写(write): 可以修改,目录内创建+删除+重命名目录</p>
-<p> 3) [ x ]代表可执行(execute):可以进入该目录</p>
-<h1 id="文件及目录权限实际案例"><a href="#文件及目录权限实际案例" class="headerlink" title="文件及目录权限实际案例"></a>文件及目录权限实际案例</h1><p><strong>ls  -l 中显示的内容如下：</strong></p>
-<p> -rwxrw-r– 1 root root 1213 Feb 2 09:39 abc </p>
-<p>10个字符确定不同用户能对文件干什么</p>
-<p> 第一个字符代表文件类型：文件 (-),目录(d),链接(l) </p>
-<p>其余字符每3个一组(rwx) 读(r) 写(w) 执行(x)</p>
-<p> 第一组rwx : 文件拥有者的权限是读、写和执行 </p>
-<p>第二组rw-: 与文件拥有者同一组的用户的权限是读、写但不能执行</p>
-<p> 第三组r– : 不与文件拥有者同组的其他用户的权限是读不能写和执行 </p>
-<p><strong>可用数字表示为:</strong> r=4,w=2,x=1 因此rwx=4+2+1=7      </p>
-<table>
-<thead>
-<tr>
-<th>权限</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td style="text-align:center">文件：硬连接数或 目录：子目录数</td>
-</tr>
-<tr>
-<td>root</td>
-<td style="text-align:center">用户</td>
-</tr>
-<tr>
-<td>root</td>
-<td style="text-align:center">组</td>
-</tr>
-<tr>
-<td>1213</td>
-<td style="text-align:center">文件大小（字节），如果是文件夹，显示4096字节</td>
-</tr>
-<tr>
-<td>Feb 2 09:39</td>
-<td style="text-align:center">最后修改日期</td>
-</tr>
-<tr>
-<td>abc</td>
-<td style="text-align:center">文件名</td>
-</tr>
-</tbody>
-</table>
-<h1 id="修改权限-chmod"><a href="#修改权限-chmod" class="headerlink" title="修改权限-chmod"></a>修改权限-chmod</h1><p>基本说明： 通过chmod指令，可以修改文件或者目录的权限。</p>
-<h2 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h2><p>第一种方式：+ 、-、= 变更权限 u:所有者 g:所在组 o:其他人 a:所有人(u、g、o的总和)</p>
-<p>1) chmod   u=rwx,g=rx,o=x   文件目录名 </p>
-<p>功能描述：u=rwx给所有者rwx权限，g=rx给所在组的其他用户提供rx权限，o=x其他组用户提供x权限</p>
-<p>2) chmod   o+w    文件目录名 </p>
-<p>功能描述：给其他组用户添加提供w(写)权限</p>
-<p>3) chmod   a-x    文件目录名</p>
-<p>功能描述：给所用用户减去x(执行)权限</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173502574.png" alt="在这里插入图片描述"></p>
-<p> <strong>实例</strong></p>
-<p>1) 给abc文件 的所有者读写执行的权限，给所在组读执行权限，给其它组读执行权限。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173516275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>特别说明：文件获取可执行权限之后，文件名字变成绿色</p>
-<p>2) 给abc文件的所有者除去执行的权限，增加组写的权限 </p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173532152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>3) 给abc文件的所有用户添加读的权限</p>
-<p><img src="https://img-blog.csdnimg.cn/20190529173549105.png" alt="在这里插入图片描述"></p>
-<h2 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h2><p>第二种方式：通过数字变更权限 </p>
-<p>r=4 w=2 x=1        rwx=4+2+1=7</p>
-<p> chmod u=rwx,g=rx,o=x    文件目录名 </p>
-<p>相当于 chmod   751  文件目录名</p>
-<p> <strong>实例</strong></p>
-<p> （1）将 /home/abc.txt 文件的权限修改成 rwxr-xr-x, 使用给数字的方式实现：</p>
-<p>rwx=4+2+1=7</p>
-<p>r-x=4+1=5</p>
-<p>r-x=5+1=5</p>
-<p>指令：chmod 755 /home/abc.txt</p>
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="IOC和DI介绍"><a href="#IOC和DI介绍" class="headerlink" title="IOC和DI介绍"></a>IOC和DI介绍</h1><p>IOC</p>
+<p>控制反转，将对象的创建权反转交给了Spring</p>
+<p>DI:</p>
+<p>依赖注入，前提必须有IOC的环境，Spring管理的这个类的时候将这个类的依赖的属性注入（设置）进来</p>
+<p><strong>存在问题</strong></p>
+<p>IOC 在Spring中的实现方式是通过定义配置文件的方式将需要创建的对象交由Spring来进行管理。但是依然纯在有局限性：父类接口的引用只能实现对父类定义了接口的方法进行调用，对于实现了父类接口的同时又增加了其他的属性，这时候就没办法进行调用了、</p>
+<p><strong>解决办法</strong></p>
+<p>通过使用依赖注入的方式，定义配置文件将对象的依赖属性注入。就可以解决了以上的问题。</p>
+<p>下图为实现类的新属性</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811132639989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>配置文件中实现依赖注入</p>
+<p><img src="https://img-blog.csdnimg.cn/20190811132700678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="Spring工厂类"><a href="#Spring工厂类" class="headerlink" title="Spring工厂类"></a>Spring工厂类</h1><h2 id="Spring工厂类结构图"><a href="#Spring工厂类结构图" class="headerlink" title="Spring工厂类结构图"></a>Spring工厂类结构图</h2><p><img src="https://img-blog.csdnimg.cn/20190811132709675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>（1）老版本工厂类为BeanFactory,新版本的工厂类为ApplicationContext</p>
+<p>（2）ApplicationContext继承了BeanFactory类（子类对象功能更加强大，目前使用的都是新版本的ApplicadtionContext）</p>
+<p>（3）<strong>创建实例的时间上</strong>：BeanFactory在调用getBean()方法的时候才会生成类的实例，ApplicationContext在加载配置文件的时候就会将Spring管理的类全部实例化</p>
+<p>（4）ApplicationContext有两个实现类</p>
+<p>1）ClassPathXmlApplicationContext:</p>
+<p>作用：用来加载类路径下的配置文件（即src目录下的配置文件）</p>
+<p>2)FileSystemXmlApplicationContext</p>
+<p>作用：加载文件系统下的配置文件（即计算机文件系统中的配置文件）</p>
 
       
     </div>
@@ -599,7 +487,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://yoursite.com/2019/05/29/Linux实操篇-组管理/" title="Linux实操篇-组管理和权限管理" target="_blank" rel="external">http://yoursite.com/2019/05/29/Linux实操篇-组管理/</a>
+      <a href="http://yoursite.com/2019/08/11/Spring框架-IOC和DI的区别/" title="Spring框架-IOC、DI和工厂类的概述" target="_blank" rel="external">http://yoursite.com/2019/08/11/Spring框架-IOC和DI的区别/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -648,12 +536,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/2019/05/30/Linux实操篇-定时调度任务/" title="Linux实操篇-定时调度任务与实例"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2019/08/11/Spring框架-Spring的配置/" title="Spring框架-Spring的配置"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/2019/05/25/Java基础篇-Java异常处理/" title="Java基础篇-Java异常处理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/08/10/Spring框架-概述与IOC入门/" title="Spring框架-概述与IOC入门"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     

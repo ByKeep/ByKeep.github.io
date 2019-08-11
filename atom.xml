@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-10T07:52:36.778Z</updated>
+  <updated>2019-08-11T08:37:29.496Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring框架-Spring的配置</title>
+    <link href="http://yoursite.com/2019/08/11/Spring%E6%A1%86%E6%9E%B6-Spring%E7%9A%84%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2019/08/11/Spring框架-Spring的配置/</id>
+    <published>2019-08-11T06:56:49.034Z</published>
+    <updated>2019-08-11T08:37:29.496Z</updated>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer"><h1 id="XML提示配置"><a href="#XML提示配置" class="headerlink" title="XML提示配置"></a>XML提示配置</h1><p><strong>为eclipse添加Schema的提示配置</strong></p><p>配置步骤如下</p><p>（1）复制配Schema地址</p><p>（如果没有配置文件，可以自己敲或者到Spring的解压目录下的spring-framework-5.1.9.RELEASE/docs/spring-framework-reference/core.html#spring-core查找）</p><p><img src="https://img-blog.csdnimg.cn/2019081116231227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）添加xml用户指定条目</p><p><img src="https://img-blog.csdnimg.cn/2019081116232256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>(3)添加Schema路径、本地文件路径</p><p>注意：橙色框框内的Schame location在完成添加路径和地址时eclipse才会有该选项供给用户选择</p><p><img src="https://img-blog.csdnimg.cn/20190811162332761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="bean的相关配置"><a href="#bean的相关配置" class="headerlink" title="bean的相关配置"></a>bean的相关配置</h1><h2 id="标签的id和name-的配置"><a href="#标签的id和name-的配置" class="headerlink" title="标签的id和name 的配置"></a><bean>标签的id和name 的配置</bean></h2><p>（1）id：使用了月生杜仲的唯一约束，里面不能出现特殊字符</p><p>（2）name：没有使用约束中的唯一约束（理论上可以出现重复，但是在实际的开发过程中不允许出现重复）</p><p><strong>两者的联系和区别</strong></p><p>在一般的使用情况下可以认为两者是一样的实现的是一样的功能，但是在如果配置文件的id必须是含有特殊字符的情况下进行定义这就需要切换至name来使用了</p><h2 id="bean的生命周期的配置（了解）"><a href="#bean的生命周期的配置（了解）" class="headerlink" title="bean的生命周期的配置（了解）"></a>bean的生命周期的配置（了解）</h2><p>步骤：</p><p>（1）首先在需要进行实例化的类中定义初始化方法以及销毁调用的方法</p><p>（不需要是接口中的方法，只需要是接口实现类的特有属性即可）</p><p>（2）在配置文件中配置初始化调用方法</p><p><img src="https://img-blog.csdnimg.cn/20190811162345941.png" alt="在这里插入图片描述"></p><p>（3）初始化调用方法会在对象被创建的时候进行调用，销毁方法在对象在销毁的时候被调用，如将类工厂关闭</p><p><img src="https://img-blog.csdnimg.cn/20190811162353749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="bean的作用范围的配置（重点）"><a href="#bean的作用范围的配置（重点）" class="headerlink" title="bean的作用范围的配置（重点）"></a>bean的作用范围的配置（重点）</h2><p>scope属性进行配置Bean的作用范围</p><p>scope有以下的几个数值</p><p>（1）singleton :默认的，Spring会采用单例模式创建这个对象</p><p>（2）prototype：多例模式（Struts2和Spring整合一定会用到）</p><p>（3）request: 应用在web项目中，Spring创建这个类以后就会将它存入到request范围中</p><p>（4）session：应用在web项目中，Spring创建这个类以后就会将它存入到session范围中</p><p>（5）globalsession：应用在web项目，必须在prolet环境下使用，如果没有这种环境，但是又将其配置为了这个属性，时候相当于session。</p><p><strong>注意</strong>：</p><p>（1）prolet环境指的是在一个网站有多个页面的情况下，一次配置，全局页面共享。如在淘宝页面登录了账号,在浏览商品的各个页面上都显示已登录信息</p><p>（2）在实际的开发中主要使用的是第一第二个属性进行配置</p><p><strong>实例</strong></p><p>（1）在默认的情况下，即不进行配置的情况下。创建的对象是单例的。这时候不管获取对象多少次都是同一个对象，如下图所示，两次获取的对象的地址是相同的，对象只被初始化一次</p><p><img src="https://img-blog.csdnimg.cn/20190811162406746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）将对象配置为多例模式的</p><p>1）将配置文件中对scope的属性修改为prototype</p><p><img src="https://img-blog.csdnimg.cn/2019081116241755.png" alt="在这里插入图片描述"></p><p>2）在对上面的获取两次对象代码进行运行，初始化了两次，同时地址也是不一样的。</p><p><img src="https://img-blog.csdnimg.cn/20190811162429277.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><strong>注意</strong>：这时候工厂虽然关闭了，但是对象并没有销毁，原因是工厂不知道对哪一个对象进行销毁</p><h1 id="Spring的属性注入"><a href="#Spring的属性注入" class="headerlink" title="Spring的属性注入"></a>Spring的属性注入</h1><h2 id="属性注入的方式"><a href="#属性注入的方式" class="headerlink" title="属性注入的方式"></a>属性注入的方式</h2><p>在java的开发中，有下图的几种方式实现对象的属性注入，其中Spring支持构造方法和set方法两种方式进行属性注入。</p><p><img src="https://img-blog.csdnimg.cn/20190811162439522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="构造方法方式的属性注入"><a href="#构造方法方式的属性注入" class="headerlink" title="构造方法方式的属性注入"></a>构造方法方式的属性注入</h2><p>（1）定义一个类，并使用构造方法的方式对属性进行设置，如下图</p><p><img src="https://img-blog.csdnimg.cn/20190811162446935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）在对应的<bean>标签中添加<constructor-arg> 进行对属性的注入</constructor-arg></bean></p><p><img src="https://img-blog.csdnimg.cn/20190811162453447.png" alt="在这里插入图片描述"></p><h2 id="set方法的方式的属性注入"><a href="#set方法的方式的属性注入" class="headerlink" title="set方法的方式的属性注入"></a>set方法的方式的属性注入</h2><p>（1）定义一个类，并使用set方法的方式对属性进行注入</p><p><img src="https://img-blog.csdnimg.cn/20190811162501595.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）在配置文件中对应的<bean>标签中添加<property>标签对属性进行注入</property></bean></p><p><img src="https://img-blog.csdnimg.cn/20190811162508447.png" alt="在这里插入图片描述"></p><h2 id="set方法注入对象类型的属性"><a href="#set方法注入对象类型的属性" class="headerlink" title="set方法注入对象类型的属性"></a>set方法注入对象类型的属性</h2><p>（1）定义一个类，这个类的中存在一个对象属性，同时该对象由set方法的方式获得</p><p><img src="https://img-blog.csdnimg.cn/20190811162526895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）在配置文件中找到对应的<bean>标签，并添加<propertyt>进行对属性注入。但是因为注入的是对象属性，所以只能是使用ref的方式指向配置的对象id，如下图所示</propertyt></bean></p><p><img src="https://img-blog.csdnimg.cn/20190811162535890.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><strong>注意</strong>：使用构造方法设置对象属性也是类似的方法，把value改成ref即可</p><h2 id="P名称空间的属性注入方式（Spring2-5以后）"><a href="#P名称空间的属性注入方式（Spring2-5以后）" class="headerlink" title="P名称空间的属性注入方式（Spring2.5以后）"></a>P名称空间的属性注入方式（Spring2.5以后）</h2><p>介绍：通过引入p名称空间完成属性的注入</p><p>语法：</p><p>​    （1）普通属性   p:属性名=”值”</p><p>​     （2）对象属性   p:属性名-ref=”值”</p><p><strong>实例</strong></p><p>（1）打开配置文件并添加P名称空间</p><p><img src="https://img-blog.csdnimg.cn/20190811162546581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）修改配置文件将注入属性的方法写为p名称空间的方式</p><p>1）普通属性注入</p><p><img src="https://img-blog.csdnimg.cn/20190811162555715.png" alt="在这里插入图片描述"></p><p>2）对象属性注入</p><p><img src="https://img-blog.csdnimg.cn/20190811162603809.png" alt="在这里插入图片描述"></p><h2 id="SpEL的属性注入（Spring3-0以后的版本）"><a href="#SpEL的属性注入（Spring3-0以后的版本）" class="headerlink" title="SpEL的属性注入（Spring3.0以后的版本）"></a>SpEL的属性注入（Spring3.0以后的版本）</h2><p>介绍:Spring Expression Language,Spring 的表达式语言</p><p>语法：</p><p>​       （1）#{SpEL}</p><p><strong>实例</strong></p><p>（1）在配置文件中将普通属性进行注入操作</p><p><img src="https://img-blog.csdnimg.cn/20190811162614475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）对象属性注入</p><p><img src="https://img-blog.csdnimg.cn/20190811162629125.png" alt="在这里插入图片描述"></p><p>（3）对象属性和对象方法的调用</p><p>被调用的对象必须在配置文件中已经进行了注册</p><p><img src="https://img-blog.csdnimg.cn/20190811162638700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><strong>注意</strong>：以上方法是最基本的使用方法，SpEL属性的注入中可以引入复杂的算式进行计算注入。</p><h2 id="数组、集合属性的注入"><a href="#数组、集合属性的注入" class="headerlink" title="数组、集合属性的注入"></a>数组、集合属性的注入</h2><p><strong>数组属性注入</strong></p><p>（1）定义一个类中的数组属性，并通过set方法将属性注入</p><p><img src="https://img-blog.csdnimg.cn/20190811162649385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）配置文件向数组注入多条数据</p><p><img src="https://img-blog.csdnimg.cn/20190811162657167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p><strong>集合属性注入</strong></p><p>一、向list集合注入属性</p><p>（1）类中添加集合定义，并通过使用set方法实现属性注入</p><p><img src="https://img-blog.csdnimg.cn/20190811162706458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>（2）配置文件向list集合添加多条数据</p><p><img src="https://img-blog.csdnimg.cn/20190811162714346.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>二、向Map集合注入</p><p>注意配置文件中注入属性的方式</p><p><img src="https://img-blog.csdnimg.cn/20190811162723171.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="Spring的分模块开发"><a href="#Spring的分模块开发" class="headerlink" title="Spring的分模块开发"></a>Spring的分模块开发</h2><p>Spring的分模块开发，这时候会出现多个配置文件，当出现多个配置文件时如何关联多个配置文件？</p><p>方法一</p><p>类工厂的创建时，加载多个配置文件</p><p><img src="https://img-blog.csdnimg.cn/20190811162733620.png" alt="在这里插入图片描述"></p><p>方法二</p><p>在配置文件中关联引入其他的配置文件</p><p><img src="https://img-blog.csdnimg.cn/20190811162740876.png" alt="在这里插入图片描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+
+&lt;h1 id=&quot;XML提示配置&quot;&gt;&lt;a href=&quot;#XML提示配置&quot; class=&quot;headerlink&quot; title=&quot;XML提示配置&quot;&gt;&lt;/a&gt;XML提示配置&lt;/h1&gt;&lt;p&gt;&lt;str
+      
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://yoursite.com/categories/Spring/"/>
+    
+    
+      <category term="Spring笔记" scheme="http://yoursite.com/tags/Spring%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring框架-IOC、DI和工厂类的概述</title>
+    <link href="http://yoursite.com/2019/08/11/Spring%E6%A1%86%E6%9E%B6-IOC%E5%92%8CDI%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2019/08/11/Spring框架-IOC和DI的区别/</id>
+    <published>2019-08-10T18:07:50.286Z</published>
+    <updated>2019-08-11T05:30:34.948Z</updated>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer"><h1 id="IOC和DI介绍"><a href="#IOC和DI介绍" class="headerlink" title="IOC和DI介绍"></a>IOC和DI介绍</h1><p>IOC</p><p>控制反转，将对象的创建权反转交给了Spring</p><p>DI:</p><p>依赖注入，前提必须有IOC的环境，Spring管理的这个类的时候将这个类的依赖的属性注入（设置）进来</p><p><strong>存在问题</strong></p><p>IOC 在Spring中的实现方式是通过定义配置文件的方式将需要创建的对象交由Spring来进行管理。但是依然纯在有局限性：父类接口的引用只能实现对父类定义了接口的方法进行调用，对于实现了父类接口的同时又增加了其他的属性，这时候就没办法进行调用了、</p><p><strong>解决办法</strong></p><p>通过使用依赖注入的方式，定义配置文件将对象的依赖属性注入。就可以解决了以上的问题。</p><p>下图为实现类的新属性</p><p><img src="https://img-blog.csdnimg.cn/20190811132639989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><p>配置文件中实现依赖注入</p><p><img src="https://img-blog.csdnimg.cn/20190811132700678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="Spring工厂类"><a href="#Spring工厂类" class="headerlink" title="Spring工厂类"></a>Spring工厂类</h1><h2 id="Spring工厂类结构图"><a href="#Spring工厂类结构图" class="headerlink" title="Spring工厂类结构图"></a>Spring工厂类结构图</h2><p><img src="https://img-blog.csdnimg.cn/20190811132709675.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>（1）老版本工厂类为BeanFactory,新版本的工厂类为ApplicationContext</p><p>（2）ApplicationContext继承了BeanFactory类（子类对象功能更加强大，目前使用的都是新版本的ApplicadtionContext）</p><p>（3）<strong>创建实例的时间上</strong>：BeanFactory在调用getBean()方法的时候才会生成类的实例，ApplicationContext在加载配置文件的时候就会将Spring管理的类全部实例化</p><p>（4）ApplicationContext有两个实现类</p><p>1）ClassPathXmlApplicationContext:</p><p>作用：用来加载类路径下的配置文件（即src目录下的配置文件）</p><p>2)FileSystemXmlApplicationContext</p><p>作用：加载文件系统下的配置文件（即计算机文件系统中的配置文件）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+
+&lt;h1 id=&quot;IOC和DI介绍&quot;&gt;&lt;a href=&quot;#IOC和DI介绍&quot; class=&quot;headerlink&quot; title=&quot;IOC和DI介绍&quot;&gt;&lt;/a&gt;IOC和DI介绍&lt;/h1&gt;&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://yoursite.com/categories/Spring/"/>
+    
+    
+      <category term="Spring笔记" scheme="http://yoursite.com/tags/Spring%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring框架-概述与IOC入门</title>
@@ -40,33 +94,6 @@
     
     
       <category term="Spring笔记" scheme="http://yoursite.com/tags/Spring%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>oracle基础篇-基础介绍与安装</title>
-    <link href="http://yoursite.com/2019/07/23/oracle%E5%9F%BA%E7%A1%80%E7%AF%87-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
-    <id>http://yoursite.com/2019/07/23/oracle基础篇-基础介绍与安装/</id>
-    <published>2019-07-23T13:47:23.394Z</published>
-    <updated>2019-07-23T17:19:46.640Z</updated>
-    
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer"><h1 id="常用数据库的选择与比较"><a href="#常用数据库的选择与比较" class="headerlink" title="常用数据库的选择与比较"></a>常用数据库的选择与比较</h1><p>市面上常用的数据库有很多种，在项目的开发过程中，选择数据库的依据从以下几点进行思考</p><p>（1）负载量的大小，用户多少</p><p>（2）项目开发经费或预算</p><p>（3）安全性</p><p>下图是对项目开发中数据的选择提供参考方向</p><p><img src="/.com//桌面\数据库\Snipaste_2019-07-23_21-40-52.png" alt="Snipaste_2019-07-23_21-40-52"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-
-&lt;h1 id=&quot;常用数据库的选择与比较&quot;&gt;&lt;a href=&quot;#常用数据库的选择与比较&quot; class=&quot;headerlink&quot; title=&quot;常用数据库的选择与比较&quot;&gt;&lt;/a&gt;常用数据库的选
-      
-    
-    </summary>
-    
-      <category term="oracle" scheme="http://yoursite.com/categories/oracle/"/>
-    
-    
-      <category term="oracle基础篇" scheme="http://yoursite.com/tags/oracle%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     
   </entry>
   
