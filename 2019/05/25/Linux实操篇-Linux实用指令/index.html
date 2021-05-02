@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Linux实操篇-Linux实用指令 | DoCode</title>
+  <meta name="description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修">
+<meta name="keywords" content="Linux实操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux实操篇-Linux实用指令">
+<meta property="og:url" content="http://yoursite.com/2019/05/25/Linux实操篇-Linux实用指令/index.html">
+<meta property="og:site_name" content="DoCode">
+<meta property="og:description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528131532841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052813175089.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528131906868.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132000508.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132021365.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132031802.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052813213189.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132233147.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132248421.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132324523.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132332540.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132348759.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132418567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132429912.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132429912.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132516600.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132530553.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132542862.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132548946.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132605835.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132619958.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132637679.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132648240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132656910.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132711318.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052813272178.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132731337.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132745857.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132752412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132803531.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132813335.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132845187.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132857739.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528132910240.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133108238.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133114193.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133129470.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133140104.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133148164.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/201905281331544.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133200378.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190528133207573.png">
+<meta property="og:updated_time" content="2019-07-21T10:55:34.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux实操篇-Linux实用指令">
+<meta name="twitter:description" content="运行级别指令运行级别说明Linux有七个运行级别，如下所示    运行级别 级别说明     0 关机   1 单用户（找回丢失密码）   2 多用户无网络服务   3 多用户有网络服务（用的最多的）   4 保留尚未使用   5 图形界面   6 重启（启用该运行别之后机器进入该级别就会重启）    运行级别配置文件：/etc/inittab 常用的运行级别是3和5，要修改默认的运行级别可以修">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190528131532841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/05/25/Linux实操篇-Linux实用指令/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="../images/avatar.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ByKeep" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">DoCode</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">java开发程序员</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> NanNing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 博主本科毕业于广西大学，电气专业，于大三转行学java开发，目前准备步入职场。 本博客主要内容是学习笔记、生活随笔以及工具软件推荐等， 下面是我的微信二维码，欢迎添加好友交流分享经验！</p>
+            </div>
+            <div>
+              <img src="/images/weixin.jpg" width="200" higth="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/办证、申请/">办证、申请</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux基础/">Linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux实操/">Linux实操</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot笔记/">SpringBoot笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring笔记/">Spring笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于DoCode/">关于DoCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件著作权/">软件著作权</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/Linux基础/" style="font-size: 13.67px;">Linux基础</a> <a href="/tags/Linux实操/" style="font-size: 14px;">Linux实操</a> <a href="/tags/SpringBoot笔记/" style="font-size: 13.33px;">SpringBoot笔记</a> <a href="/tags/Spring笔记/" style="font-size: 13.33px;">Spring笔记</a> <a href="/tags/关于DoCode/" style="font-size: 13px;">关于DoCode</a> <a href="/tags/软件著作权/" style="font-size: 13px;">软件著作权</a> <a href="/tags/随笔/" style="font-size: 13px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/18/Java基础篇-网络编程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java/">Java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/18/Java基础篇-网络编程/" class="title">Java基础篇-网络编程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-17T16:35:28.030Z" itemprop="datePublished">2019-09-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/02/SpringBoot-日志/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/02/SpringBoot-日志/" class="title">SpringBoot-日志</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-02T15:48:56.996Z" itemprop="datePublished">2019-09-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/01/SpringBoot-配置文件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/01/SpringBoot-配置文件/" class="title">SpringBoot-配置文件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-01T08:03:08.113Z" itemprop="datePublished">2019-09-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="title">SpringBoot-入门与第一个Hello工程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-31T15:05:32.839Z" itemprop="datePublished">2019-08-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/11/Spring框架-Spring的配置/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/11/Spring框架-Spring的配置/" class="title">Spring框架-Spring的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-11T06:56:49.034Z" itemprop="datePublished">2019-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#运行级别指令"><span class="toc-number">1.</span> <span class="toc-text">运行级别指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行级别说明"><span class="toc-number">1.1.</span> <span class="toc-text">运行级别说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指定运行级别"><span class="toc-number">1.2.</span> <span class="toc-text">指定运行级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#【面试题】如何找回root密码"><span class="toc-number">1.3.</span> <span class="toc-text">【面试题】如何找回root密码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#帮助指令"><span class="toc-number">2.</span> <span class="toc-text">帮助指令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#man-获得帮助信息"><span class="toc-number">2.1.</span> <span class="toc-text">man 获得帮助信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#help指令"><span class="toc-number">2.2.</span> <span class="toc-text">help指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件目录类"><span class="toc-number">3.</span> <span class="toc-text">文件目录类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwd-指令"><span class="toc-number">3.1.</span> <span class="toc-text">pwd 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls指令"><span class="toc-number">3.2.</span> <span class="toc-text">ls指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cd-指令"><span class="toc-number">3.3.</span> <span class="toc-text">cd 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何理解绝对绝对路径与相对路径："><span class="toc-number">3.4.</span> <span class="toc-text">如何理解绝对绝对路径与相对路径：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir指令"><span class="toc-number">3.5.</span> <span class="toc-text">mkdir指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rmdir指令"><span class="toc-number">3.6.</span> <span class="toc-text">rmdir指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#touch指令"><span class="toc-number">3.7.</span> <span class="toc-text">touch指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cp指令"><span class="toc-number">3.8.</span> <span class="toc-text">cp指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm指令"><span class="toc-number">3.9.</span> <span class="toc-text">rm指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mv指令"><span class="toc-number">3.10.</span> <span class="toc-text">mv指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cat指令"><span class="toc-number">3.11.</span> <span class="toc-text">cat指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#more指令"><span class="toc-number">3.12.</span> <span class="toc-text">more指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#less指令"><span class="toc-number">3.13.</span> <span class="toc-text">less指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指令-gt-和-gt-gt-指令"><span class="toc-number">3.14.</span> <span class="toc-text">指令&gt; 和 &gt;&gt; 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo指令"><span class="toc-number">3.15.</span> <span class="toc-text">echo指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#head指令"><span class="toc-number">3.16.</span> <span class="toc-text">head指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tail指令"><span class="toc-number">3.17.</span> <span class="toc-text">tail指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ln-指令"><span class="toc-number">3.18.</span> <span class="toc-text">ln 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#history指令"><span class="toc-number">3.19.</span> <span class="toc-text">history指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#时间日期类"><span class="toc-number">4.</span> <span class="toc-text">时间日期类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#date指令-显示当前日期"><span class="toc-number">4.1.</span> <span class="toc-text">date指令-显示当前日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date指令-设置日期"><span class="toc-number">4.2.</span> <span class="toc-text">date指令-设置日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cal指令"><span class="toc-number">4.3.</span> <span class="toc-text">cal指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#搜索查找类"><span class="toc-number">5.</span> <span class="toc-text">搜索查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find指令"><span class="toc-number">5.1.</span> <span class="toc-text">find指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#locate指令"><span class="toc-number">5.2.</span> <span class="toc-text">locate指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep指令和-管道符号"><span class="toc-number">5.3.</span> <span class="toc-text">grep指令和 管道符号 |</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#压缩和解压类"><span class="toc-number">6.</span> <span class="toc-text">压缩和解压类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gzip-gunzip-指令"><span class="toc-number">6.1.</span> <span class="toc-text">gzip/gunzip 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zip-unzip-指令"><span class="toc-number">6.2.</span> <span class="toc-text">zip/unzip 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tar-指令"><span class="toc-number">6.3.</span> <span class="toc-text">tar 指令</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Linux实操篇-Linux实用指令" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux实操篇-Linux实用指令
+    </h1>
+  
+
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/05/25/Linux实操篇-Linux实用指令/" class="article-date">
+	  <time datetime="2019-05-25T05:04:48.707Z" itemprop="datePublished">2019-05-25</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Linux实操/">Linux实操</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/25/Linux实操篇-Linux实用指令/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 3.9k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 14(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="运行级别指令"><a href="#运行级别指令" class="headerlink" title="运行级别指令"></a>运行级别指令</h1><h2 id="运行级别说明"><a href="#运行级别说明" class="headerlink" title="运行级别说明"></a>运行级别说明</h2><p>Linux有七个运行级别，如下所示</p>
+<table>
+<thead>
+<tr>
+<th>运行级别</th>
+<th style="text-align:center">级别说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td style="text-align:center">关机</td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align:center">单用户（找回丢失密码）</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:center">多用户无网络服务</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:center">多用户有网络服务（用的最多的）</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:center">保留尚未使用</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:center">图形界面</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:center">重启（启用该运行别之后机器进入该级别就会重启）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>运行级别配置文件：/etc/inittab</strong></p>
+<p>常用的运行级别是3和5，要修改默认的运行级别可以修改运行级别配置文件：/etc/inittab的id:5 initdefault:这行中的数字</p>
+<h2 id="指定运行级别"><a href="#指定运行级别" class="headerlink" title="指定运行级别"></a>指定运行级别</h2><p>基本语法： init [0123456]</p>
+<p>举例：从图像界面到运行级别3，再从级别3回退到级别5</p>
+<p>在Linux的图形界面中，打开终端输入：init  3 回车进入级别3，再输入init5即可回到级别5</p>
+<h2 id="【面试题】如何找回root密码"><a href="#【面试题】如何找回root密码" class="headerlink" title="【面试题】如何找回root密码"></a>【面试题】如何找回root密码</h2><p>题目：如何找回root密码，如果我们不小心忘记了root密码，怎么找回？</p>
+<p>思路：进入到单用户模式（运行级别1），然后修改root密码，因为进入单用户模式，root不需要密码就可以登录</p>
+<p>实际操作步骤：<br>1）启动系统没有进入到登录页面前点击enter键暂停启动，如下图所示</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528131532841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>2）输入e,编辑命令在启动之前，进入如下页面</p>
+<p><img src="https://img-blog.csdnimg.cn/2019052813175089.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>3)将光标移动到第二行，再输入e(编辑内核)，进入如下页面，输入1（运行级别1，单用户模式）</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528131906868.png" alt="在这里插入图片描述"></p>
+<p>4）输入enter键，再输入b，开始引导</p>
+<p>5）开始进入单用户模式，用户登录为root</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132000508.png" alt="在这里插入图片描述"></p>
+<p>6）进入之后直接输入passwd root进行修改root账户密码。</p>
+<p>7）输入reboot重启完成操作</p>
+<p><strong>细节说明</strong></p>
+<p>1）不允许通过使用远程操作的方式进行修改密码，需要进行直接操作电脑的方式进行</p>
+<p>2）假如默认运行级别被修改为级别0，出现无法开机的情况，解决办法是进入单用户模式修改默认启动级别即可</p>
+<h1 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h1><p>当我们对某个指令不熟悉时，我们可以使用Linux指令的帮助指令进行了解指令的使用方法。</p>
+<h2 id="man-获得帮助信息"><a href="#man-获得帮助信息" class="headerlink" title="man 获得帮助信息"></a>man 获得帮助信息</h2><p> 基本语法 :man [命令或配置文件]（功能描述：获得帮助信息） </p>
+<h2 id="help指令"><a href="#help指令" class="headerlink" title="help指令"></a>help指令</h2><p> 基本语法:help 命令 （功能描述：获得shell内置命令的帮助信息） </p>
+<p>百度帮助更直接</p>
+<p>虽然上面两个都可以来获取指令帮助，但是需要英语功底，如果英语不太好的，我还是 推荐大家直接百度靠谱。</p>
+<h1 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h1><h2 id="pwd-指令"><a href="#pwd-指令" class="headerlink" title="pwd 指令"></a>pwd 指令</h2><p>功能描述：显示当前工作目录的绝对路径</p>
+<p>基本语法：pwd</p>
+<h2 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h2><p> 基本语法：ls [选项] [目录或是文件] </p>
+<p> 常用选项</p>
+<p>1） -a ：显示当前目录所有的文件和目录，包括隐藏的。</p>
+<p>2） -l  ：以列表的方式显示信息 </p>
+<p> 操作实例如图所示：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132021365.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132031802.png" alt="在这里插入图片描述"></p>
+<h2 id="cd-指令"><a href="#cd-指令" class="headerlink" title="cd 指令"></a>cd 指令</h2><p>功能描述：进入到指定目录</p>
+<p> 基本语法 ：cd  [参数] (功能描述：切换到指定目录)</p>
+<p> 常用参数 ：</p>
+<p>1） 绝对路径和相对路径 </p>
+<p>2）cd ~ 或者cd 回到自己的家目录</p>
+<p>3） cd .. 回到当前目录的上一级目录</p>
+<h2 id="如何理解绝对绝对路径与相对路径："><a href="#如何理解绝对绝对路径与相对路径：" class="headerlink" title="如何理解绝对绝对路径与相对路径："></a>如何理解绝对绝对路径与相对路径：</h2><p>需求：从当前工作目录时的 /root进入到/home</p>
+<p>绝对路径： /home，即从根目录开始定位</p>
+<p>相对路径：../home，从当前工作目录定位</p>
+<h2 id="mkdir指令"><a href="#mkdir指令" class="headerlink" title="mkdir指令"></a>mkdir指令</h2><p>功能描述：mkdir指令用于创建目录</p>
+<p>基本语法：  mkdir  [选项] 要创建的目录 </p>
+<p>常用选项 ：-p ：创建多级目录</p>
+<p><strong>实例</strong></p>
+<p>1）创建一个目录：/home/dog</p>
+<p>指令： mkdir   /home/dog</p>
+<p>2）创建多级目录 /home/animal/tiger</p>
+<p>指令：mkdir -p  /home/animal/tiger</p>
+<h2 id="rmdir指令"><a href="#rmdir指令" class="headerlink" title="rmdir指令"></a>rmdir指令</h2><p>功能描述： rmdir指令删除空目录</p>
+<p> 基本语法     rmdir  [选项] 要删除的空目录 </p>
+<p><strong>细节说明</strong> </p>
+<p>1）rmdir 删除的是空目录，如果目录下有内容时无法删除的。</p>
+<p>2）如果需要删除非空目录，需要使用指令： rm -rf 要删除的目录</p>
+<h2 id="touch指令"><a href="#touch指令" class="headerlink" title="touch指令"></a>touch指令</h2><p>功能描述： touch指令创建空文件 </p>
+<p> 基本语法     touch 文件名称 </p>
+<p><strong>实例：</strong></p>
+<p>1）创建一个文件: touch 1.txt</p>
+<p>2)   创建多个文件：touch 1.txt   2.txt</p>
+<h2 id="cp指令"><a href="#cp指令" class="headerlink" title="cp指令"></a>cp指令</h2><p>cp 指令拷贝文件到指定目录 </p>
+<p>基本语法 cp [选项] source dest</p>
+<p>常用选项 -r ：递归复制整个文件夹</p>
+<p>说明： 强制覆盖不提示的方法：\cp</p>
+<p><strong>实例：</strong></p>
+<p>1）将当前目录下的1.txt文件拷贝到当前目录home/b目录下</p>
+<p><img src="https://img-blog.csdnimg.cn/2019052813213189.png" alt="在这里插入图片描述"></p>
+<p>2） 拷贝文件夹  ： cp  -r   源目录/   目标目录/</p>
+<p>3）拷贝文件夹时，覆盖目标文件夹文件：\cp   -r   源目录/   目标目录/</p>
+<h2 id="rm指令"><a href="#rm指令" class="headerlink" title="rm指令"></a>rm指令</h2><p>功能描述：rm 指令移除文件或目录 </p>
+<p>基本语法 rm  [选项] 要删除的文件或目录</p>
+<p> 常用选项         </p>
+<p>1) -r ：递归删除整个文件夹</p>
+<p>2）-f ： 强制删除不提示</p>
+<p>说明：强制删除不提示的方法：带上 -f 参数即可</p>
+<p><strong>实例</strong></p>
+<p>（1）删除文件</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132233147.png" alt="在这里插入图片描述"></p>
+<p>（2）强制删除整个目录</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132248421.png" alt="在这里插入图片描述"></p>
+<h2 id="mv指令"><a href="#mv指令" class="headerlink" title="mv指令"></a>mv指令</h2><p>功能描述：mv 移动文件到相应目录或重命名 </p>
+<p>基本语法</p>
+<p>1）mv  oldNameFile newNameFile     (功能描述：重命名) </p>
+<p>2）mv /temp/movefile /targetFolder (功能描述：移动文件)</p>
+<p><strong>实例</strong></p>
+<p>（1）重命名文件</p>
+<p>需求：将当前目录下的aaa.txt文件重命名为pig.txt</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132324523.png" alt="在这里插入图片描述"></p>
+<p>细节说明：它的实质还是移动命令（即剪切），将当前目录下的aaa.txt文件，移动到当前目录下的pig.txt文件</p>
+<p>（2）移动文件</p>
+<p>需求：将当前目录下的pig.txt文件移动到/root目录下</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132332540.png" alt="在这里插入图片描述"></p>
+<h2 id="cat指令"><a href="#cat指令" class="headerlink" title="cat指令"></a>cat指令</h2><p>功能描述：cat 查看文件内容 ，以只读的方式</p>
+<p>基本语法 ：cat  [选项] 要查看的文件 </p>
+<p>常用选项 ：    -n ：显示行号</p>
+<p><strong>实例</strong></p>
+<p>需求：  读取/ect/profile 文件内容，并显示行号 </p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132348759.png" alt="在这里插入图片描述"></p>
+<p><strong>细节说明</strong></p>
+<p>1）它的功能只能查看文件内容，不能对文件进行修改。（只读的方式）</p>
+<p>2）在使用cat命令为了浏览方便，一般会带上 管道命令 | more ，对文件分页显示，点击空格键即可浏览下一页。语法：cat  文件名 | more</p>
+<h2 id="more指令"><a href="#more指令" class="headerlink" title="more指令"></a>more指令</h2><p>功能描述： more指令是一个基于VI编辑器的文本过滤器，它以全屏幕的方式按页          显示文本文件的内容。 more指令中内置了若干快捷键，详见操作说明</p>
+<p>操作说明</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th style="text-align:center">功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空白键（space）</td>
+<td style="text-align:center">代表向下翻一页</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td style="text-align:center">代表向下翻一行</td>
+</tr>
+<tr>
+<td>q</td>
+<td style="text-align:center">代表立刻离开more ，不再显示该文件内容。</td>
+</tr>
+<tr>
+<td>Ctrl+F</td>
+<td style="text-align:center">向下滚动一屏</td>
+</tr>
+<tr>
+<td>Ctrl+B</td>
+<td style="text-align:center">返回上一屏</td>
+</tr>
+<tr>
+<td>=</td>
+<td style="text-align:center">输出当前行的行号</td>
+</tr>
+<tr>
+<td>:f</td>
+<td style="text-align:center">输出文件名和当前行的行号</td>
+</tr>
+</tbody>
+</table>
+<p>基本语法 ：more 要查看的文件 </p>
+<h2 id="less指令"><a href="#less指令" class="headerlink" title="less指令"></a>less指令</h2><p>功能描述：less指令用来分屏查看文件内容，它的功能与more指令类似，但是比more指令更加强大，支 持各种显示终端。less指令在显示文件内容时，并不是一次将整个文件加载之后才显示，而是 根据显示需要加载内容，<strong>对于显示大型文件具有较高的效率。</strong></p>
+<p>操作说明</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th style="text-align:center">功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空白键</td>
+<td style="text-align:center">向下翻动一页</td>
+</tr>
+<tr>
+<td>[pagedown]</td>
+<td style="text-align:center">向下翻动一页</td>
+</tr>
+<tr>
+<td>[pageup]</td>
+<td style="text-align:center">向上翻动一页；</td>
+</tr>
+<tr>
+<td>/字串</td>
+<td style="text-align:center">向下搜寻『字串』的功能；n：向下查找；N：向上查找；</td>
+</tr>
+<tr>
+<td>?字串</td>
+<td style="text-align:center">向上搜寻『字串』的功能；n：向上查找；N：向下查找；</td>
+</tr>
+<tr>
+<td>q</td>
+<td style="text-align:center">离开 less 这个程序；</td>
+</tr>
+</tbody>
+</table>
+<h2 id="指令-gt-和-gt-gt-指令"><a href="#指令-gt-和-gt-gt-指令" class="headerlink" title="指令&gt; 和 &gt;&gt; 指令"></a><strong>指令&gt; 和 &gt;&gt; 指令</strong></h2><p>输出重定向&gt;和 &gt;&gt; 追加 </p>
+<p>功能描述：</p>
+<p>1)输出重定向&gt;添加内到指定文件会将原来的文件内容覆盖</p>
+<p>2）追加&gt;&gt;添加内容到指定文件不会覆盖原来的文件内容，而是追加到文件末尾</p>
+<p>基本语法<br>1) ls -l &gt;文件 （功能描述：列表的内容写入文件a.txt中（覆盖写））<br>2) ls -al &gt;&gt;文件 （功能描述：列表的内容追加到文件aa.txt的末尾）<br>3)  cat 文件1 &gt; 文件2 （功能描述：将文件1的内容覆盖到文件2）<br>4) echo “内容”&gt;&gt; 文件 (功能描述：直接将双引号中的内容追加到指定文件中)</p>
+<p><strong>实例</strong></p>
+<p>（1）需求：创建a.txt文件并存入当前列表信息</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132418567.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>说明：ls-l &gt;a.txt,是将ls-l的显示内容覆盖写入到a.txt文件中。如果该文件不存在，将新建一个a.txt文件</p>
+<p>（2）将文件1的内容覆盖到文件2<img src="https://img-blog.csdnimg.cn/20190528132429912.png" alt="在这里插入图片描述"></p>
+<h2 id="echo指令"><a href="#echo指令" class="headerlink" title="echo指令"></a>echo指令</h2><p>功能描述： echo输出内容到控制台。 </p>
+<p>基本语法 echo  [选项] [输出内容]</p>
+<p>实例</p>
+<p>（1）输出环境变量路径（path）</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132429912.png" alt="在这里插入图片描述"></p>
+<p>(2)输出hello到控制台</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132516600.png" alt="在这里插入图片描述"></p>
+<h2 id="head指令"><a href="#head指令" class="headerlink" title="head指令"></a>head指令</h2><p>功能描述：head用于显示文件的开头部分内容，默认情况下head指令显示文件的前10行内容 </p>
+<p>基本语法：</p>
+<p>1） head 文件 (功能描述：查看文件头10行内容) </p>
+<p>2）head -n 5 文件 (功能描述：查看文件头5行内容，5可以是任意行数) </p>
+<p><strong>实例</strong></p>
+<p>（1）查看/etc/profile文件前五行</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132530553.png" alt="在这里插入图片描述"></p>
+<h2 id="tail指令"><a href="#tail指令" class="headerlink" title="tail指令"></a>tail指令</h2><p>功能描述：tail用于输出文件中尾部的内容，默认情况下tail指令显示文件的前10行内容。 </p>
+<p>基本语法 </p>
+<p>1) tail  文件 （功能描述：查看文件后10行内容） </p>
+<p>2) tail  -n 5 文件 （功能描述：查看文件后5行内容，5可以是任意行数） </p>
+<p>3) tail  -f  文件 （功能描述：实时追踪该文档的所有更新） </p>
+<p><strong>实例</strong></p>
+<p>（1）查看/etc/profile 最后5行的代码</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132542862.png" alt="在这里插入图片描述"></p>
+<p>（2）实时监控mydate.txt,看看文件有变化时，是否看到实时的追加日期</p>
+<p>​      1）tail  -f  文件对文件进行实时监控</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132548946.png" alt="在这里插入图片描述"></p>
+<p>​       2）在其他终端向文件添加内容，实时监控终端也会同步更新显示</p>
+<h2 id="ln-指令"><a href="#ln-指令" class="headerlink" title="ln 指令"></a>ln 指令</h2><p>功能描述：软链接也成为符号链接，类似于windows里的快捷方式，主要存放了链接其他文件的路径</p>
+<p> 基本语法： ln -s [原文件或目录] [软链接名] （功能描述：给原文件创建一个软链接）</p>
+<p> 细节说明：当我们使用pwd指令查看目录时，仍然看到的是软链接所在目录。</p>
+<p> <strong>实例</strong> </p>
+<p>（1） 在/home 目录下创建一个软链接 linkToRoot，连接到 /root 目录<br><img src="https://img-blog.csdnimg.cn/20190528132605835.png" alt="在这里插入图片描述"></p>
+<p>（2） 删除软连接 linkToRoot（删除软链接的时候不要带斜杠，否则提示忙）</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132619958.png" alt="在这里插入图片描述"></p>
+<h2 id="history指令"><a href="#history指令" class="headerlink" title="history指令"></a>history指令</h2><p>查看已经执行过历史命令,也可以执行历史指令</p>
+<p> 基本语法 ：history （功能描述：查看已经执行过历史命令） </p>
+<p><strong>实例</strong></p>
+<p>（1）显示所有的历史命令 </p>
+<p>  <img src="https://img-blog.csdnimg.cn/20190528132637679.png" alt="在这里插入图片描述"></p>
+<p>（2） 显示最近使用过的10个指令</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132648240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（3）执行历史编号为178的指令</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132656910.png" alt="在这里插入图片描述"></p>
+<h1 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h1><h2 id="date指令-显示当前日期"><a href="#date指令-显示当前日期" class="headerlink" title="date指令-显示当前日期"></a>date指令-显示当前日期</h2><p>基本语法 </p>
+<p>1) date （功能描述：显示当前时间）</p>
+<p> 2) date +%Y （功能描述：显示当前年份）</p>
+<p> 3) date +%m （功能描述：显示当前月份）</p>
+<p> 4) date +%d （功能描述：显示当前是哪一天） </p>
+<p>5) date “+%Y-%m-%d %H:%M:%S”（功能描述：显示年月日时分秒）</p>
+<p><strong>实例</strong></p>
+<p>（1）显示当前年月日</p>
+<p>​               1）第一种方式</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132711318.png" alt="在这里插入图片描述"></p>
+<p>​                2）第二种方式</p>
+<p><img src="https://img-blog.csdnimg.cn/2019052813272178.png" alt="在这里插入图片描述"></p>
+<h2 id="date指令-设置日期"><a href="#date指令-设置日期" class="headerlink" title="date指令-设置日期"></a>date指令-设置日期</h2><p>基本语法： date  -s 字符串时间 </p>
+<p><strong>实例</strong></p>
+<p> （1） 设置系统当前时间 ， 比如设置成 2018-10-10 11:22:22</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132731337.png" alt="在这里插入图片描述"></p>
+<h2 id="cal指令"><a href="#cal指令" class="headerlink" title="cal指令"></a>cal指令</h2><p>功能描述：查看日历指令 </p>
+<p>基本语法： cal [选项] （功能描述：不加选项，显示本月日历） </p>
+<p>实例 </p>
+<p>（1） 显示当前日历</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132745857.png" alt="在这里插入图片描述"></p>
+<p> （2） 显示2020年日历</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132752412.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h1><h2 id="find指令"><a href="#find指令" class="headerlink" title="find指令"></a>find指令</h2><p>功能描述： find指令将从指定目录向下递归地遍历其各个子目录，将满足条件的文件或者目录显示在终 端。</p>
+<p> 基本语法 ：find  [搜索范围] [选项]</p>
+<p>常用选项说明</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-name&lt;查询方式&gt;</td>
+<td>按照指定的文件名查找模式查找文件</td>
+</tr>
+<tr>
+<td>-user&lt;用户名&gt;</td>
+<td>-user&lt;用户名&gt;</td>
+</tr>
+<tr>
+<td>-size&lt;文件大小&gt;</td>
+<td>按照指定的文件大小查找文件。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实例</strong></p>
+<p>（1） 按文件名：根据名称查找/home 目录下的hello.txt文件 </p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132803531.png" alt="在这里插入图片描述"></p>
+<p>（2）按拥有者：查找/opt目录下，用户名称为 nobody的文件</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132813335.png" alt="在这里插入图片描述"></p>
+<h2 id="locate指令"><a href="#locate指令" class="headerlink" title="locate指令"></a>locate指令</h2><p>功能描述： locaate指令可以快速定位文件路径。locate指令利用事先建立的系统中所有文件名称及路径 的locate数据库实现快速定位给定的文件。Locate指令无需遍历整个文件系统，查询速度较快。 为了保证查询结果的准确度，管理员必须定期更新locate时刻。 </p>
+<p>基本语法 ：locate 搜索文件</p>
+<p> 特别说明： 由于locate指令基于数据库进行查询，所以第一次运行前，必须使用updatedb指令创建locate 数据库。</p>
+<p> <strong>实例</strong> </p>
+<p>（1）请使用locate 指令快速定位 hello.txt 文件所在目录</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132845187.png" alt="在这里插入图片描述"></p>
+<h2 id="grep指令和-管道符号"><a href="#grep指令和-管道符号" class="headerlink" title="grep指令和 管道符号 |"></a>grep指令和 管道符号 |</h2><p>功能描述： grep 过滤查找 ， 管道符，“|”，表示将前一个命令的处理结果输出传递给后面的命令处理。<br>基本语法 ：grep [选项] 查找内容 源文件</p>
+<p> 常用选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-n</td>
+<td>显示匹配行以及行号</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>忽略字母大小写</td>
+</tr>
+</tbody>
+</table>
+<p>实例</p>
+<p> （1） 请在 hello.txt 文件中，查找 “yes”  所在行(区分大小写)，并且显示行号</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132857739.png" alt="在这里插入图片描述"></p>
+<p> （1） 请在 hello.txt 文件中，查找 “yes”  或”Yes”所在行，并且显示行号</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528132910240.png" alt="在这里插入图片描述"></p>
+<h1 id="压缩和解压类"><a href="#压缩和解压类" class="headerlink" title="压缩和解压类"></a>压缩和解压类</h1><h2 id="gzip-gunzip-指令"><a href="#gzip-gunzip-指令" class="headerlink" title="gzip/gunzip 指令"></a>gzip/gunzip 指令</h2><p>功能描述：gzip 用于压缩文件， gunzip 用于解压的<br>基本语法 ：</p>
+<p>1）gzip 文件 （功能描述：压缩文件，只能将文件压缩为*.gz文件）</p>
+<p>2）gunzip 文件.gz （功能描述：解压缩文件命令）<br><strong>实例</strong></p>
+<p>（1）gzip压缩， 将 /home下的 hello.txt文件进行压缩 </p>
+<p> <img src="https://img-blog.csdnimg.cn/20190528133108238.png" alt="在这里插入图片描述"></p>
+<p>（2）gunzip压缩， 将 /home下的 hello.txt.gz 文件进行解压缩</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528133114193.png" alt="在这里插入图片描述"></p>
+<h2 id="zip-unzip-指令"><a href="#zip-unzip-指令" class="headerlink" title="zip/unzip 指令"></a>zip/unzip 指令</h2><p>功能描述：zip 用于压缩文件， unzip 用于解压的，这个在项目打包发布中很有用的<br>基本语法：</p>
+<p> zip      [选项] XXX.zip  将要压缩的内容（功能描述：压缩文件和目录的命令） unzip [选项] XXX.zip （功能描述：解压缩文件） </p>
+<p> zip常用选项： -r：递归压缩，即压缩目录 </p>
+<p>unzip的常用选项： -d&lt;目录&gt; ：指定解压后文件的存放目录 </p>
+<p><strong>实例</strong> </p>
+<p>（1） 将 /home下的 所有文件进行压缩成 mypackage.zip</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528133129470.png" alt="在这里插入图片描述"></p>
+<p>（2） 将 mypackge.zip 解压到 /opt/tmp 目录下</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528133140104.png" alt="在这里插入图片描述"></p>
+<h2 id="tar-指令"><a href="#tar-指令" class="headerlink" title="tar 指令"></a>tar 指令</h2><p>功能描述：tar 指令 是打包指令，最后打包后的文件是 .tar.gz 的文件。<br>基本语法：</p>
+<p> tar  [选项]  XXX.tar.gz  打包的内容 (功能描述：打包目录，压缩后的文件格式.tar.gz)      </p>
+<p> 选项说明（压缩带上前四个参数，如果是解压就不带z参数应带x参数）</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>产生.tar打包文件</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>显示详细信息</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>指定压缩后的文件名</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>打包同时压缩</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>解包.tar文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实例</strong> </p>
+<p>(1) 压缩多个文件，将 /home/a1.txt 和 /home/a2.txt 压缩成 a.tar.gz </p>
+<p> <img src="https://img-blog.csdnimg.cn/20190528133148164.png" alt="在这里插入图片描述"></p>
+<p>(2)  将/home 的文件夹 压缩成 myhome.tar.gz </p>
+<p><img src="https://img-blog.csdnimg.cn/201905281331544.png" alt="在这里插入图片描述"></p>
+<p>(3)  将 a.tar.gz  解压到当前目录(注意参数)</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528133200378.png" alt="在这里插入图片描述"></p>
+<p>(4)将myhome.tar.gz 解压到 /opt目录下（指定解压的目录，事先需要存在，否则报错）</p>
+<p><img src="https://img-blog.csdnimg.cn/20190528133207573.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>gunzip压缩， 将 /home下的 hello.txt.gz 文件进行解压缩</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/05/25/Linux实操篇-Linux实用指令/" title="Linux实操篇-Linux实用指令" target="_blank" rel="external">http://yoursite.com/2019/05/25/Linux实操篇-Linux实用指令/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ByKeep" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ByKeep" target="_blank"><span class="text-dark">DoCode</span><small class="ml-1x">java开发程序员</small></a></h3>
+        <div>To strive, to seek, to find, and not to yield.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/05/25/Java基础篇-Java异常处理/" title="Java基础篇-Java异常处理"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/05/24/Linux实操篇-常见命令与用户管理/" title="Linux实操篇-常见命令与用户管理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone,wechat"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2021 DoCode
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>SpringBoot-日志 | DoCode</title>
+  <meta name="description" content="日志框架和选择介绍在进行大型项目的开发时。如果日志的文件记录的分散或者凌乱进行分散输出或者记录，不利于项目的日志管理 （1）日志应该进行统一的管理和配置-&amp;gt;使用框架的方式对日志进行统一管理 （2）使用面向接口的编程方式对框架进行使用，项目中具体日志实现即可（类似JDBC） 市面上的日志框架（1）市场上存在非常多的日志框架。JUL（java.util.logging），JCL（Apache">
+<meta name="keywords" content="SpringBoot笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot-日志">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/SpringBoot-日志/index.html">
+<meta property="og:site_name" content="DoCode">
+<meta property="og:description" content="日志框架和选择介绍在进行大型项目的开发时。如果日志的文件记录的分散或者凌乱进行分散输出或者记录，不利于项目的日志管理 （1）日志应该进行统一的管理和配置-&amp;gt;使用框架的方式对日志进行统一管理 （2）使用面向接口的编程方式对框架进行使用，项目中具体日志实现即可（类似JDBC） 市面上的日志框架（1）市场上存在非常多的日志框架。JUL（java.util.logging），JCL（Apache">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-02_23-28-06.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/concrete-bindings.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-07_14-44-43.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-07_16-00-18.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/搜狗截图20180131220946.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/搜狗截图20180131221411.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-07_16-11-01.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-07_16-39-30.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-07_16-50-03.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-07_23-47-27.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_00-54-47.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_00-21-59.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_00-23-14.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_00-52-47.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_00-54-06.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_00-59-44.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_01-00-19.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-08_01-04-05.png">
+<meta property="og:updated_time" content="2021-05-02T16:22:18.544Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot-日志">
+<meta name="twitter:description" content="日志框架和选择介绍在进行大型项目的开发时。如果日志的文件记录的分散或者凌乱进行分散输出或者记录，不利于项目的日志管理 （1）日志应该进行统一的管理和配置-&amp;gt;使用框架的方式对日志进行统一管理 （2）使用面向接口的编程方式对框架进行使用，项目中具体日志实现即可（类似JDBC） 市面上的日志框架（1）市场上存在非常多的日志框架。JUL（java.util.logging），JCL（Apache">
+<meta name="twitter:image" content="http://yoursite.com/.com//桌面/SpringBoot视频2/Snipaste_2019-09-02_23-28-06.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/09/02/SpringBoot-日志/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="../images/avatar.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ByKeep" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">DoCode</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">java开发程序员</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> NanNing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 博主本科毕业于广西大学，电气专业，于大三转行学java开发，目前准备步入职场。 本博客主要内容是学习笔记、生活随笔以及工具软件推荐等， 下面是我的微信二维码，欢迎添加好友交流分享经验！</p>
+            </div>
+            <div>
+              <img src="/images/weixin.jpg" width="200" higth="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/办证、申请/">办证、申请</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux基础/">Linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux实操/">Linux实操</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot笔记/">SpringBoot笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring笔记/">Spring笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于DoCode/">关于DoCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件著作权/">软件著作权</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/Linux基础/" style="font-size: 13.67px;">Linux基础</a> <a href="/tags/Linux实操/" style="font-size: 14px;">Linux实操</a> <a href="/tags/SpringBoot笔记/" style="font-size: 13.33px;">SpringBoot笔记</a> <a href="/tags/Spring笔记/" style="font-size: 13.33px;">Spring笔记</a> <a href="/tags/关于DoCode/" style="font-size: 13px;">关于DoCode</a> <a href="/tags/软件著作权/" style="font-size: 13px;">软件著作权</a> <a href="/tags/随笔/" style="font-size: 13px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/18/Java基础篇-网络编程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java/">Java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/18/Java基础篇-网络编程/" class="title">Java基础篇-网络编程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-17T16:35:28.030Z" itemprop="datePublished">2019-09-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/02/SpringBoot-日志/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/02/SpringBoot-日志/" class="title">SpringBoot-日志</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-02T15:48:56.996Z" itemprop="datePublished">2019-09-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/01/SpringBoot-配置文件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/01/SpringBoot-配置文件/" class="title">SpringBoot-配置文件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-01T08:03:08.113Z" itemprop="datePublished">2019-09-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="title">SpringBoot-入门与第一个Hello工程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-31T15:05:32.839Z" itemprop="datePublished">2019-08-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/11/Spring框架-Spring的配置/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/11/Spring框架-Spring的配置/" class="title">Spring框架-Spring的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-11T06:56:49.034Z" itemprop="datePublished">2019-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#日志框架和选择"><span class="toc-number">1.</span> <span class="toc-text">日志框架和选择</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#市面上的日志框架"><span class="toc-number">1.2.</span> <span class="toc-text">市面上的日志框架</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SLF4j使用"><span class="toc-number">2.</span> <span class="toc-text">SLF4j使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在系统中使用SLF4j"><span class="toc-number">2.1.</span> <span class="toc-text">如何在系统中使用SLF4j</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他的日志框架转换为SLF4J"><span class="toc-number">2.2.</span> <span class="toc-text">其他的日志框架转换为SLF4J</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot日志关系"><span class="toc-number">3.</span> <span class="toc-text">SpringBoot日志关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot日志默认配置"><span class="toc-number">4.</span> <span class="toc-text">SpringBoot日志默认配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#指定日志文件和日志Profile功能"><span class="toc-number">5.</span> <span class="toc-text">指定日志文件和日志Profile功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何指定属于自己编写的日志配置文件？"><span class="toc-number">5.1.</span> <span class="toc-text">如何指定属于自己编写的日志配置文件？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#带上Spring扩展名的框架"><span class="toc-number">5.2.</span> <span class="toc-text">带上Spring扩展名的框架</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#切换日志框架"><span class="toc-number">6.</span> <span class="toc-text">切换日志框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#将使用中的SLF4j＋logback替换成SLF4J＋log4j进行使用"><span class="toc-number">6.1.</span> <span class="toc-text">将使用中的SLF4j＋logback替换成SLF4J＋log4j进行使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切换成log4j2"><span class="toc-number">6.2.</span> <span class="toc-text">切换成log4j2</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-SpringBoot-日志" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot-日志
+    </h1>
+  
+
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/09/02/SpringBoot-日志/" class="article-date">
+	  <time datetime="2019-09-02T15:48:56.996Z" itemprop="datePublished">2019-09-02</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/SpringBoot/">SpringBoot</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/SpringBoot笔记/">SpringBoot笔记</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/09/02/SpringBoot-日志/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.7k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 6(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="日志框架和选择"><a href="#日志框架和选择" class="headerlink" title="日志框架和选择"></a>日志框架和选择</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在进行大型项目的开发时。如果日志的文件记录的分散或者凌乱进行分散输出或者记录，不利于项目的日志管理</p>
+<p>（1）日志应该进行统一的管理和配置-&gt;使用框架的方式对日志进行统一管理</p>
+<p>（2）使用面向接口的编程方式对框架进行使用，项目中具体日志实现即可（类似JDBC）</p>
+<h2 id="市面上的日志框架"><a href="#市面上的日志框架" class="headerlink" title="市面上的日志框架"></a>市面上的日志框架</h2><p>（1）市场上存在非常多的日志框架。JUL（java.util.logging），JCL（Apache Commons Logging），Log4j，Log4j2，Logback、SLF4j、jboss-logging等</p>
+<p>（2）Spring Boot在框架内容部使用JCL，spring-boot-starter-logging采用了 slf4j+logback的形式，Spring Boot也能自动适配（jul、log4j2、logback） 并 简化配置</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-02_23-28-06.png" alt="Snipaste_2019-09-02_23-28-06"></p>
+<p><strong>细节：</strong></p>
+<p>（1）日志门面：日志的抽象层</p>
+<p>（2）左边选一个门面右边选择一个实现</p>
+<p>（3）SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘</p>
+<p>​           <strong>SpringBoot选用 SLF4j和logback；</strong></p>
+<h1 id="SLF4j使用"><a href="#SLF4j使用" class="headerlink" title="SLF4j使用"></a>SLF4j使用</h1><h2 id="如何在系统中使用SLF4j"><a href="#如何在系统中使用SLF4j" class="headerlink" title="如何在系统中使用SLF4j"></a>如何在系统中使用SLF4j</h2><p>在开发的时候，日志的记录方法的调用，不应该直接调用日志的实现类，而是调用日志抽象层的里面的方法。</p>
+<p><a href="https://www.slf4j.org" target="_blank" rel="noopener">https://www.slf4j.org</a></p>
+<p>给系统里面导入slf4j的jar和  logback的实现jar</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(HelloWorld.class);</span><br><span class="line">    logger.info(<span class="string">"Hello World"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SLF4J的实现图示（上文提到时SLF4J的logback实现）：</p>
+<p><img src="/.com//桌面\SpringBoot视频2\concrete-bindings.png" alt="concrete-bindings"></p>
+<p>注意</p>
+<p>（1）深蓝颜色为实现层、绿色为适配层</p>
+<p>（2）每一个日志实现框架都有自己的配置文件，使用SLF4J之后，配置文件还是做成日志实现框架的配置文件</p>
+<h2 id="其他的日志框架转换为SLF4J"><a href="#其他的日志框架转换为SLF4J" class="headerlink" title="其他的日志框架转换为SLF4J"></a>其他的日志框架转换为SLF4J</h2><p><strong>遗留问题</strong></p>
+<p>假设在开发的过程中如果开发了多个系统，那么系统中如果使用的框架不同那么他们用的日志记录框架也会有很大的差别。这时候每一个系统都有自己的日志记录框架，整合的时候就会出现日志框架杂乱，日志没有统一进行配置。</p>
+<p><strong>如何统一日志记录使得别的框架也是使用SLF4J进行日志输出</strong></p>
+<p>（1）将系统中其他日志框架先排除出去；</p>
+<p>（2）用中间包来替换原有的日志框架；</p>
+<p>（3）我们导入slf4j其他的实现</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-07_14-44-43.png" alt="Snipaste_2019-09-07_14-44-43"></p>
+<h1 id="SpringBoot日志关系"><a href="#SpringBoot日志关系" class="headerlink" title="SpringBoot日志关系"></a>SpringBoot日志关系</h1><p>最基本的依赖（每一个启动器、场景都需要对其进行依赖）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-07_16-00-18.png" alt="Snipaste_2019-09-07_16-00-18"></p>
+<p>SpringBoot使用它来做日志功能；</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>底层依赖关系</p>
+<p><img src="/.com//桌面\SpringBoot视频2\搜狗截图20180131220946.png" alt="搜狗截图20180131220946"></p>
+<p>总结：</p>
+<p>1）SpringBoot底层也是使用slf4j+logback的方式进行日志记录</p>
+<p>2）SpringBoot也把其他的日志都替换成了slf4j；</p>
+<p>3）中间替换包？（调用的是原来日志框架的方法名但是在新建对象的时候使用的是SLF4J的方式进行实现）</p>
+<p>中间转换包图示：</p>
+<p><img src="/.com//桌面\SpringBoot视频2\搜狗截图20180131221411.png" alt="搜狗截图20180131221411"></p>
+<p>转换包底层实现原理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"rawtypes"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">LogFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> String UNSUPPORTED_OPERATION_IN_JCL_OVER_SLF4J = <span class="string">"http://www.slf4j.org/codes.html#unsupported_operation_in_jcl_over_slf4j"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> LogFactory logFactory = <span class="keyword">new</span> SLF4JLogFactory();</span><br></pre></td></tr></table></figure>
+<p>4）SpringBoot能自动适配所有的日志，而且底层使用slf4j+logback的方式记录日志。</p>
+<p>5）如果在开发的过程中需要引入其他的框架,那么一定要把引入的框架的日志依赖移除。原因是SpringBoot在底层的实现中已经存在和引入框架的同名转换包。这样就会引起冲突。</p>
+<p><strong>示例</strong></p>
+<p>Spring框架用的是commons-logging；</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="SpringBoot日志默认配置"><a href="#SpringBoot日志默认配置" class="headerlink" title="SpringBoot日志默认配置"></a>SpringBoot日志默认配置</h1><p>（1）在没有对日志进行任何配置的时候，SpringBoot已经有了一个默认的配置。直接使用即可</p>
+<p><strong>实例</strong></p>
+<p>1）创建java文件、</p>
+<p>​        获取日志记录器并使用日志记录器将日志进行输出。</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-07_16-11-01.png" alt="Snipaste_2019-09-07_16-11-01"></p>
+<p>2）更改配置文件</p>
+<p>更改配置文件设置日志的级别（level后面跟的是包名），以及日志文件的输出路径</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-07_16-39-30.png" alt="Snipaste_2019-09-07_16-39-30"></p>
+<p>3）日志输出格式设置</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-07_16-50-03.png" alt="Snipaste_2019-09-07_16-50-03"></p>
+<pre><code>日志输出格式：
+    %d表示日期时间，
+    %thread表示线程名，
+    %-5level：级别从左显示5个字符宽度
+    %logger{50} 表示logger名字最长50个字符，否则按照句点分割。 
+    %msg：日志消息，
+    %n是换行符
+--&gt;
+%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+</code></pre><h1 id="指定日志文件和日志Profile功能"><a href="#指定日志文件和日志Profile功能" class="headerlink" title="指定日志文件和日志Profile功能"></a>指定日志文件和日志Profile功能</h1><h2 id="如何指定属于自己编写的日志配置文件？"><a href="#如何指定属于自己编写的日志配置文件？" class="headerlink" title="如何指定属于自己编写的日志配置文件？"></a>如何指定属于自己编写的日志配置文件？</h2><p>答：给类路径下放上每个日志框架自己的配置文件即可SpringBoot就不使用他默认配置了，而是直接使用日志框架的配置文件。如下图所示就是日志框架所对应的配置文件</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-07_23-47-27.png" alt="Snipaste_2019-09-07_23-47-27"></p>
+<p>logback.xml：直接就被日志框架识别了；</p>
+<h2 id="带上Spring扩展名的框架"><a href="#带上Spring扩展名的框架" class="headerlink" title="带上Spring扩展名的框架"></a>带上Spring扩展名的框架</h2><p><strong>logback-spring.xml</strong>：日志框架就不直接加载日志的配置项，由SpringBoot解析日志配置，可以使用SpringBoot的高级Profile功能，使得某段的配置内容在指定的环境下才能生效</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"staging"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- configuration to be enabled when the "staging" profile is active --&gt;</span></span><br><span class="line">  	可以指定某段配置只在某个环境下生效</span><br><span class="line"><span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"stdout"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.ConsoleAppender"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">        日志输出格式：</span></span><br><span class="line"><span class="comment">			%d表示日期时间，</span></span><br><span class="line"><span class="comment">			%thread表示线程名，</span></span><br><span class="line"><span class="comment">			%-5level：级别从左显示5个字符宽度</span></span><br><span class="line"><span class="comment">			%logger&#123;50&#125; 表示logger名字最长50个字符，否则按照句点分割。 </span></span><br><span class="line"><span class="comment">			%msg：日志消息，</span></span><br><span class="line"><span class="comment">			%n是换行符</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.classic.PatternLayout"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"dev"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; ----&gt; [%thread] ---&gt; %-5level %logger&#123;50&#125; - %msg%n<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">springProfile</span> <span class="attr">name</span>=<span class="string">"!dev"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; ==== [%thread] ==== %-5level %logger&#123;50&#125; - %msg%n<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">springProfile</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>： 如果使用logback.xml作为日志配置文件，还要使用profile功能，会有以下错误</p>
+<p> <code>no applicable action for [springProfile]</code></p>
+<h1 id="切换日志框架"><a href="#切换日志框架" class="headerlink" title="切换日志框架"></a>切换日志框架</h1><h2 id="将使用中的SLF4j＋logback替换成SLF4J＋log4j进行使用"><a href="#将使用中的SLF4j＋logback替换成SLF4J＋log4j进行使用" class="headerlink" title="将使用中的SLF4j＋logback替换成SLF4J＋log4j进行使用"></a>将使用中的SLF4j＋logback替换成SLF4J＋log4j进行使用</h2><p><strong>参考图</strong></p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_00-54-47.png" alt="Snipaste_2019-09-08_00-54-47"></p>
+<p>（1）logback实现包依赖去除（pom.xml）</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_00-21-59.png" alt="Snipaste_2019-09-08_00-21-59"></p>
+<p>（2）将log4j替换成slf4j的替换包移除依赖（里面的log4j都底层实现使用了受理费j）</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_00-23-14.png" alt="Snipaste_2019-09-08_00-23-14"></p>
+<p>(3)将适配层依赖导入</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_00-52-47.png" alt="Snipaste_2019-09-08_00-52-47"></p>
+<p>依赖图</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_00-54-06.png" alt="Snipaste_2019-09-08_00-54-06"></p>
+<h2 id="切换成log4j2"><a href="#切换成log4j2" class="headerlink" title="切换成log4j2"></a>切换成log4j2</h2><p>(1)将原有的logging排除</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_00-59-44.png" alt="Snipaste_2019-09-08_00-59-44"></p>
+<p>（2）添加log4j2</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_01-00-19.png" alt="Snipaste_2019-09-08_01-00-19"></p>
+<p>（3）使用默认配置文件（或指定配置文件对日志进行配置），下图为默认配置文件</p>
+<p><img src="/.com//桌面\SpringBoot视频2\Snipaste_2019-09-08_01-04-05.png" alt="Snipaste_2019-09-08_01-04-05"></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/09/02/SpringBoot-日志/" title="SpringBoot-日志" target="_blank" rel="external">http://yoursite.com/2019/09/02/SpringBoot-日志/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ByKeep" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ByKeep" target="_blank"><span class="text-dark">DoCode</span><small class="ml-1x">java开发程序员</small></a></h3>
+        <div>To strive, to seek, to find, and not to yield.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/09/18/Java基础篇-网络编程/" title="Java基础篇-网络编程"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/09/01/SpringBoot-配置文件/" title="SpringBoot-配置文件"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone,wechat"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2021 DoCode
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

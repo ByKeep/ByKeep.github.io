@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Java基础篇-网络编程 | DoCode</title>
+  <meta name="description" content="概述如何建立在不同机器中的两个软件的通信？ (1)找到对方机器的IP地址 (2)通过对应用程序的数字标识，使得数据发送到对应的应用程序上。为了方便称呼这些数字标识，这些标识被称为端口。这些端口并非物理端口，只是逻辑端口 (3)定义通信规则（协议），才能双方通信。国际组织定义了通用TCP/IP协议  网络模型通信原理数据传输的过程中需要对数据进行加入各类不同协议信息封装后发出，在接收方接收到数据">
+<meta name="keywords" content="Java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础篇-网络编程">
+<meta property="og:url" content="http://yoursite.com/2019/09/18/Java基础篇-网络编程/index.html">
+<meta property="og:site_name" content="DoCode">
+<meta property="og:description" content="概述如何建立在不同机器中的两个软件的通信？ (1)找到对方机器的IP地址 (2)通过对应用程序的数字标识，使得数据发送到对应的应用程序上。为了方便称呼这些数字标识，这些标识被称为端口。这些端口并非物理端口，只是逻辑端口 (3)定义通信规则（协议），才能双方通信。国际组织定义了通用TCP/IP协议  网络模型通信原理数据传输的过程中需要对数据进行加入各类不同协议信息封装后发出，在接收方接收到数据">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBootWeb/Snipaste_2019-09-17_20-28-11.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBootWeb/Snipaste_2019-09-17_22-22-41.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBootWeb/Snipaste_2019-09-17_22-58-56.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBootWeb/Snipaste_2019-09-18_00-08-08.png">
+<meta property="og:image" content="http://yoursite.com/.com//桌面/SpringBootWeb/Snipaste_2019-09-18_00-31-47.png">
+<meta property="og:updated_time" content="2019-09-17T16:35:28.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java基础篇-网络编程">
+<meta name="twitter:description" content="概述如何建立在不同机器中的两个软件的通信？ (1)找到对方机器的IP地址 (2)通过对应用程序的数字标识，使得数据发送到对应的应用程序上。为了方便称呼这些数字标识，这些标识被称为端口。这些端口并非物理端口，只是逻辑端口 (3)定义通信规则（协议），才能双方通信。国际组织定义了通用TCP/IP协议  网络模型通信原理数据传输的过程中需要对数据进行加入各类不同协议信息封装后发出，在接收方接收到数据">
+<meta name="twitter:image" content="http://yoursite.com/.com//桌面/SpringBootWeb/Snipaste_2019-09-17_20-28-11.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/09/18/Java基础篇-网络编程/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="../images/avatar.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ByKeep" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">DoCode</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">java开发程序员</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> NanNing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 博主本科毕业于广西大学，电气专业，于大三转行学java开发，目前准备步入职场。 本博客主要内容是学习笔记、生活随笔以及工具软件推荐等， 下面是我的微信二维码，欢迎添加好友交流分享经验！</p>
+            </div>
+            <div>
+              <img src="/images/weixin.jpg" width="200" higth="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/办证、申请/">办证、申请</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux基础/">Linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux实操/">Linux实操</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot笔记/">SpringBoot笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring笔记/">Spring笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于DoCode/">关于DoCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件著作权/">软件著作权</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/Linux基础/" style="font-size: 13.67px;">Linux基础</a> <a href="/tags/Linux实操/" style="font-size: 14px;">Linux实操</a> <a href="/tags/SpringBoot笔记/" style="font-size: 13.33px;">SpringBoot笔记</a> <a href="/tags/Spring笔记/" style="font-size: 13.33px;">Spring笔记</a> <a href="/tags/关于DoCode/" style="font-size: 13px;">关于DoCode</a> <a href="/tags/软件著作权/" style="font-size: 13px;">软件著作权</a> <a href="/tags/随笔/" style="font-size: 13px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/18/Java基础篇-网络编程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java/">Java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/18/Java基础篇-网络编程/" class="title">Java基础篇-网络编程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-17T16:35:28.030Z" itemprop="datePublished">2019-09-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/02/SpringBoot-日志/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/02/SpringBoot-日志/" class="title">SpringBoot-日志</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-02T15:48:56.996Z" itemprop="datePublished">2019-09-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/01/SpringBoot-配置文件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/01/SpringBoot-配置文件/" class="title">SpringBoot-配置文件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-01T08:03:08.113Z" itemprop="datePublished">2019-09-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="title">SpringBoot-入门与第一个Hello工程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-31T15:05:32.839Z" itemprop="datePublished">2019-08-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/11/Spring框架-Spring的配置/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/11/Spring框架-Spring的配置/" class="title">Spring框架-Spring的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-11T06:56:49.034Z" itemprop="datePublished">2019-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网络模型"><span class="toc-number">2.</span> <span class="toc-text">网络模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通信原理"><span class="toc-number">2.1.</span> <span class="toc-text">通信原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络模型-1"><span class="toc-number">2.2.</span> <span class="toc-text">网络模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP地址"><span class="toc-number">3.</span> <span class="toc-text">IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java获取本机IP地址与名称"><span class="toc-number">3.2.</span> <span class="toc-text">java获取本机IP地址与名称</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP和UDP"><span class="toc-number">4.</span> <span class="toc-text">TCP和UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP和TCP特点"><span class="toc-number">4.1.</span> <span class="toc-text">UDP和TCP特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Socket"><span class="toc-number">5.</span> <span class="toc-text">Socket</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UDP通行"><span class="toc-number">6.</span> <span class="toc-text">UDP通行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP发送端"><span class="toc-number">6.1.</span> <span class="toc-text">UDP发送端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP接收端"><span class="toc-number">6.2.</span> <span class="toc-text">UDP接收端</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Java基础篇-网络编程" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java基础篇-网络编程
+    </h1>
+  
+
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/09/18/Java基础篇-网络编程/" class="article-date">
+	  <time datetime="2019-09-17T16:35:28.030Z" itemprop="datePublished">2019-09-18</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Java基础/">Java基础</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/09/18/Java基础篇-网络编程/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 987(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 3(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>如何建立在不同机器中的两个软件的通信？</p>
+<p>(1)找到对方机器的IP地址</p>
+<p>(2)通过对应用程序的数字标识，使得数据发送到对应的应用程序上。为了方便称呼这些数字标识，这些标识被称为端口。这些端口并非物理端口，只是逻辑端口</p>
+<p>(3)定义通信规则（协议），才能双方通信。国际组织定义了通用TCP/IP协议</p>
+<p><img src="/.com//桌面\SpringBootWeb\Snipaste_2019-09-17_20-28-11.png" alt="Snipaste_2019-09-17_20-28-11"></p>
+<h1 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h1><h2 id="通信原理"><a href="#通信原理" class="headerlink" title="通信原理"></a>通信原理</h2><p>数据传输的过程中需要对数据进行加入各类不同协议信息封装后发出，在接收方接收到数据后对数据进行拆包操作获取数据信息。</p>
+<h2 id="网络模型-1"><a href="#网络模型-1" class="headerlink" title="网络模型"></a>网络模型</h2><p>为了划分网络在传输过程中每个层次对应的功能不同，而产生了网络模型。</p>
+<p>（1）OSI模型</p>
+<p>在数据传输的过程中，发送端将数据从应用层到物理层从上到下对数据进行打包封装。接收端对接收到的数据进行拆包操作，流程是从物理层到应用层，</p>
+<p>（2）TCP/IP参考模型</p>
+<p>在经过漫长的演变和发展，TCP/IP层将层次数量减少，将原来的OSI参考模型的几个层次合并为一个层次。</p>
+<p><img src="/.com//桌面\SpringBootWeb\Snipaste_2019-09-17_22-22-41.png" alt="Snipaste_2019-09-17_22-22-41"></p>
+<h1 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>IP地址用于标识网络中的设备名。但是IP地址不便记忆，在本机的回环地址中可以使用localhost代替127.0.0.1；在网络中使用主机名代替IP地址。如<a href="http://www.baidu.com中baidu就是主机名" target="_blank" rel="noopener">www.baidu.com中baidu就是主机名</a></p>
+<h2 id="java获取本机IP地址与名称"><a href="#java获取本机IP地址与名称" class="headerlink" title="java获取本机IP地址与名称"></a>java获取本机IP地址与名称</h2><p>（1）导入net包</p>
+<p>（2）使用包中的InetAddress类中的静态方法getLocalHost()，获取IP地址对象InetAddress;</p>
+<p>（3）调用对象方法获取本机IP地址与名称</p>
+<p>（4）抛出异常</p>
+<p><img src="/.com//桌面\SpringBootWeb\Snipaste_2019-09-17_22-58-56.png" alt="Snipaste_2019-09-17_22-58-56"></p>
+<h1 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h1><p>TCP和UDP是常用的两种通信协议，建立两端设备的通信。</p>
+<h2 id="UDP和TCP特点"><a href="#UDP和TCP特点" class="headerlink" title="UDP和TCP特点"></a>UDP和TCP特点</h2><p>UDP</p>
+<p>（1）将数据及源和目的封装成数据包中，不需要建立连接</p>
+<p>（2）每个数据包的大小限制在64K内</p>
+<p>（3）因为是无连接所示是不可靠协议（容易丢包）</p>
+<p>（4）不需要建立连接、速度快</p>
+<p><strong>常见应用：即时通信、网络视频会议、桌面共享等追求速度的场合</strong></p>
+<p>TCP</p>
+<p>（1）建立连接，形成传输数据的通道</p>
+<p>（2）在连接中进行大数据量传输</p>
+<p>（3）通过三次握手完成连接，是可靠协议</p>
+<p>​           三次握手：发出第一次请求（一次），目标机应答（二次），主机应答目标机（三次）</p>
+<p>（4）必须建立连接，效率会稍低</p>
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><p>其实我们说的网络编程其实指的就是Socket编程，Socket是为网络服务提供的一种机制。相当于一个端点，依靠这个端点实现通信双方的通信通路</p>
+<p>（1）通信的两端都必须有Socket</p>
+<p>（2）网络通信其实就是Socket间的通信</p>
+<p>（3）数据在两个Socket间通过IO进行传输</p>
+<h1 id="UDP通行"><a href="#UDP通行" class="headerlink" title="UDP通行"></a>UDP通行</h1><h2 id="UDP发送端"><a href="#UDP发送端" class="headerlink" title="UDP发送端"></a>UDP发送端</h2><p>虽然已经有了Socket通信端点，但是针对不同的协议，建立通信短点的方式也是不同的。以下介绍UDP传输的服务发送端是如何建立的：</p>
+<p>步骤：</p>
+<p>（1）建立udpsocket服务</p>
+<p>（2）提供数据，并将数据封装到数据包中</p>
+<p>（3）通过Socket服务的发送功能，将数据包发出去</p>
+<p>（4）关闭资源</p>
+<p><img src="/.com//桌面\SpringBootWeb\Snipaste_2019-09-18_00-08-08.png" alt="Snipaste_2019-09-18_00-08-08"></p>
+<h2 id="UDP接收端"><a href="#UDP接收端" class="headerlink" title="UDP接收端"></a>UDP接收端</h2><p>步骤：</p>
+<p>（1）定义udpsocket服务，监听一个端口</p>
+<p>（2）定义一个空的数据包，用来存储接收到的数据。因为数据包中有更多的功能提取字节数据中的数据信息</p>
+<p>（3）通过socket服务的receive方法将收到的数据存入已定义好的数据包中</p>
+<p>（4）通过数据包对象的特有功能将这些不同的数据取出</p>
+<p>（5）关闭资源</p>
+<p><img src="/.com//桌面\SpringBootWeb\Snipaste_2019-09-18_00-31-47.png" alt="Snipaste_2019-09-18_00-31-47"></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/09/18/Java基础篇-网络编程/" title="Java基础篇-网络编程" target="_blank" rel="external">http://yoursite.com/2019/09/18/Java基础篇-网络编程/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ByKeep" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ByKeep" target="_blank"><span class="text-dark">DoCode</span><small class="ml-1x">java开发程序员</small></a></h3>
+        <div>To strive, to seek, to find, and not to yield.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/09/02/SpringBoot-日志/" title="SpringBoot-日志"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone,wechat"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2021 DoCode
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

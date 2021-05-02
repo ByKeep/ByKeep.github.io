@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Linux实操篇-组管理和权限管理 | DoCode</title>
+  <meta name="description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
+<meta name="keywords" content="Linux实操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux实操篇-组管理和权限管理">
+<meta property="og:url" content="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
+<meta property="og:site_name" content="DoCode">
+<meta property="og:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173212243.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173222543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173237218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019052917330094.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173320299.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173328558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173345959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173358872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173502574.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173516275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173532152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190529173549105.png">
+<meta property="og:updated_time" content="2019-07-21T10:56:33.784Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux实操篇-组管理和权限管理">
+<meta name="twitter:description" content="Linux组基本介绍在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。1) 所有者  2) 所在组  3) 其它组  4) 改变用户所在的组  文件/目录 所有者概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。 查看文件的所有者1) 指令：ls –ahl  实例 （1）创建一个组police，再创建一个用户tom，">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/05/29/Linux实操篇-组管理/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="../images/avatar.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ByKeep" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">DoCode</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">java开发程序员</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> NanNing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 博主本科毕业于广西大学，电气专业，于大三转行学java开发，目前准备步入职场。 本博客主要内容是学习笔记、生活随笔以及工具软件推荐等， 下面是我的微信二维码，欢迎添加好友交流分享经验！</p>
+            </div>
+            <div>
+              <img src="/images/weixin.jpg" width="200" higth="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/办证、申请/">办证、申请</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux基础/">Linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux实操/">Linux实操</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot笔记/">SpringBoot笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring笔记/">Spring笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于DoCode/">关于DoCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件著作权/">软件著作权</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/Linux基础/" style="font-size: 13.67px;">Linux基础</a> <a href="/tags/Linux实操/" style="font-size: 14px;">Linux实操</a> <a href="/tags/SpringBoot笔记/" style="font-size: 13.33px;">SpringBoot笔记</a> <a href="/tags/Spring笔记/" style="font-size: 13.33px;">Spring笔记</a> <a href="/tags/关于DoCode/" style="font-size: 13px;">关于DoCode</a> <a href="/tags/软件著作权/" style="font-size: 13px;">软件著作权</a> <a href="/tags/随笔/" style="font-size: 13px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/18/Java基础篇-网络编程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java/">Java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/18/Java基础篇-网络编程/" class="title">Java基础篇-网络编程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-17T16:35:28.030Z" itemprop="datePublished">2019-09-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/02/SpringBoot-日志/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/02/SpringBoot-日志/" class="title">SpringBoot-日志</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-02T15:48:56.996Z" itemprop="datePublished">2019-09-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/01/SpringBoot-配置文件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/01/SpringBoot-配置文件/" class="title">SpringBoot-配置文件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-01T08:03:08.113Z" itemprop="datePublished">2019-09-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="title">SpringBoot-入门与第一个Hello工程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-31T15:05:32.839Z" itemprop="datePublished">2019-08-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/11/Spring框架-Spring的配置/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/11/Spring框架-Spring的配置/" class="title">Spring框架-Spring的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-11T06:56:49.034Z" itemprop="datePublished">2019-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux组基本介绍"><span class="toc-number">1.</span> <span class="toc-text">Linux组基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件-目录-所有者"><span class="toc-number">2.</span> <span class="toc-text">文件/目录 所有者</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件的所有者"><span class="toc-number">2.1.</span> <span class="toc-text">查看文件的所有者</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件-目录所在组"><span class="toc-number">3.</span> <span class="toc-text">文件/目录所在组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件所有者"><span class="toc-number">3.1.</span> <span class="toc-text">修改文件所有者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组的创建"><span class="toc-number">3.2.</span> <span class="toc-text">组的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件所在的组"><span class="toc-number">3.3.</span> <span class="toc-text">修改文件所在的组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它组"><span class="toc-number">3.4.</span> <span class="toc-text">其它组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改变用户所在组"><span class="toc-number">3.5.</span> <span class="toc-text">改变用户所在组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限的基本介绍"><span class="toc-number">4.</span> <span class="toc-text">权限的基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rwx权限详解"><span class="toc-number">5.</span> <span class="toc-text">rwx权限详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rwx作用到文件"><span class="toc-number">5.1.</span> <span class="toc-text">rwx作用到文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rwx作用到目录"><span class="toc-number">5.2.</span> <span class="toc-text">rwx作用到目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件及目录权限实际案例"><span class="toc-number">6.</span> <span class="toc-text">文件及目录权限实际案例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改权限-chmod"><span class="toc-number">7.</span> <span class="toc-text">修改权限-chmod</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一种方式"><span class="toc-number">7.1.</span> <span class="toc-text">第一种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二种方式"><span class="toc-number">7.2.</span> <span class="toc-text">第二种方式</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Linux实操篇-组管理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux实操篇-组管理和权限管理
+    </h1>
+  
+
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/05/29/Linux实操篇-组管理/" class="article-date">
+	  <time datetime="2019-05-29T02:06:34.892Z" itemprop="datePublished">2019-05-29</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Linux实操/">Linux实操</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/29/Linux实操篇-组管理/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.5k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 5(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="Linux组基本介绍"><a href="#Linux组基本介绍" class="headerlink" title="Linux组基本介绍"></a>Linux组基本介绍</h1><p>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件 有所有者、所在组、其它组的概念。<br>1) 所有者 </p>
+<p>2) 所在组 </p>
+<p>3) 其它组</p>
+<p> 4) 改变用户所在的组</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173048969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="文件-目录-所有者"><a href="#文件-目录-所有者" class="headerlink" title="文件/目录 所有者"></a>文件/目录 所有者</h1><p>概念：一般为文件的创建者，谁创建了文件，就自然的成为该文件的所有者。</p>
+<h2 id="查看文件的所有者"><a href="#查看文件的所有者" class="headerlink" title="查看文件的所有者"></a>查看文件的所有者</h2><p>1) 指令：ls –ahl</p>
+<p> <strong>实例</strong></p>
+<p>（1）创建一个组police，再创建一个用户tom，将tom放在police组中，然后使用tom来创建一个文件ok.txt，并查看文件所有者</p>
+<p>步骤1：创建police组以及tom用户并将tom放在police组中</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173212243.png" alt="在这里插入图片描述"></p>
+<p>步骤2：使用tom用户创建ok.txt文件</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173222543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>特别说明：文件的所在组一般是所有者的所在组，但是也是可以更改的</p>
+<h1 id="文件-目录所在组"><a href="#文件-目录所在组" class="headerlink" title="文件/目录所在组"></a>文件/目录所在组</h1><h2 id="修改文件所有者"><a href="#修改文件所有者" class="headerlink" title="修改文件所有者"></a>修改文件所有者</h2><p>指令：</p>
+<p>1）chown  newowner  file  改变文件的所有者<br>2）chown newowner:newgroup  file  改变用户的所有者和所有组 </p>
+<p>3）-R   如果是目录 则使其下所有子文件或目录递归生效</p>
+<p><strong>实例</strong></p>
+<p>（1）使用root创建一个文件apple.txt，然后将其修改为tom </p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173237218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2) 请将 /home/kkk 目录下所有的文件和目录的所有者都修改成tom </p>
+<p>   首先我们应该选择root用户操作</p>
+<p><img src="https://img-blog.csdnimg.cn/2019052917330094.png" alt="在这里插入图片描述"></p>
+<h2 id="组的创建"><a href="#组的创建" class="headerlink" title="组的创建"></a>组的创建</h2><p>基本指令: groupadd 组名<br>实例</p>
+<p>(1) 创建一个组, ,monster 创建一个用户 fox ，并放入到 monster组中</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173320299.png" alt="在这里插入图片描述"></p>
+<h2 id="修改文件所在的组"><a href="#修改文件所在的组" class="headerlink" title="修改文件所在的组"></a>修改文件所在的组</h2><p>  基本指令 ：</p>
+<p>1）chgrp 组名 文件名 </p>
+<p>2）-R   如果是目录 则使其下所有子文件或目录递归生效</p>
+<p><strong>实例</strong> </p>
+<p>（1）使用root用户创建文件 orange.txt ,看看当前这个文件属于哪个组，然后将这个文 件所在组，修改到 police组。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173328558.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2） 请将 /home/kkk 目录下所有的文件和目录的所在组都修改成 police</p>
+<p>  chgrp -R police  /home/kkk/</p>
+<h2 id="其它组"><a href="#其它组" class="headerlink" title="其它组"></a>其它组</h2><p>介绍：除文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组。</p>
+<h2 id="改变用户所在组"><a href="#改变用户所在组" class="headerlink" title="改变用户所在组"></a>改变用户所在组</h2><p>在添加用户时，可以指定将该用户添加到哪个组中，同样的用root的管理权限可以改变某 个用户所在的组。 改变用户所在组</p>
+<p> 1) usermod   –g   组名 用户名</p>
+<p> 2) usermod   –d   目录名 用户名 改变该用户登陆的初始目录。</p>
+<p><strong>实例</strong></p>
+<p>（1）创建一个土匪组（bandit）将tom这个用户从原来所在的police组，修改为</p>
+<p>土匪组（bandit）</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173345959.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="权限的基本介绍"><a href="#权限的基本介绍" class="headerlink" title="权限的基本介绍"></a>权限的基本介绍</h1><p>ls  -l 中显示的内容如下： -rwxrw-r– 1 root root 1213 Feb 2 09:39 abc<br><strong>0-9位说明</strong> </p>
+<p>1) 第0位确定文件类型(d, - , l , c , b)</p>
+<p> 2) 第1-3位确定所有者（该文件的所有者）拥有该文件的权限。—User </p>
+<p>3) 第4-6位确定所属组（同用户组的）拥有该文件的权限，—Group</p>
+<p> 4) 第7-9位确定其他用户拥有该文件的权限 —Other</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173358872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="rwx权限详解"><a href="#rwx权限详解" class="headerlink" title="rwx权限详解"></a>rwx权限详解</h1><h2 id="rwx作用到文件"><a href="#rwx作用到文件" class="headerlink" title="rwx作用到文件"></a>rwx作用到文件</h2><p> 1) [ r ]代表可读(read): 可以读取,查看 </p>
+<p>2) [ w ]代表可写(write): 可以修改,但是不代表可以删除该文件,删除一个文件的前提条件是 对该文件所在的目录有写权限，才能删除该文件.</p>
+<p>3) [ x ]代表可执行(execute):可以被执行</p>
+<h2 id="rwx作用到目录"><a href="#rwx作用到目录" class="headerlink" title="rwx作用到目录"></a>rwx作用到目录</h2><p>1) [ r ]代表可读(read): 可以读取，ls查看目录内容 </p>
+<p>2) [ w ]代表可写(write): 可以修改,目录内创建+删除+重命名目录</p>
+<p> 3) [ x ]代表可执行(execute):可以进入该目录</p>
+<h1 id="文件及目录权限实际案例"><a href="#文件及目录权限实际案例" class="headerlink" title="文件及目录权限实际案例"></a>文件及目录权限实际案例</h1><p><strong>ls  -l 中显示的内容如下：</strong></p>
+<p> -rwxrw-r– 1 root root 1213 Feb 2 09:39 abc </p>
+<p>10个字符确定不同用户能对文件干什么</p>
+<p> 第一个字符代表文件类型：文件 (-),目录(d),链接(l) </p>
+<p>其余字符每3个一组(rwx) 读(r) 写(w) 执行(x)</p>
+<p> 第一组rwx : 文件拥有者的权限是读、写和执行 </p>
+<p>第二组rw-: 与文件拥有者同一组的用户的权限是读、写但不能执行</p>
+<p> 第三组r– : 不与文件拥有者同组的其他用户的权限是读不能写和执行 </p>
+<p><strong>可用数字表示为:</strong> r=4,w=2,x=1 因此rwx=4+2+1=7      </p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:center">文件：硬连接数或 目录：子目录数</td>
+</tr>
+<tr>
+<td>root</td>
+<td style="text-align:center">用户</td>
+</tr>
+<tr>
+<td>root</td>
+<td style="text-align:center">组</td>
+</tr>
+<tr>
+<td>1213</td>
+<td style="text-align:center">文件大小（字节），如果是文件夹，显示4096字节</td>
+</tr>
+<tr>
+<td>Feb 2 09:39</td>
+<td style="text-align:center">最后修改日期</td>
+</tr>
+<tr>
+<td>abc</td>
+<td style="text-align:center">文件名</td>
+</tr>
+</tbody>
+</table>
+<h1 id="修改权限-chmod"><a href="#修改权限-chmod" class="headerlink" title="修改权限-chmod"></a>修改权限-chmod</h1><p>基本说明： 通过chmod指令，可以修改文件或者目录的权限。</p>
+<h2 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h2><p>第一种方式：+ 、-、= 变更权限 u:所有者 g:所在组 o:其他人 a:所有人(u、g、o的总和)</p>
+<p>1) chmod   u=rwx,g=rx,o=x   文件目录名 </p>
+<p>功能描述：u=rwx给所有者rwx权限，g=rx给所在组的其他用户提供rx权限，o=x其他组用户提供x权限</p>
+<p>2) chmod   o+w    文件目录名 </p>
+<p>功能描述：给其他组用户添加提供w(写)权限</p>
+<p>3) chmod   a-x    文件目录名</p>
+<p>功能描述：给所用用户减去x(执行)权限</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173502574.png" alt="在这里插入图片描述"></p>
+<p> <strong>实例</strong></p>
+<p>1) 给abc文件 的所有者读写执行的权限，给所在组读执行权限，给其它组读执行权限。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173516275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>特别说明：文件获取可执行权限之后，文件名字变成绿色</p>
+<p>2) 给abc文件的所有者除去执行的权限，增加组写的权限 </p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173532152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>3) 给abc文件的所有用户添加读的权限</p>
+<p><img src="https://img-blog.csdnimg.cn/20190529173549105.png" alt="在这里插入图片描述"></p>
+<h2 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h2><p>第二种方式：通过数字变更权限 </p>
+<p>r=4 w=2 x=1        rwx=4+2+1=7</p>
+<p> chmod u=rwx,g=rx,o=x    文件目录名 </p>
+<p>相当于 chmod   751  文件目录名</p>
+<p> <strong>实例</strong></p>
+<p> （1）将 /home/abc.txt 文件的权限修改成 rwxr-xr-x, 使用给数字的方式实现：</p>
+<p>rwx=4+2+1=7</p>
+<p>r-x=4+1=5</p>
+<p>r-x=5+1=5</p>
+<p>指令：chmod 755 /home/abc.txt</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/05/29/Linux实操篇-组管理/" title="Linux实操篇-组管理和权限管理" target="_blank" rel="external">http://yoursite.com/2019/05/29/Linux实操篇-组管理/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ByKeep" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ByKeep" target="_blank"><span class="text-dark">DoCode</span><small class="ml-1x">java开发程序员</small></a></h3>
+        <div>To strive, to seek, to find, and not to yield.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/05/30/Linux实操篇-定时调度任务/" title="Linux实操篇-定时调度任务与实例"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/05/25/Java基础篇-Java异常处理/" title="Java基础篇-Java异常处理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone,wechat"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2021 DoCode
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

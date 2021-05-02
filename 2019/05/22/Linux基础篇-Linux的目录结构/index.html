@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Linux基础篇-Linux的目录结构 | DoCode</title>
+  <meta name="description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装">
+<meta name="keywords" content="Linux基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux基础篇-Linux的目录结构">
+<meta property="og:url" content="http://yoursite.com/2019/05/22/Linux基础篇-Linux的目录结构/index.html">
+<meta property="og:site_name" content="DoCode">
+<meta property="og:description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190523213856640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190523213910339.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-07-21T10:55:01.239Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux基础篇-Linux的目录结构">
+<meta name="twitter:description" content="基本介绍Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。 一句经典的话：在Linux的世界里，一切皆文件（不管是软件还是硬件，都可以以文件的方式进行操作） 以下是文件系统树状图：  在CentOSE中的文件系统图像化目录如下图所示：  目录结构具体介绍文件系统的根目录在Linux中我们见到的都是树状结构，比如操作系统安装">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190523213856640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2019/05/22/Linux基础篇-Linux的目录结构/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="DoCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="../images/avatar.jpg" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/ByKeep" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">DoCode</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">java开发程序员</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> NanNing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech>
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p> 博主本科毕业于广西大学，电气专业，于大三转行学java开发，目前准备步入职场。 本博客主要内容是学习笔记、生活随笔以及工具软件推荐等， 下面是我的微信二维码，欢迎添加好友交流分享经验！</p>
+            </div>
+            <div>
+              <img src="/images/weixin.jpg" width="200" higth="200">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SpringBoot/">SpringBoot</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/办证、申请/">办证、申请</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java基础/">Java基础</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux基础/">Linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux实操/">Linux实操</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot笔记/">SpringBoot笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring笔记/">Spring笔记</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/关于DoCode/">关于DoCode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件著作权/">软件著作权</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/Linux基础/" style="font-size: 13.67px;">Linux基础</a> <a href="/tags/Linux实操/" style="font-size: 14px;">Linux实操</a> <a href="/tags/SpringBoot笔记/" style="font-size: 13.33px;">SpringBoot笔记</a> <a href="/tags/Spring笔记/" style="font-size: 13.33px;">Spring笔记</a> <a href="/tags/关于DoCode/" style="font-size: 13px;">关于DoCode</a> <a href="/tags/软件著作权/" style="font-size: 13px;">软件著作权</a> <a href="/tags/随笔/" style="font-size: 13px;">随笔</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/18/Java基础篇-网络编程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Java/">Java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/18/Java基础篇-网络编程/" class="title">Java基础篇-网络编程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-17T16:35:28.030Z" itemprop="datePublished">2019-09-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/02/SpringBoot-日志/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/02/SpringBoot-日志/" class="title">SpringBoot-日志</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-02T15:48:56.996Z" itemprop="datePublished">2019-09-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/09/01/SpringBoot-配置文件/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/01/SpringBoot-配置文件/" class="title">SpringBoot-配置文件</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-01T08:03:08.113Z" itemprop="datePublished">2019-09-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/31/SpringBoot-入门与第一个HelloWorld工程/" class="title">SpringBoot-入门与第一个Hello工程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-31T15:05:32.839Z" itemprop="datePublished">2019-08-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2019/08/11/Spring框架-Spring的配置/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Spring/">Spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/11/Spring框架-Spring的配置/" class="title">Spring框架-Spring的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-11T06:56:49.034Z" itemprop="datePublished">2019-08-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本介绍"><span class="toc-number">1.</span> <span class="toc-text">基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#目录结构具体介绍"><span class="toc-number">2.</span> <span class="toc-text">目录结构具体介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件系统的根目录"><span class="toc-number">2.1.</span> <span class="toc-text">文件系统的根目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挂载"><span class="toc-number">2.2.</span> <span class="toc-text">挂载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FHS规范"><span class="toc-number">2.3.</span> <span class="toc-text">FHS规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根目录的意义"><span class="toc-number">2.4.</span> <span class="toc-text">根目录的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usr-的意义与内容："><span class="toc-number">2.5.</span> <span class="toc-text">/usr 的意义与内容：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#var-的意义与内容："><span class="toc-number">2.6.</span> <span class="toc-text">/var 的意义与内容：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Linux基础篇-Linux的目录结构" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux基础篇-Linux的目录结构
+    </h1>
+  
+
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/05/22/Linux基础篇-Linux的目录结构/" class="article-date">
+	  <time datetime="2019-05-22T15:42:52.517Z" itemprop="datePublished">2019-05-22</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Linux基础/">Linux基础</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/22/Linux基础篇-Linux的目录结构/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 3.5k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 12(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><meta name="referrer" content="no-referrer"></p>
+<h1 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h1><p>Linux的文件系统中采用的是级层式的树状目录结构，在目录的最上层是文件系统的根目录“/”，然后在此根目录下创建其他的目录。</p>
+<p>一句经典的话：<strong>在Linux的世界里，一切皆文件</strong>（不管是软件还是硬件，都可以以文件的方式进行操作）</p>
+<p>以下是文件系统树状图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190523213856640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>在CentOSE中的文件系统图像化目录如下图所示：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190523213910339.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgzMDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="目录结构具体介绍"><a href="#目录结构具体介绍" class="headerlink" title="目录结构具体介绍"></a>目录结构具体介绍</h1><h2 id="文件系统的根目录"><a href="#文件系统的根目录" class="headerlink" title="文件系统的根目录"></a>文件系统的根目录</h2><p>在Linux中我们见到的都是树状结构，比如操作系统安装在了文件系统中，它是由”/“起始的树状结构，它就是Linux的最顶端，我们将其称之为Linux的root。Linux的文件系统入口就是“/”，所有的目录、文件、设备都在/之下，/就是Linux文件系统的组织者，也是最上级的领导者。</p>
+<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>概念：挂载的意思是将设备与系统的目录关联，实现对设备进行操作；</p>
+<p>没有挂载的设备相当于一个封闭的盒子，里面的数据出不来外面的数据进不去，设备挂载之后，相当于给盒子开了一个窗户或者门，实现数据的交流。</p>
+<h2 id="FHS规范"><a href="#FHS规范" class="headerlink" title="FHS规范"></a>FHS规范</h2><p>因为Linux属于开源的操作系统，所以在很多公司或者技术团队在使用过程中会对Linux的核心代码进行开发、编程等操作。这样的个性化开发将会目录存放数据混乱的问题。这个问题使Linux的开发人员无法对他人发的电脑进行开发和使用。于是FHS（Filesystem Hierarchy Standard ）标准诞生，解决了这个问题。规范目录下存放的数据内容，规范每一个特定目录下存放的数据。FHS依据文件系统使用的频繁与否与是否允许使用者进行随意改动，而将目录定义成为四种交互作用的形态，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>可分享的(shareable)</th>
+<th>不可分享的(unshareable)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不变的(static)</td>
+<td>/usr (软件放置处)</td>
+<td>/etc (配置文件)</td>
+</tr>
+<tr>
+<td></td>
+<td>/opt (第三方协力软件)</td>
+<td>/boot (开机与核心档)</td>
+</tr>
+<tr>
+<td>可变动的(variable)</td>
+<td>/var/mail (使用者邮件信箱)</td>
+<td>/var/run (程序相关)</td>
+</tr>
+<tr>
+<td></td>
+<td>/var/spool/news (新闻组)</td>
+<td>/var/lock (程序相关)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>四种类型:</strong></p>
+<p><strong>1.可分享的：</strong></p>
+<p>可以分享给其他系统挂载使用的目录，所以包括执行文件与用户的邮件等数据， 是能够分享给网络上其他主机挂载用的目录；</p>
+<p><strong>2.不可分享的：</strong></p>
+<p>自己机器上面运作的装置文件或者是与程序有关的socket文件等， 仅与自身机器有关，不可以分享给其他主机。</p>
+<p><strong>3.不变的：</strong></p>
+<p>有些数据是不会经常变动的，跟随着distribution而不变动。 例如函式库、文件说明文件、系统管理员所管理的主机服务配置文件等等；</p>
+<p><strong>4.可变动的：</strong></p>
+<p>经常改变的数据，例如登录文件、一般用户可自行收受的新闻组等。</p>
+<p>事实上，FHS针对目录树架构仅定义出三层目录底下应该放置什么数据而已，分别是底下这三个目录的定义：</p>
+<p>/ (root, 根目录)：与开机系统有关；</p>
+<p>/usr (unix software resource)：与软件安装/执行有关；</p>
+<p>/var (variable)：与系统运作过程有关。</p>
+<h2 id="根目录的意义"><a href="#根目录的意义" class="headerlink" title="根目录的意义"></a>根目录的意义</h2><p>根目录是操作系统的最重要的目录，其重要性等同于Windows系统中的c盘目录，它包含了各类的系统重要文件，由于根目录的重要性所以在FHS的标准中建议根目录所在分区越小越好，而且程序安装最好不要和根目录放在同一分区内，保持根分区越小越好，这样保证了文件系统出现问题的几率变小，同时使得文件系统的性能更佳。</p>
+<p>基于以上的原因，FHS认为根目录下面应该包含以下的子目录：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">目录</th>
+<th style="text-align:left">应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">/bin</td>
+<td style="text-align:left">是Binary的缩写，这个目录存放着最经常使用的命令。在/bin底下的指令可以被root与一般帐号所使用，主要有：cat,chmod(修改权限), chown, date, mv, mkdir, cp, bash等等常用的指令。</td>
+</tr>
+<tr>
+<td style="text-align:right">/boot</td>
+<td style="text-align:left">主要放置开机会使用到的核心文件，包括Linux连接文件、镜像文件</td>
+</tr>
+<tr>
+<td style="text-align:right">/dev</td>
+<td style="text-align:left">在Linux系统上，任何装置与周边设备都是以文件的型态存在于这个目录当中。 （相当于Windows的设备管理器，把所有的硬件用文件的形式存储）</td>
+</tr>
+<tr>
+<td style="text-align:right">/etc</td>
+<td style="text-align:left">所有的系统管理所需要的配置文件和子目录 my.conf。例如人员的帐号密码文件、各种服务的启始文件等等。 这个目录下的各文件属性是可以让一般使用者查阅的，但是只有root有权力修改。</td>
+</tr>
+<tr>
+<td style="text-align:right">/home</td>
+<td style="text-align:left">这是系统预设的使用者家目录(home directory)。 在你新增一个一般使用者帐号时，就会有一个与与户名相同的目录出现。比较重要的是，家目录有两种代号：~ ：代表当前使用者的家目录，而 ~guest：则代表用户名为guest的家目录。</td>
+</tr>
+<tr>
+<td style="text-align:right">/lib</td>
+<td style="text-align:left">系统开机所需要最基本的动态连接共享库，其作用类似于Windows里的DLL文件。几 乎所有的应用程序都需要用到这些共享库。</td>
+</tr>
+<tr>
+<td style="text-align:right">/media</td>
+<td style="text-align:left">media是媒体的英文，顾名思义，这个/media底下放置的就是可移除的装置。 如：光碟、DVD、U盘等装置都暂时挂载于此。 常见的有：/media/floppy, /media/cdrom等等。</td>
+</tr>
+<tr>
+<td style="text-align:right">/mnt</td>
+<td style="text-align:left">系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将外部的存储挂 载在/mnt/上，然后进入该目录就可以查看里的内容。 d:/myshare</td>
+</tr>
+<tr>
+<td style="text-align:right">/opt</td>
+<td style="text-align:left">这是给主机额外安装软件所摆放的目录。如安装ORACLE数据库就可放到该目录下。 默认为空。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>事实上FHS针对根目录所定义的标准就仅限于上表，不过仍旧有些目录也需要我们了解一下，具体如下：</strong></p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th style="text-align:left">应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/proc</td>
+<td style="text-align:left">这个目录本身是一个虚拟文件系统(virtual filesystem)。 它是系统内存的映射，访问这个目录来获取系统信息。</td>
+</tr>
+<tr>
+<td>/lost+found</td>
+<td style="text-align:left">这个目录是使用标准的ext2/ext3文件系统格式才会产生的一个目录，目的在于当档案系统发生错误时，将一些遗失的片段放置到这个目录下。（这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。）</td>
+</tr>
+<tr>
+<td>/sys</td>
+<td style="text-align:left">这是Linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统。</td>
+</tr>
+</tbody>
+</table>
+<p>除了这些目录的内容之外，另外要注意的是，因为根目录与开机有关，开机过程中仅有根目录会被挂载， 其他分区则是在开机完成之后才会持续的进行挂载的行为。就是因为如此，因此根目录下与开机过程有关的目录， 就不能够与根目录放到不同的分区去。</p>
+<p>那哪些目录不可与根目录分开呢？有底下这些：</p>
+<p><strong>/etc：</strong>各种软件与系统的设置文件，及软件的启动停止脚本 </p>
+<p><strong>/bin：</strong>重要执行文件</p>
+<p><strong>/dev：</strong>所需要的设置文件</p>
+<p><strong>/lib：</strong>各种目标文件与函数库和各种不同版本内核的模块 </p>
+<p><strong>/sbin：</strong>重要的系统执行文件</p>
+<p>这五个目录千万不可与根目录分开在不同的分区。请背下来啊。</p>
+<h2 id="usr-的意义与内容："><a href="#usr-的意义与内容：" class="headerlink" title="/usr 的意义与内容："></a>/usr 的意义与内容：</h2><p>　　/usr不是user的缩写，其实usr是Unix Software Resource的缩写， 也就是Unix操作系统软件资源所放置的目录。 FHS建议所有软件开发者，将他们的数据合理的放置到这个目录下的次目录，而不要自行建立该软件自己独立的目录。</p>
+<p>　　因为是所有系统默认的软件(distribution发布者提供的软件)都会放置到/usr底下，因此这个目录有点类似Windows 系统的C:\Windows\ + C:\Program files\这两个目录的综合体，系统刚安装完毕时，这个目录会占用最多的硬盘容量。 一般来说，/usr的次目录建议有底下这些：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th style="text-align:left">应放置的文件内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/usr/X11R6/</td>
+<td style="text-align:left">为X Window System重要数据所放置的目录，之所以取名为X11R6是因为最后的X版本为第11版，且该版的第6次释出之意</td>
+</tr>
+<tr>
+<td>/usr/bin/</td>
+<td style="text-align:left">绝大部分的用户可使用指令都放在这里。所有可执行文件，如 gcc，firefox 等。请注意到他与/bin的不同之处。(是否与开机过程有关)</td>
+</tr>
+<tr>
+<td>/usr/include/</td>
+<td style="text-align:left">c/c++等程序语言的头文件(header)与包含文件(include)放置处，当我们以tarball方式 (*.tar.gz 的方式安装软件)安装某些数据时，会使用到里头的许多包含档。</td>
+</tr>
+<tr>
+<td>/usr/lib/</td>
+<td style="text-align:left">包含各应用软件的函式库、目标文件(object file)，以及不被一般使用者惯用的执行档或脚本(script)。 某些软件会提供一些特殊的指令来进行服务器的设定，这些指令也不会经常被系统管理员操作， 那就会被摆放到这个目录下啦。要注意的是，如果你使用的是X86_64的Linux系统， 那可能会有/usr/lib64/目录产生</td>
+</tr>
+<tr>
+<td>/usr/local/</td>
+<td style="text-align:left">这是另一个给主机额外安装软件所安装的目录。一般是通过编译源码方式安装的程序。举例：你的distribution提供的软件较旧，你想安装较新的软件但又不想移除旧版， 此时你可以将新版软件安装于/usr/local/目录下，可与原先的旧版软件有分别啦。 你可以自行到/usr/local去看看，该目录下也是具有bin, etc, include, lib…的次目录</td>
+</tr>
+<tr>
+<td>/usr/sbin/</td>
+<td style="text-align:left">非系统正常运作所需要的系统指令。最常见的就是某些网络服务器软件的服务指令(daemon)</td>
+</tr>
+<tr>
+<td>/usr/share/</td>
+<td style="text-align:left">放置共享文件的地方，在这个目录下放置的数据几乎是不分硬件架构均可读取的数据， 因为几乎都是文本文件嘛。在此目录下常见的还有这些次目录：/usr/share/man：联机帮助文件</td>
+</tr>
+<tr>
+<td>/usr/src/</td>
+<td style="text-align:left">一般原始码建议放置到这里，src有source的意思。至于核心原始码则建议放置到/usr/src/linux/目录下。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="var-的意义与内容："><a href="#var-的意义与内容：" class="headerlink" title="/var 的意义与内容："></a>/var 的意义与内容：</h2><p>　　如果/usr是安装时会占用较大硬盘容量的目录，那么/var就是在系统运作后才会渐渐占用硬盘容量的目录。 因为/var目录主要针对常态性变动的文件，包括缓存(cache)、登录文件(log file)以及某些软件运作所产生的文件， 包括程序文件(lock file, run file)，或者例如MySQL数据库的文件等等。常见的次目录有：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th style="text-align:left">应放置文件内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/var/cache/</td>
+<td style="text-align:left">应用程序本身运作过程中会产生的一些暂存档</td>
+</tr>
+<tr>
+<td>/var/lib/</td>
+<td style="text-align:left">程序本身执行的过程中，需要使用到的数据文件放置的目录。在此目录下各自的软件应该要有各自的目录。 举例来说，MySQL的数据库放置到/var/lib/mysql/而rpm的数据库则放到/var/lib/rpm去</td>
+</tr>
+<tr>
+<td>/var/lock/</td>
+<td style="text-align:left">某些装置或者是文件资源一次只能被一个应用程序所使用，如果同时有两个程序使用该设备时， 就可能产生一些错误的状况，因此就得要将该装置上锁(lock)，以确保该设备只会给单一软件所使用。 举例来说，刻录机正在刻录一块光盘，如果两个人同时刻录，那片子写入的是谁的数据？所以当第一个人在刻录时该刻录机就会被上锁， 第二个人就得要该装置被解除锁定(就是前一个人用完了)才能够继续使用</td>
+</tr>
+<tr>
+<td>/var/log/</td>
+<td style="text-align:left">非常重要。这是登录文件放置的目录。里面比较重要的文件如/var/log/messages, /var/log/wtmp(记录登入者的信息)等。</td>
+</tr>
+<tr>
+<td>/var/mail/</td>
+<td style="text-align:left">放置个人电子邮件信箱的目录，不过这个目录也被放置到/var/spool/mail/目录中，通常这两个目录是互为链接文件。</td>
+</tr>
+<tr>
+<td>/var/run/</td>
+<td style="text-align:left">某些程序或者是服务启动后，会将他们的PID放置在这个目录下</td>
+</tr>
+<tr>
+<td>/var/spool/</td>
+<td style="text-align:left">这个目录通常放置一些队列数据，所谓的“队列”就是排队等待其他程序使用的数据。 这些数据被使用后通常都会被删除。举例来说，系统收到新信会放置到/var/spool/mail/中， 但使用者收下该信件后该封信原则上就会被删除。信件如果暂时寄不出去会被放到/var/spool/mqueue/中， 等到被送出后就被删除。如果是工作排程数据(crontab)，就会被放置到/var/spool/cron/目录中。</td>
+</tr>
+</tbody>
+</table>
+<p>由于FHS仅是定义出最上层(/)及次层(/usr, /var)的目录内容应该要放置的文件或目录数据， 因此，在其他次目录层级内，就可以随开发者自行来配置了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>1)Linux的目录中有且只有一个根目录/</p>
+<p>2）Linux的各个目录存放的内容是规划好的，不可以乱放文件</p>
+<p>3）Linux是以文件的方式进行管理设备，因此在Linux系统中，一切皆文件</p>
+<p>4）学习要求：掌握目录存放内容、脑海中形成目录树</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2019/05/22/Linux基础篇-Linux的目录结构/" title="Linux基础篇-Linux的目录结构" target="_blank" rel="external">http://yoursite.com/2019/05/22/Linux基础篇-Linux的目录结构/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/ByKeep" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt>
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/ByKeep" target="_blank"><span class="text-dark">DoCode</span><small class="ml-1x">java开发程序员</small></a></h3>
+        <div>To strive, to seek, to find, and not to yield.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NDE2My8yMDY5Ng==">
+        <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>    
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/05/23/Linux基础篇-Linux的远程登录与上传下载文件/" title="Linux基础篇-Linux的远程登录与上传下载文件"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/05/22/Linux基础篇-Linux的介绍/" title="Linux基础篇-Linux的介绍"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone,wechat"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫">
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class>
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ByKeep" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1303309196&site=qq&menu=yes" target="_blank" title="Qq" data-toggle="tooltip" data-placement="top"><i class="icon icon-qq"></i></a></li>
+        
+        <li><a href="mailto:1303309196@qq.com" target="_blank" title="Email" data-toggle="tooltip" data-placement="top"><i class="icon icon-email"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2021 DoCode
+        
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
